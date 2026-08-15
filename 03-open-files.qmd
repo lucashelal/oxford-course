@@ -1,0 +1,55 @@
+# Opening Files {#sec-open-files}
+
+Most projects start the same way: you have a spreadsheet, and you need R to read it. This chapter covers the most common case, a plain `.csv` file.
+
+## Reading a file with code
+
+```r
+survey <- read.csv("data/survey_results.csv")
+head(survey)
+```
+
+```{r}
+df <- data.frame(
+  ID = seq(1:10),
+  age = rnorm(10, mean = 30, sd = 5), 
+  weigth = rnorm(10, mean = 70, sd = 10),
+  height = rnorm(10, mean = 170, sd = 15))
+```
+
+
+
+```{r}
+
+head(df, n=5)
+```
+
+The arrow `<-` means "store this on the left." This line reads: *read the file, and save the result into an object called `survey`.* From now on, typing `survey` shows you the data, and `head(survey)` shows just the first six rows.
+
+::: {.callout-tip}
+Above you can see the first five rows of the example data frame `df`, containing four columns: `ID`, `age`, `weight`, and `height`. The `head()` function is useful for quickly inspecting the first few rows of a data frame.
+::: 
+
+## Reading a file with the Import Dataset button
+
+RStudio also offers a point-and-click route, which quietly writes the same code above for you:
+
+1. Click **File → Import Dataset → From Text (readr)**
+2. Browse to your file
+3. Preview the table, adjust options if needed, then click **Import**
+
+Watch the console after clicking Import — RStudio pastes the exact `read.csv(...)` line it used. This is a good way to learn the code by watching the point-and-click path generate it.
+
+## Common file types
+
+| File extension | Function |
+|---|---|
+| `.csv` | `read.csv()` |
+| `.xlsx` | `readxl::read_excel()` |
+| `.txt` (tab-separated) | `read.delim()` |
+| `.rds` (R's own format) | `readRDS()` |
+
+::: {.callout-note}
+## Posit Cloud
+Uploading a file works a little differently there than on your own computer. See [Chapter 8](08-posit-cloud.qmd) for the exact steps.
+:::

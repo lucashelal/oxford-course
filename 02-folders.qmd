@@ -1,0 +1,57 @@
+# Folders and Projects {#sec-folders}
+
+Using RStudio or Posit Cloud, you will probably face with a standardized layout, although customizable, like this:
+
+![](figures/Captura de Tela 2026-08-10 às 14.43.00.png){fig-align="center"}
+
+Think this figure as four quadrants. The top right shows the *Environment* tab - whether you opened R Packages, datasets, stored objects etc., it will be saved here. Below it is the *Folder* tab, in which you can see all of your folder architecture, navigate through it, open files, and create new files. At the left, is the *Console* tab together with the *Terminal* tab, where you can type commands directly to R, but at once, or interact with your operational system if needed. Finally, above, the *Script* tab, which is the tab you will use to write your code, save it, reproduce it and share it with others. 
+
+The main difference between the *Console* and the *Script* is that in the *Script* you can type your code without running immediately it, then, architecting it, differently of the *Console* tab that is useful for checks and help functions. 
+
+::: {.callout-tip}
+The `?` symbol, before a function, is a shortcut to open the **help page** of that function/package, which is very useful to understand how a command line works and solve some problems. For example, `?mean` will open the help page for the `mean()` function.
+:::
+
+## Set up one folder per piece of work
+
+R always works "inside" one folder at a time, called the **working directory**. Getting this right early avoids the majority of beginner problems with files that "can't be found."
+
+Create a single folder for each project — something clearly named, like `my-first-project`. Inside it, keep sub-folders that separate your raw data from your code:. Below a minimum structure that works well for most projects:
+
+::: tree-box
+- 📁 **my-first-project/**
+  - 📄 my-first-project.Rproj
+  - 📁 **data/**
+    - 📄 survey_results.csv
+  - 📁 **scripts/**
+    - 📄 01_clean_data.R
+    - 📄 02_make_plots.R
+  - 📁 **output/**
+    - 📄 summary_chart.png
+:::
+
+## R Projects
+
+The single most useful habit for a beginner is to use an **R Project**: `File → New Project`. This creates a `.Rproj` file that automatically sets the working directory to that folder every time you open it, so you never have to guess where R thinks you currently are.
+
+``` r
+getwd()
+```
+
+```         
+[1] "/Users/you/my-first-project"
+```
+
+`getwd()` ("*get working directory*") asks R where it currently is. `setwd()` ("*set working directory*") lets you change it, but if you're using a Project you should rarely need to.
+
+::: callout-warning
+## Avoid full paths
+
+Never type a full path like `C:/Users/you/Desktop/...` inside a script — it will only work on your computer. Set up a Project, keep files in sub-folders next to it, and refer to them with short, relative paths instead:
+
+``` r
+survey <- read.csv("data/survey_results.csv")
+```
+:::
+
+If the file is in the correct folder, the callout before the filename will correctly call your file - whether it is a script, a dataset, etc. It is a matter of habit instead procedures - be aware to store correctly your files in the **appropriate** folder. 

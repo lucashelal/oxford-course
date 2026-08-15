@@ -1,0 +1,202 @@
+/*-- scss:defaults --*/
+
+// ---- Oxford palette, detected from the source document ----
+$oxford-navy:  #001D41;
+$oxford-red:   #FE2D0D;
+$oxford-green: #22983B;
+$oxford-rose:  #C7254E;
+$oxford-rose-underline: #D64A70;
+
+$primary:       $oxford-navy;
+$link-color:    $oxford-rose;
+$body-color:    #2b2b2b;
+$body-bg:       #ffffff;
+$headings-color: $oxford-red;
+$font-family-sans-serif: "Lato", "Helvetica Neue", Arial, sans-serif;
+$font-family-monospace: "Source Code Pro", Consolas, monospace;
+$code-color: #1f1c1b;
+$code-bg: #f4f4f4;
+$table-border-color: #dcdcdc;
+
+/*-- scss:rules --*/
+
+// ---------- book sidebar (chapter navigation) ----------
+#quarto-sidebar,
+.sidebar-navigation,
+nav.sidebar {
+  background-color: $oxford-navy !important;
+}
+#quarto-sidebar .sidebar-title,
+#quarto-sidebar .sidebar-title a {
+  color: #ffffff !important;
+  font-weight: 700;
+}
+#quarto-sidebar .sidebar-item a,
+#quarto-sidebar .sidebar-item-text {
+  color: #cfd9e4 !important;
+}
+#quarto-sidebar .sidebar-item a:hover {
+  color: #ffffff !important;
+}
+#quarto-sidebar .sidebar-item.active > .sidebar-item-container .sidebar-item-text,
+#quarto-sidebar .active > .sidebar-item-container .sidebar-item-text,
+#quarto-sidebar a.sidebar-item-text.sidebar-link.active {
+  color: $oxford-red !important;
+  font-weight: 700;
+}
+#quarto-sidebar .sidebar-search input {
+  background-color: rgba(255,255,255,.08);
+  color: #fff;
+  border-color: rgba(255,255,255,.2);
+}
+
+// ---------- sidebar authorship footer ----------
+#quarto-sidebar {
+  display: flex;
+  flex-direction: column;
+}
+.sidebar-authors {
+  margin-top: auto;
+  padding: .9rem 1.1rem 1.1rem 1.1rem;
+  border-top: 1px solid rgba(255,255,255,.15);
+  font-family: $font-family-sans-serif;
+}
+.sidebar-authors-names {
+  display: flex;
+  flex-direction: column;
+  gap: .1rem;
+  font-size: .8rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: .35rem;
+}
+.sidebar-authors-affil {
+  font-size: .72rem;
+  line-height: 1.35;
+  color: #9fb0c3;
+}
+
+// ---------- links ----------
+a { text-decoration-color: $oxford-rose-underline; }
+a:hover, a:visited { color: $oxford-navy; }
+
+// ---------- headings ----------
+h1, h2, h3, h4, h5, h6 { color: $oxford-red; }
+h1.title, .chapter-title { color: $oxford-red; }
+
+// ---------- callouts, restrained (native Quarto callouts, retinted) ----------
+div.callout-note.callout-style-default { border-left-color: $oxford-navy; }
+div.callout-note .callout-icon::before { background-color: $oxford-navy; }
+div.callout-tip.callout-style-default { border-left-color: $oxford-green; }
+div.callout-tip .callout-icon::before { background-color: $oxford-green; }
+div.callout-warning.callout-style-default { border-left-color: $oxford-red; }
+div.callout-warning .callout-icon::before { background-color: $oxford-red; }
+
+// ================= lightweight widget styling (kept plain, book-like) =================
+
+.tree-box {
+  font-family: $font-family-monospace;
+  font-size: .92rem;
+  background: #fafafa;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  padding: 1rem 1.2rem;
+  margin: 1.2rem 0;
+}
+.tree-box ul { list-style: none; margin: 0; padding-left: 1.2rem; border-left: 1px dotted #bbb; }
+.tree-box > ul { padding-left: 0; border-left: none; }
+.tree-box li { margin: .2rem 0; }
+.tree-box .node { cursor: pointer; padding: 1px 4px; border-radius: 3px; }
+.tree-box .node:hover { background: #eee; }
+.tree-box .node.file { cursor: default; }
+.tree-box .node.file:hover { background: none; }
+.tree-box .folder-name { color: $oxford-navy; }
+.tree-box .file-name { color: #666; }
+.tree-box .chev { display:inline-block; width:.9em; color: $oxford-red; }
+.tree-box li.closed > ul { display: none; }
+.tree-box li.closed > .node .chev { transform: rotate(-90deg); display:inline-block; }
+
+.calc-box {
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  padding: 1rem 1.2rem;
+  margin: 1.2rem 0;
+  background: #fafafa;
+}
+.calc-box .row { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: .6rem; }
+.calc-box input[type="text"] {
+  flex: 1; min-width: 220px; font-family: $font-family-monospace; padding: .5rem .6rem;
+  border: 1px solid #ccc; border-radius: 3px;
+}
+.calc-box button {
+  font-family: $font-family-sans-serif; font-weight: 600; padding: .5rem 1rem;
+  border-radius: 3px; border: 1px solid $oxford-navy; background: $oxford-navy; color: #fff; cursor: pointer;
+}
+.calc-box .example {
+  font-family: $font-family-monospace; font-size: .82rem; border: 1px solid #ccc; background: #fff;
+  padding: .2rem .5rem; border-radius: 3px; cursor: pointer; color: #444;
+}
+.calc-box .example:hover { border-color: $oxford-navy; }
+.calc-out {
+  font-family: $font-family-monospace; background: #1f1c1b; color: #f2f2f2; border-radius: 3px;
+  padding: .7rem .9rem; min-height: 3em; font-size: .92rem;
+}
+.calc-out .prompt { color: #ff9d9d; }
+.calc-out .ans { color: #9fe0b4; }
+.calc-out .err { color: #ffb3b3; }
+
+.matcher-box {
+  border: 1px solid #dcdcdc; border-radius: 4px; padding: 1rem 1.2rem; margin: 1.2rem 0; background: #fafafa;
+}
+.matcher-box select {
+  width: 100%; font-family: $font-family-sans-serif; padding: .5rem .6rem; border: 1px solid #ccc;
+  border-radius: 3px; margin-bottom: .8rem;
+}
+.matcher-out { display: none; font-family: $font-family-monospace; background: #1f1c1b; color: #f2f2f2;
+  border-radius: 3px; padding: .7rem .9rem; font-size: .92rem; white-space: pre-wrap; }
+.matcher-out.show { display: block; }
+
+.quiz-box {
+  border: 1px solid #dcdcdc; border-left: 4px solid $oxford-green; border-radius: 4px;
+  padding: 1rem 1.2rem; margin: 1.2rem 0; background: #f6fbf7;
+}
+.quiz-box .opt {
+  display: block; border: 1px solid #ccc; border-radius: 3px; padding: .5rem .7rem;
+  margin: .35rem 0; background: #fff; cursor: pointer; font-size: .95rem;
+}
+.quiz-box .opt.correct { border-color: $oxford-green; background: #e8f6ec; }
+.quiz-box .opt.wrong { border-color: $oxford-red; background: #fdeceb; }
+.quiz-box .fb { margin-top: .6rem; font-weight: 600; display: none; }
+.quiz-box .fb.show { display: block; }
+
+.plot-box { border: 1px solid #dcdcdc; border-radius: 4px; padding: 1rem 1.2rem; margin: 1.2rem 0; }
+.plot-box .bins { display: flex; gap: .5rem; margin-bottom: .8rem; }
+.plot-box .bins button {
+  font-family: $font-family-monospace; font-size: .82rem; border: 1px solid #ccc; background: #fff;
+  padding: .25rem .6rem; border-radius: 3px; cursor: pointer;
+}
+.plot-box .bins button.active { border-color: $oxford-navy; color: $oxford-navy; font-weight: 700; }
+
+.step-list { counter-reset: step; margin: 1.4rem 0; }
+.step-list .step { display: grid; grid-template-columns: 2.2rem 1fr; gap: .9rem; padding: .8rem 0; border-bottom: 1px solid #e6e6e6; }
+.step-list .step:last-child { border-bottom: none; }
+.step-list .step .n {
+  counter-increment: step; width: 2rem; height: 2rem; border-radius: 50%;
+  background: $oxford-navy; color: #fff; display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: .9rem;
+}
+.step-list .step .n::before { content: counter(step); }
+.step-list .step h4 { margin: 0 0 .25rem 0; font-size: 1rem; }
+.step-list .step p { margin: 0; color: #555; }
+
+.pane-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; border: 1px solid #dcdcdc;
+  border-radius: 4px; padding: .8rem; margin: 1.2rem 0;
+}
+.pane-grid .pane { border-radius: 3px; padding: .8rem; font-size: .85rem; }
+.pane-grid .pane strong { display: block; font-family: $font-family-monospace; margin-bottom: .2rem; }
+.pane-grid .p-source { background: #eef3f8; }
+.pane-grid .p-console { background: #1f1c1b; color: #eee; }
+.pane-grid .p-console strong { color: $oxford-rose-underline; }
+.pane-grid .p-env { background: #eefaf0; }
+.pane-grid .p-files { background: #fdeceb; }

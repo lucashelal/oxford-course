@@ -1,0 +1,39 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "First Steps in R"
+  subtitle: "A practical guide to R, RStudio, and Posit Cloud"
+  author: ""
+  date: today
+  search: true
+  page-navigation: true
+  chapters:
+    - index.qmd
+    - 01-what-is-r.qmd
+    - 02-folders.qmd
+    - 03-open-files.qmd
+    - 04-packages.qmd
+    - 05-calculator.qmd
+    - 06-functions.qmd
+    - 07-plot.qmd
+    - 08-posit-cloud.qmd
+  sidebar:
+    style: docked
+    background: dark
+    collapse-level: 1
+
+format:
+  html:
+    theme:
+      - flatly
+      - custom.scss
+    highlight-style: kate
+    code-copy: true
+    code-link: false
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    include-after-body: after-body.html
+    linkcolor: "#C7254E"

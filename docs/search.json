@@ -1,0 +1,432 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "First Steps in R",
+    "section": "",
+    "text": "Preface\nProfa. Carolina Abreu de Carvalho, PhD & Lucas Helal, MMSc, PhD Departamento de Saúde Coletiva · Programa de Pós-Graduação em Saúde Coletiva · Universidade Federal do Maranhão\nThis is a short, practical guide to getting started with R. It assumes no prior programming experience. By the end, you will be able to open R, keep your files organized, read in a dataset, install a package, do basic arithmetic and summary statistics, and produce a simple plot.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#who-this-is-for",
+    "href": "index.html#who-this-is-for",
+    "title": "First Steps in R",
+    "section": "Who this is for",
+    "text": "Who this is for\nAnyone starting R for the first time — for a course, a research project, or general curiosity. If you have used a spreadsheet before, you already have the right instincts; R just asks you to type the instructions instead of clicking them.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#working-entirely-in-posit-cloud",
+    "href": "index.html#working-entirely-in-posit-cloud",
+    "title": "First Steps in R",
+    "section": "Working entirely in Posit Cloud",
+    "text": "Working entirely in Posit Cloud\n\n\n\n\n\n\nNoteThis course runs in your browser, from day one\n\n\n\nEvery chapter of this guide is taught and evaluated using Posit Cloud — there is nothing to install on your own computer. Before opening Chapter 1, go straight to Chapter 8 — Getting Started with Posit Cloud, create your free account, and set up the single project you will keep using for the whole course. Once that’s done, come back here and start with Chapter 1 — every example from Chapter 1 onward runs inside that same Posit Cloud project.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#how-this-guide-is-organized",
+    "href": "index.html#how-this-guide-is-organized",
+    "title": "First Steps in R",
+    "section": "How this guide is organized",
+    "text": "How this guide is organized\nThe chapters are numbered in the order they appear in the sidebar, and Chapters 1–7 build on each other in sequence. Chapter 8 is the one exception: read it first, even though it’s numbered last — it gets your Posit Cloud account and project set up before you touch any code.\n\nWhat Is R? — R, RStudio, and Posit Cloud, and how they relate to each other\nFolders and Projects — keeping your files organized from day one\nOpening Files — reading a spreadsheet into R\nInstalling Packages — adding extra tools to R\nR as a Calculator — arithmetic and simple functions\nBasic Functions — vectors, dataframes, and descriptive statistics\nYour First Plot — histograms and ggplot2, built on a shared example dataset\nGetting Started with Posit Cloud — set up your free account and project (read this one first)\n\nChapters 6 and 7 both use the same simulated dataset, nutriheart_data, so that data wrangling and plotting are practiced on one consistent, realistic example rather than a new toy dataset every time. If you ever feel unsure whether you’re in the right place, the sidebar on the left always shows exactly where you are and what comes next — chapters are numbered in the order you should read them.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#conventions-used-in-this-guide",
+    "href": "index.html#conventions-used-in-this-guide",
+    "title": "First Steps in R",
+    "section": "Conventions used in this guide",
+    "text": "Conventions used in this guide\n\nCode you can type appears in a monospaced font, like mean(x).\nThe &lt;- arrow means “store this value.” It is read as “gets” — x &lt;- 5 means “x gets 5.”\nConsole output is shown exactly as R prints it, usually starting with [1].\nGrey boxes titled Note, green boxes titled Tip, and red boxes titled Warning flag information worth pausing on — notes give context, tips save you time, warnings prevent a common mistake.\nEvery chapter ends with a short Quick check or two. These aren’t graded — they exist so you can confirm you followed the chapter before moving to the next one. If a quiz surprises you, it’s worth re-reading the section just above it before continuing.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#if-you-get-stuck",
+    "href": "index.html#if-you-get-stuck",
+    "title": "First Steps in R",
+    "section": "If you get stuck",
+    "text": "If you get stuck\nGetting an error message is a normal, constant part of writing R — it happens to experienced researchers just as often as to beginners. Before asking for help, it usually pays to:\n\nRead the error message itself, not just its color. R’s errors are usually specific about what went wrong (a missing object, an unloaded package, a typo in a function name).\nRe-run the chunk just above the one that failed — most errors come from an earlier step that didn’t run, not the line where the error appears.\nCheck the chapter’s Quick check questions — they’re often written around the exact mistake you just made.\n\nIf none of that resolves it, bring the exact error message (not just “it didn’t work”) to your instructor — that single detail is usually enough to diagnose the problem in seconds.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#about-the-authors",
+    "href": "index.html#about-the-authors",
+    "title": "First Steps in R",
+    "section": "About the authors",
+    "text": "About the authors\nProfa. Carolina Abreu de Carvalho, PhD and Lucas Helal, MMSc, PhD are faculty and visiting scholar/post doc fellow at the Departamento de Saúde Coletiva, Universidade Federal do Maranhão (UFMA), where they teach and supervise students in the Programa de Pós-Graduação em Saúde Coletiva. This guide grew out of the R instruction they give to incoming students in their birth cohort and epidemiological research programs, and it is taught here in the same order and style used in that coursework.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "01-what-is-r.html",
+    "href": "01-what-is-r.html",
+    "title": "1  What Is R?",
+    "section": "",
+    "text": "1.1 R, RStudio, and Posit Cloud\nR is a free and open-source computing programming language built for working with data and statistics. Natively, it has no windows or buttons of its own — it simply reads commands and does the math, statistics, or data-wrangling you ask for. However, with the use o RStudio or Posit Cloud, you can interact with R through a graphical interface in a very friendly manner.\nThese three names get used almost interchangeably by beginners, but they are three different things:\nYou write R code the same way regardless of which of the three you’re looking at. The rest of this guide uses RStudio’s and Posit Cloud’s layout as the reference point.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is R?</span>"
+    ]
+  },
+  {
+    "objectID": "01-what-is-r.html#r-rstudio-and-posit-cloud",
+    "href": "01-what-is-r.html#r-rstudio-and-posit-cloud",
+    "title": "1  What Is R?",
+    "section": "",
+    "text": "Name\nWhat it actually is\n\n\n\n\nR\nThe language itself and the engine that runs it. No graphical interface.\n\n\nRStudio\nA free application (“IDE”) that wraps around R: a console, a script editor, a file browser, and a plot viewer in one window.\n\n\nPosit Cloud\nThe exact same RStudio, but running inside a web browser. Nothing to install. Covered fully in Chapter 8.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is R?</span>"
+    ]
+  },
+  {
+    "objectID": "01-what-is-r.html#the-console",
+    "href": "01-what-is-r.html#the-console",
+    "title": "1  What Is R?",
+    "section": "1.2 The console",
+    "text": "1.2 The console\nEvery screenshot and example in this guide refers to the console — the pane where you type one command, press Enter, and R answers immediately.\nprint(\"Hello, R!\")\n[1] \"Hello, R!\"\nThe [1] at the start of the output is not part of your answer — it’s R’s way of numbering the elements of the result. For a single value it will always read [1]; you’ll see higher numbers later when a result contains many values.\n2 + 2\n[1] 4\n\n\n\n\n\n\nTipA useful habit\n\n\n\nRead code left to right, the same way you’d read a sentence: x &lt;- 5 reads as “x gets 5.” The arrow always points toward where the value is being stored. R is a language oriented to objects - every value you create you store in a variable called object by using the assignment operator &lt;-. You can also use =, but this is not a good practice in R coding.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is R?</span>"
+    ]
+  },
+  {
+    "objectID": "01-what-is-r.html#the-pipe-operator",
+    "href": "01-what-is-r.html#the-pipe-operator",
+    "title": "1  What Is R?",
+    "section": "1.3 The pipe operator |>",
+    "text": "1.3 The pipe operator |&gt;\nThe pipe operator is one of the most useful tools of R coding. Think it about putting something in a box. Let’s see an example with a mock dataframe called df. The glimpse() function is to see what is in the dataframe.\nOption 1. Without the pipe operator\nglimpse(df)\nOption 2. With the pipe operator\ndf |&gt;\n  glimpse()\nIt works like the pipe |&gt; puts the object df inside the function glimpse(). It is very useful for sequential codes such as:\ndf |&gt;\n  filter(baseline == 0) |&gt;\n  select(var1, var2, var2, var3) |&gt;\n  count()\nWithin this sequence of code, it means you first filtered your dataframe only for those in which the variable baseline == 0. Among them, selected the variables var1, var2, var3 and applied the function count(), to check the total N among them.\n\nQuick check: R, RStudio, and Posit Cloud are…\n\nThe same piece of software with three different names\n\n\nThree different things — R is the language, RStudio is the application you write it in, and Posit Cloud is the web-based version of RStudio\n\n\nRStudio is a type of dataset",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is R?</span>"
+    ]
+  },
+  {
+    "objectID": "02-folders.html",
+    "href": "02-folders.html",
+    "title": "2  Folders and Projects",
+    "section": "",
+    "text": "2.1 Set up one folder per piece of work\nUsing RStudio or Posit Cloud, you will probably face with a standardized layout, although customizable, like this:\nThink this figure as four quadrants. The top right shows the Environment tab - whether you opened R Packages, datasets, stored objects etc., it will be saved here. Below it is the Folder tab, in which you can see all of your folder architecture, navigate through it, open files, and create new files. At the left, is the Console tab together with the Terminal tab, where you can type commands directly to R, but at once, or interact with your operational system if needed. Finally, above, the Script tab, which is the tab you will use to write your code, save it, reproduce it and share it with others.\nThe main difference between the Console and the Script is that in the Script you can type your code without running immediately it, then, architecting it, differently of the Console tab that is useful for checks and help functions.\nR always works “inside” one folder at a time, called the working directory. Getting this right early avoids the majority of beginner problems with files that “can’t be found.”\nCreate a single folder for each project — something clearly named, like my-first-project. Inside it, keep sub-folders that separate your raw data from your code:. Below a minimum structure that works well for most projects:",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Folders and Projects</span>"
+    ]
+  },
+  {
+    "objectID": "02-folders.html#set-up-one-folder-per-piece-of-work",
+    "href": "02-folders.html#set-up-one-folder-per-piece-of-work",
+    "title": "2  Folders and Projects",
+    "section": "",
+    "text": "📁 my-first-project/\n\n📄 my-first-project.Rproj\n📁 data/\n\n📄 survey_results.csv\n\n📁 scripts/\n\n📄 01_clean_data.R\n📄 02_make_plots.R\n\n📁 output/\n\n📄 summary_chart.png",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Folders and Projects</span>"
+    ]
+  },
+  {
+    "objectID": "02-folders.html#r-projects",
+    "href": "02-folders.html#r-projects",
+    "title": "2  Folders and Projects",
+    "section": "2.2 R Projects",
+    "text": "2.2 R Projects\nThe single most useful habit for a beginner is to use an R Project: File → New Project. This creates a .Rproj file that automatically sets the working directory to that folder every time you open it, so you never have to guess where R thinks you currently are.\ngetwd()\n[1] \"/Users/you/my-first-project\"\ngetwd() (“get working directory”) asks R where it currently is. setwd() (“set working directory”) lets you change it, but if you’re using a Project you should rarely need to.\n\n\n\n\n\n\nWarningAvoid full paths\n\n\n\nNever type a full path like C:/Users/you/Desktop/... inside a script — it will only work on your computer. Set up a Project, keep files in sub-folders next to it, and refer to them with short, relative paths instead:\nsurvey &lt;- read.csv(\"data/survey_results.csv\")\n\n\nIf the file is in the correct folder, the callout before the filename will correctly call your file - whether it is a script, a dataset, etc. It is a matter of habit instead procedures - be aware to store correctly your files in the appropriate folder.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Folders and Projects</span>"
+    ]
+  },
+  {
+    "objectID": "03-open-files.html",
+    "href": "03-open-files.html",
+    "title": "3  Opening Files",
+    "section": "",
+    "text": "3.1 Reading a file with code\nMost projects start the same way: you have a spreadsheet, and you need R to read it. This chapter covers the most common case, a plain .csv file.\ndf &lt;- data.frame(\n  ID = seq(1:10),\n  age = rnorm(10, mean = 30, sd = 5), \n  weigth = rnorm(10, mean = 70, sd = 10),\n  height = rnorm(10, mean = 170, sd = 15))\nhead(df, n=5)\n\n  ID      age   weigth   height\n1  1 30.92817 64.65759 173.2794\n2  2 34.36844 88.09287 172.9238\n3  3 25.01708 80.90625 179.7793\n4  4 33.54504 91.40596 140.1303\n5  5 27.26670 76.35125 172.8402\nThe arrow &lt;- means “store this on the left.” This line reads: read the file, and save the result into an object called survey. From now on, typing survey shows you the data, and head(survey) shows just the first six rows.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Opening Files</span>"
+    ]
+  },
+  {
+    "objectID": "03-open-files.html#reading-a-file-with-code",
+    "href": "03-open-files.html#reading-a-file-with-code",
+    "title": "3  Opening Files",
+    "section": "",
+    "text": "survey &lt;- read.csv(\"data/survey_results.csv\")\nhead(survey)\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nAbove you can see the first five rows of the example data frame df, containing four columns: ID, age, weight, and height. The head() function is useful for quickly inspecting the first few rows of a data frame.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Opening Files</span>"
+    ]
+  },
+  {
+    "objectID": "03-open-files.html#reading-a-file-with-the-import-dataset-button",
+    "href": "03-open-files.html#reading-a-file-with-the-import-dataset-button",
+    "title": "3  Opening Files",
+    "section": "3.2 Reading a file with the Import Dataset button",
+    "text": "3.2 Reading a file with the Import Dataset button\nRStudio also offers a point-and-click route, which quietly writes the same code above for you:\n\nClick File → Import Dataset → From Text (readr)\nBrowse to your file\nPreview the table, adjust options if needed, then click Import\n\nWatch the console after clicking Import — RStudio pastes the exact read.csv(...) line it used. This is a good way to learn the code by watching the point-and-click path generate it.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Opening Files</span>"
+    ]
+  },
+  {
+    "objectID": "03-open-files.html#common-file-types",
+    "href": "03-open-files.html#common-file-types",
+    "title": "3  Opening Files",
+    "section": "3.3 Common file types",
+    "text": "3.3 Common file types\n\n\n\nFile extension\nFunction\n\n\n\n\n.csv\nread.csv()\n\n\n.xlsx\nreadxl::read_excel()\n\n\n.txt (tab-separated)\nread.delim()\n\n\n.rds (R’s own format)\nreadRDS()\n\n\n\n\n\n\n\n\n\nNotePosit Cloud\n\n\n\nUploading a file works a little differently there than on your own computer. See Chapter 8 for the exact steps.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Opening Files</span>"
+    ]
+  },
+  {
+    "objectID": "04-packages.html",
+    "href": "04-packages.html",
+    "title": "4  Installing Packages",
+    "section": "",
+    "text": "4.1 Step 1 — Install it, once\nR ships with a solid toolkit built in, but its real strength is packages — free add-ons written by the community that add extra functions. Think of them as apps for R.\nThis downloads the package from CRAN, R’s official package repository. You only need to run this once per computer (or once per Posit Cloud project).",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Installing Packages</span>"
+    ]
+  },
+  {
+    "objectID": "04-packages.html#step-1-install-it-once",
+    "href": "04-packages.html#step-1-install-it-once",
+    "title": "4  Installing Packages",
+    "section": "",
+    "text": "install.packages(\"tidyverse\")",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Installing Packages</span>"
+    ]
+  },
+  {
+    "objectID": "04-packages.html#step-2-load-it-every-session",
+    "href": "04-packages.html#step-2-load-it-every-session",
+    "title": "4  Installing Packages",
+    "section": "4.2 Step 2 — Load it, every session",
+    "text": "4.2 Step 2 — Load it, every session\nlibrary(tidyverse)\nInstalling puts a tool in the toolbox; library() takes it out and puts it on the table. Run this line every time you restart R and want to use that package.\n\n\n\n\n\n\nWarningQuotes on, quotes off\n\n\n\nNotice the quotation marks appear in install.packages(\"tidyverse\") but disappear in library(tidyverse). This inconsistency trips up almost everyone at least once — it isn’t a mistake on your part.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Installing Packages</span>"
+    ]
+  },
+  {
+    "objectID": "04-packages.html#packages-worth-knowing-early",
+    "href": "04-packages.html#packages-worth-knowing-early",
+    "title": "4  Installing Packages",
+    "section": "4.3 Packages worth knowing early",
+    "text": "4.3 Packages worth knowing early\n\n\n\n\n\n\n\nPackage\nWhat it’s for\n\n\n\n\ntidyverse\nA bundle of packages for wrangling and plotting data\n\n\nreadxl\nReading Excel files\n\n\nrmarkdown / quarto\nTurning your code into reports, like this guide\n\n\ndescr\nDescriptive statistics and frequency tables\n\n\nlubridate\nTransform text in dates and manipulate date formats as well\n\n\njanitor\nTo clean variables artifacts mainly\n\n\nggplot2\nMake beautiful plots to visualize your data\n\n\nhere\nUse relative paths instead of absolute paths\n\n\npacman\nInstall, read and open automatically a bunch of packages\n\n\ngt\nMake presentable tables\n\n\n\n\n\n\n\n\n\nNotePosit Cloud\n\n\n\nPopular packages are often pre-installed there — try library(...) first before reaching for install.packages(). Details in Chapter 8.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Installing Packages</span>"
+    ]
+  },
+  {
+    "objectID": "05-calculator.html",
+    "href": "05-calculator.html",
+    "title": "5  R as a Calculator",
+    "section": "",
+    "text": "5.1 The essentials\nBefore anything else, R is simply a very good calculator. Type an expression, press Enter, and it answers — with the result wrapped in [1], R’s way of labeling item number one of your answer.\n+ - * / work as expected. Use ^ for “to the power of,” and parentheses () to control order of operations, exactly as in arithmetic class.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>R as a Calculator</span>"
+    ]
+  },
+  {
+    "objectID": "05-calculator.html#a-few-built-in-functions",
+    "href": "05-calculator.html#a-few-built-in-functions",
+    "title": "5  R as a Calculator",
+    "section": "5.2 A few built-in functions",
+    "text": "5.2 A few built-in functions\n\n\n\n\n\n\n\n\nFunction\nWhat it does\nExample\n\n\n\n\nsqrt(x)\nSquare root\nsqrt(144) → 12\n\n\nabs(x)\nAbsolute value\nabs(-7) → 7\n\n\nround(x, n)\nRound to n decimal places\nround(3.14159, 2) → 3.14",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>R as a Calculator</span>"
+    ]
+  },
+  {
+    "objectID": "05-calculator.html#try-it",
+    "href": "05-calculator.html#try-it",
+    "title": "5  R as a Calculator",
+    "section": "5.3 Try it",
+    "text": "5.3 Try it\nThe box below evaluates real arithmetic in your browser — type an expression and press Run, or click one of the examples.\n\n\n Run\n\n\n5 + 3 * 2 10 / 4 2^5 sqrt(144) round(3.14159, 2)\n\n\n\n&gt; waiting for input…",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>R as a Calculator</span>"
+    ]
+  },
+  {
+    "objectID": "06-functions.html",
+    "href": "06-functions.html",
+    "title": "6  Basic Functions",
+    "section": "",
+    "text": "6.1 Descriptive statistics at a glance\nMost real work starts by grouping numbers into a vector with c(), short for “combine.” Once your numbers live in one object, R provides ready-made functions to summarize them instantly.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Basic Functions</span>"
+    ]
+  },
+  {
+    "objectID": "06-functions.html#descriptive-statistics-at-a-glance",
+    "href": "06-functions.html#descriptive-statistics-at-a-glance",
+    "title": "6  Basic Functions",
+    "section": "",
+    "text": "Task\nFunction\nResult for ages\n\n\n\n\nHow many values?\nlength(ages)\n7\n\n\nThe average\nmean(ages)\n32.71\n\n\nThe middle value\nmedian(ages)\n30\n\n\nSmallest / largest\nmin(ages) / max(ages)\n19 / 52\n\n\nSpread of the data\nsd(ages)\n11.32\n\n\nA quick full summary\nsummary(ages)\nmin, quartiles, mean, max\n\n\nFirst rows of a table\nhead(data)\ntop 6 rows\n\n\nWhat kind of object is this?\nstr(ages)\ntype + preview",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Basic Functions</span>"
+    ]
+  },
+  {
+    "objectID": "06-functions.html#working-with-dataframes-the-nutriheart-study",
+    "href": "06-functions.html#working-with-dataframes-the-nutriheart-study",
+    "title": "6  Basic Functions",
+    "section": "6.2 Working with Dataframes: The NutriHeart Study",
+    "text": "6.2 Working with Dataframes: The NutriHeart Study\nA single vector is fine for one measurement, but real research almost never stops at one measurement. A real study measures many things about the same person — their age, their diet, whether they smoke, when they joined the study. R stores this kind of data in a dataframe: a table where every row is one participant and every column is one variable.\nTo practice this, we will build a small, simulated dataset modeled on a real type of study in nutritional epidemiology.\n\n6.2.1 The study context\nImagine a research team wants to understand how eating patterns relate to cardiometabolic health — that is, health related to the heart and metabolism. They design a study called the NutriHeart Study.\n\nResearch question: Among adults, is the type of diet a person follows (Mediterranean, Western, Vegan, or Keto) associated with cardiometabolic risk markers such as body mass index (BMI) and hypertension — and does the person’s physical activity level change that relationship?\n\nTo answer this, the team recruits 200 adult participants between 2020 and 2023. At enrollment, each participant answers a questionnaire and undergoes a short clinical exam. This is a cross-sectional study: everyone is measured once, at a single point in time, which lets the researchers describe patterns in the population but not prove that diet causes the outcomes.\nEvery variable the team collects has a reason for being there. Before writing a single line of code, it helps to know what we are about to build and why:\n\n\n\n\n\n\n\n\n\n#\nVariable\nWhat it means\nType\n\n\n\n\n1\npatient_id\nA unique number identifying each participant (like a folder number)\nIdentifier\n\n\n2\nenrollment_date\nThe calendar date the participant joined the study\nDate\n\n\n3\ngender\nSelf-reported gender of the participant\nCategorical\n\n\n4\nage\nAge in completed years at enrollment\nContinuous\n\n\n5\nbmi\nBody Mass Index (kg/m²), a common marker of nutritional status\nContinuous\n\n\n6\ndiet_type\nThe dominant diet pattern the participant reports following\nCategorical\n\n\n7\nphysical_activity_level\nSelf-reported activity level: Low, Moderate, or High\nCategorical (ordered)\n\n\n8\ndaily_calories\nEstimated average daily caloric intake (kcal), from a dietary recall\nContinuous\n\n\n9\nsugar_intake_g\nEstimated average daily sugar intake, in grams\nContinuous\n\n\n10\nhypertension\nWhether the participant has a clinical diagnosis of high blood pressure\nLogical (yes/no)\n\n\n11\nsmoker\nWhether the participant currently smokes\nLogical (yes/no)\n\n\n12\nclinical_notes\nA short free-text note written by the clinician during the exam\nString (text)\n\n\n\nNotice that these 12 variables cover every basic data type you will meet in R: numbers that can take any value (continuous), numbers or labels that fall into groups (categorical), dates, TRUE/FALSE values (logical), and free text (string). Real datasets are almost always this mixed — this is exactly why R needs different functions for different types of variables, which is what the rest of this chapter is about.\n\n\n6.2.2 1. Loading the tools we need\nWe will use the tibble package to build a modern, easy-to-read dataframe (a “tibble” is just RStudio’s improved version of a dataframe). We install it once per computer, and load it once per R session.\ninstall.packages(\"tibble\")\nlibrary(tibble)\n\ninstall.packages(\"tibble\") downloads the package from the internet and installs it on your computer. You only need to run this once — after that, R remembers it.\nlibrary(tibble) loads the package into your current R session, making its functions (like tibble()) available to use. You need to run this every time you open a new R session.\n\n\n\n6.2.3 2. Building the dataset, line by line\nBefore generating anything random, we fix R’s “randomness” with set.seed(). Computers cannot generate truly random numbers — they use a formula that looks random. set.seed() tells that formula where to start, so that everyone who runs this exact code gets the exact same “random” numbers. This is essential for reproducible research.\nset.seed(123)\nNow we build the dataframe itself. Each argument inside tibble() becomes one column. Read the explanation below the code slowly, matching each line back to the table above.\n\nlibrary(tibble)\nset.seed(123)\n\nnutriheart_data &lt;- tibble(\n\n  # 1. patient_id: a simple sequence from 1 to 200, one number per participant\n  patient_id = 1:200,\n\n  # 2. enrollment_date: pick 200 random dates between two limits, with repetition allowed\n  enrollment_date = sample(\n    seq(as.Date(\"2020-01-01\"), as.Date(\"2023-12-31\"), by = \"day\"),\n    size = 200,\n    replace = TRUE\n  ),\n\n  # 3. gender: pick \"Male\" or \"Female\" at random for each participant\n  gender = sample(c(\"Male\", \"Female\"), size = 200, replace = TRUE),\n\n  # 4. age: pick a whole number of years between 18 and 85 for each participant\n  age = sample(18:85, size = 200, replace = TRUE),\n\n  # 5. bmi: draw from a uniform range (18.0 to 42.0), then round to 1 decimal\n  bmi = round(runif(200, min = 18.0, max = 42.0), 1),\n\n  # 6. diet_type: pick one diet label per participant, but NOT with equal chances\n  diet_type = factor(\n    sample(\n      c(\"Mediterranean\", \"Western\", \"Vegan\", \"Keto\"),\n      size = 200,\n      replace = TRUE,\n      prob = c(0.40, 0.30, 0.15, 0.15)\n    )\n  ),\n\n  # 7. physical_activity_level: an ORDERED categorical variable (Low &lt; Moderate &lt; High)\n  physical_activity_level = factor(\n    sample(c(\"Low\", \"Moderate\", \"High\"), size = 200, replace = TRUE,\n           prob = c(0.30, 0.45, 0.25)),\n    levels = c(\"Low\", \"Moderate\", \"High\"),\n    ordered = TRUE\n  ),\n\n  # 8. daily_calories: draw from a normal (bell-curve) distribution around 2200 kcal\n  daily_calories = round(rnorm(200, mean = 2200, sd = 450)),\n\n  # 9. sugar_intake_g: same idea, centered on 55 grams per day\n  sugar_intake_g = round(rnorm(200, mean = 55, sd = 20), 1),\n\n  # 10. hypertension: TRUE/FALSE, but only 35% of participants are TRUE\n  hypertension = sample(c(TRUE, FALSE), size = 200, replace = TRUE,\n                         prob = c(0.35, 0.65)),\n\n  # 11. smoker: TRUE/FALSE, only 20% of participants are TRUE\n  smoker = sample(c(TRUE, FALSE), size = 200, replace = TRUE,\n                   prob = c(0.20, 0.80)),\n\n  # 12. clinical_notes: pick one short sentence per participant from a fixed list\n  clinical_notes = sample(\n    c(\"Patient reports fatigue.\",\n      \"Adheres strictly to diet.\",\n      \"Sedentary lifestyle.\",\n      \"No recent complaints.\"),\n    size = 200, replace = TRUE\n  )\n)\n\nLet’s unpack the functions that keep reappearing above, since they do most of the work:\n\nsample(x, size, replace, prob) picks values at random out of a set x. size is how many picks we want, replace = TRUE means the same value can be picked more than once (essential here, since we need 200 picks from only a handful of options), and prob optionally sets how likely each option is — without it, every option is equally likely.\nrunif(n, min, max) draws n random numbers uniformly between min and max — every value in that range is equally likely. Good for something like BMI, where we only know a plausible range.\nrnorm(n, mean, sd) draws n random numbers from a normal (bell-curve) distribution — most values land near mean, and sd (standard deviation) controls how spread out they are. Good for something like daily calories, which tends to cluster around a typical value.\nround(x, digits) rounds a number to a chosen number of decimal places. round(x) with no second argument rounds to a whole number.\nfactor() tells R “this is a categorical variable, not free text.” Adding levels = c(...) and ordered = TRUE, as we did for physical_activity_level, tells R the categories have a natural order (Low is less than Moderate is less than High) — this matters later for correct sorting and modeling.\nseq(from, to, by) generates a full sequence of values — here, every single calendar day between 2020-01-01 and 2023-12-31 — which sample() then picks 200 dates out of.\n\n\n\n6.2.4 3. Inspecting the result\nBefore doing anything else with a new dataset, always look at its structure first.\n\nstr(nutriheart_data)\n\ntibble [200 × 12] (S3: tbl_df/tbl/data.frame)\n $ patient_id             : int [1:200] 1 2 3 4 5 6 7 8 9 10 ...\n $ enrollment_date        : Date[1:200], format: \"2021-02-18\" \"2021-04-07\" ...\n $ gender                 : chr [1:200] \"Male\" \"Male\" \"Male\" \"Female\" ...\n $ age                    : int [1:200] 48 47 39 33 53 67 50 45 66 29 ...\n $ bmi                    : num [1:200] 24.9 20.3 41.1 35.7 32.7 20.9 31.2 24.3 39.6 18.2 ...\n $ diet_type              : Factor w/ 4 levels \"Keto\",\"Mediterranean\",..: 4 4 3 3 4 4 2 2 2 2 ...\n $ physical_activity_level: Ord.factor w/ 3 levels \"Low\"&lt;\"Moderate\"&lt;..: 3 2 2 2 1 2 3 2 1 2 ...\n $ daily_calories         : num [1:200] 2381 1731 1422 2489 1512 ...\n $ sugar_intake_g         : num [1:200] 86.9 46.7 50.8 54.3 62.3 ...\n $ hypertension           : logi [1:200] FALSE TRUE FALSE TRUE FALSE TRUE ...\n $ smoker                 : logi [1:200] FALSE FALSE FALSE FALSE FALSE FALSE ...\n $ clinical_notes         : chr [1:200] \"Adheres strictly to diet.\" \"Patient reports fatigue.\" \"Patient reports fatigue.\" \"Patient reports fatigue.\" ...\n\n\nstr() (short for “structure”) prints, for every column: its name, its type (int, chr, Date, Factor, num, logi), and a preview of the first few values. This is the fastest way to confirm the dataframe was built the way you expected — always run it right after creating or importing data.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Basic Functions</span>"
+    ]
+  },
+  {
+    "objectID": "06-functions.html#descriptive-statistics-by-variable-type",
+    "href": "06-functions.html#descriptive-statistics-by-variable-type",
+    "title": "6  Basic Functions",
+    "section": "6.3 Descriptive statistics by variable type",
+    "text": "6.3 Descriptive statistics by variable type\nDifferent variable types answer different questions, so they need different summary functions. We will now go through the four families of variables in nutriheart_data and summarize each one appropriately, using $ to pull out a single column (e.g. nutriheart_data$age means “the age column inside nutriheart_data”).\n\n6.3.1 Continuous variables (age, bmi, daily_calories, sugar_intake_g)\nFor continuous variables, we want to know the center of the data and how spread out it is.\n\nmean(nutriheart_data$bmi)      # the average BMI\n\n[1] 29.7445\n\nmedian(nutriheart_data$bmi)    # the middle BMI, if all values were sorted\n\n[1] 30.2\n\nsd(nutriheart_data$bmi)        # standard deviation: typical distance from the mean\n\n[1] 6.729241\n\nrange(nutriheart_data$bmi)     # smallest and largest BMI values, as one vector\n\n[1] 18.1 41.8\n\nsummary(nutriheart_data$bmi)   # all of the above, in one call\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  18.10   24.45   30.20   29.74   35.25   41.80 \n\n\nsummary() is often the fastest first step: with one function call it returns the minimum, the 1st quartile (the value below which 25% of the data falls), the median, the mean, the 3rd quartile, and the maximum — a compact picture of the whole distribution.\n\n\n6.3.2 Categorical variables (gender, diet_type, physical_activity_level)\nFor categorical variables, “average” makes no sense — instead, we want counts and proportions per group.\n\ntable(nutriheart_data$diet_type)                       # how many participants per diet\n\n\n         Keto Mediterranean         Vegan       Western \n           28            83            35            54 \n\nround(prop.table(table(nutriheart_data$diet_type)) * 100, 1)  # same thing, as percentages\n\n\n         Keto Mediterranean         Vegan       Western \n         14.0          41.5          17.5          27.0 \n\n\n\ntable(x) counts how many times each unique category appears in x.\nprop.table(t) takes a table of counts and converts every count into a proportion of the total (values between 0 and 1). Multiplying by 100 and wrapping in round(..., 1) turns those proportions into readable percentages with one decimal place.\n\n\n\n6.3.3 Logical variables (hypertension, smoker)\nLogical variables only ever hold TRUE or FALSE. Two small tricks make them easy to summarize:\n\ntable(nutriheart_data$hypertension)          # counts of TRUE and FALSE\n\n\nFALSE  TRUE \n  132    68 \n\nmean(nutriheart_data$hypertension) * 100      # % of participants with hypertension\n\n[1] 34\n\n\nThis second trick works because R secretly stores TRUE as 1 and FALSE as 0. So mean() of a logical column is really “how many 1s, divided by the total” — in other words, exactly the proportion of TRUE values. This shortcut is used constantly in epidemiology to compute prevalences.\n\n\n6.3.4 Date variables (enrollment_date)\n\nmin(nutriheart_data$enrollment_date)   # earliest enrollment date\n\n[1] \"2020-01-13\"\n\nmax(nutriheart_data$enrollment_date)   # latest enrollment date\n\n[1] \"2023-12-24\"\n\nrange(nutriheart_data$enrollment_date) # both at once\n\n[1] \"2020-01-13\" \"2023-12-24\"\n\n\nBecause R recognizes this column as a proper Date type (not text), it knows how to compare and order dates correctly — min() and max() work exactly as they would on numbers.\n\n\n6.3.5 String variables (clinical_notes)\nFree text needs its own logic, since there is no “average sentence.”\n\nunique(nutriheart_data$clinical_notes)   # every distinct note that appears\n\n[1] \"Adheres strictly to diet.\" \"Patient reports fatigue.\" \n[3] \"No recent complaints.\"     \"Sedentary lifestyle.\"     \n\ntable(nutriheart_data$clinical_notes)    # how often each one was written\n\n\nAdheres strictly to diet.     No recent complaints.  Patient reports fatigue. \n                       38                        54                        62 \n     Sedentary lifestyle. \n                       46 \n\n\nunique(x) lists each distinct value in x exactly once, which is a quick way to see the full range of answers hiding inside a text column before deciding how (or whether) to categorize them.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Basic Functions</span>"
+    ]
+  },
+  {
+    "objectID": "06-functions.html#data-wrangling-with-dplyr",
+    "href": "06-functions.html#data-wrangling-with-dplyr",
+    "title": "6  Basic Functions",
+    "section": "6.4 Data wrangling with dplyr",
+    "text": "6.4 Data wrangling with dplyr\n“Wrangling” means reshaping and filtering a dataframe to answer a specific question — without ever changing the original file on disk. The dplyr package (part of the tidyverse) gives us a small set of verbs that cover almost everything.\ninstall.packages(\"dplyr\")\nlibrary(dplyr)\nWe will also meet the pipe, written |&gt;. The pipe takes whatever is on its left and feeds it in as the first argument of the function on its right. So x |&gt; f() means exactly the same as f(x) — it just lets us chain several steps in the order we think about them, top to bottom, instead of nesting functions inside each other.\n\n6.4.1 select() — keep only certain columns\n\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nnutriheart_data |&gt; select(patient_id, diet_type, bmi)\n\n# A tibble: 200 × 3\n   patient_id diet_type       bmi\n        &lt;int&gt; &lt;fct&gt;         &lt;dbl&gt;\n 1          1 Western        24.9\n 2          2 Western        20.3\n 3          3 Vegan          41.1\n 4          4 Vegan          35.7\n 5          5 Western        32.7\n 6          6 Western        20.9\n 7          7 Mediterranean  31.2\n 8          8 Mediterranean  24.3\n 9          9 Mediterranean  39.6\n10         10 Mediterranean  18.2\n# ℹ 190 more rows\n\n\nWe start with nutriheart_data, pipe it into select(), and list the columns we want to keep. Every other column is dropped from this output (the original dataframe is untouched).\n\n\n6.4.2 filter() — keep only certain rows\n\nnutriheart_data |&gt; filter(hypertension == TRUE, age &gt;= 60)\n\n# A tibble: 30 × 12\n   patient_id enrollment_date gender   age   bmi diet_type    \n        &lt;int&gt; &lt;date&gt;          &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;fct&gt;        \n 1          6 2022-07-26      Male      67  20.9 Western      \n 2         13 2021-10-26      Female    83  25.8 Vegan        \n 3         14 2021-08-24      Male      67  35.4 Vegan        \n 4         16 2022-10-07      Male      68  35.2 Western      \n 5         23 2020-01-26      Male      65  28.2 Vegan        \n 6         24 2021-06-02      Female    62  19   Mediterranean\n 7         44 2020-08-04      Male      84  40.1 Mediterranean\n 8         60 2021-06-11      Female    77  27.1 Western      \n 9         64 2021-03-31      Male      71  31   Vegan        \n10         70 2021-01-08      Male      65  39.7 Keto         \n# ℹ 20 more rows\n# ℹ 6 more variables: physical_activity_level &lt;ord&gt;, daily_calories &lt;dbl&gt;,\n#   sugar_intake_g &lt;dbl&gt;, hypertension &lt;lgl&gt;, smoker &lt;lgl&gt;,\n#   clinical_notes &lt;chr&gt;\n\n\nfilter() keeps only the rows where the condition is TRUE. Note the double equals sign ==: it means “is equal to” (a question), while a single = is used for setting an argument’s value. Separating two conditions with a comma means “both must be true” — here, only participants who have hypertension and are 60 or older survive the filter.\n\n\n6.4.3 mutate() — create a new column\n\nnutriheart_data |&gt;\n  mutate(calories_per_kg = daily_calories / bmi) |&gt;\n  select(patient_id, daily_calories, bmi, calories_per_kg)\n\n# A tibble: 200 × 4\n   patient_id daily_calories   bmi calories_per_kg\n        &lt;int&gt;          &lt;dbl&gt; &lt;dbl&gt;           &lt;dbl&gt;\n 1          1           2381  24.9            95.6\n 2          2           1731  20.3            85.3\n 3          3           1422  41.1            34.6\n 4          4           2489  35.7            69.7\n 5          5           1512  32.7            46.2\n 6          6           2201  20.9           105. \n 7          7           2313  31.2            74.1\n 8          8           2454  24.3           101. \n 9          9           2285  39.6            57.7\n10         10           1870  18.2           103. \n# ℹ 190 more rows\n\n\nmutate() adds a new column computed from existing ones, without deleting anything. Here we chain three steps with the pipe: start with the data, add the new calories_per_kg column, then select() a few columns just so the new one is easy to see in the output.\n\n\n6.4.4 arrange() — reorder rows\n\nnutriheart_data |&gt; arrange(desc(bmi)) |&gt; select(patient_id, bmi)\n\n# A tibble: 200 × 2\n   patient_id   bmi\n        &lt;int&gt; &lt;dbl&gt;\n 1         15  41.8\n 2        103  41.4\n 3          3  41.1\n 4        118  41.1\n 5         78  41  \n 6         97  41  \n 7        115  41  \n 8         19  40.8\n 9        139  40.8\n10         48  40.6\n# ℹ 190 more rows\n\n\narrange() sorts rows by a column, smallest to largest by default. Wrapping the column in desc() reverses that, so here we see the participants with the highest BMI first.\n\n\n6.4.5 group_by() + summarise() — the real payoff\nThis is where dplyr answers our actual research question: does BMI differ across diet types?\n\nnutriheart_data |&gt;\n  group_by(diet_type) |&gt;\n  summarise(\n    n_participants = n(),\n    mean_bmi = mean(bmi),\n    hypertension_pct = mean(hypertension) * 100\n  )\n\n# A tibble: 4 × 4\n  diet_type     n_participants mean_bmi hypertension_pct\n  &lt;fct&gt;                  &lt;int&gt;    &lt;dbl&gt;            &lt;dbl&gt;\n1 Keto                      28     29.3             32.1\n2 Mediterranean             83     28.9             32.5\n3 Vegan                     35     31.8             40  \n4 Western                   54     30.0             33.3\n\n\n\ngroup_by(diet_type) does not change what is printed — it silently splits the dataframe into invisible sub-groups, one per diet type.\nsummarise() then collapses each group down to a single row, computing whatever we ask for inside it: n() counts rows per group, mean(bmi) computes the average BMI within each diet group separately, and mean(hypertension) * 100 reuses our logical-variable trick from earlier to get the hypertension prevalence, again per group.\n\nThe output is a small, four-row table — one row per diet — that is the actual, publishable answer to the NutriHeart research question stated at the beginning of this section. Every wrangling step you just learned exists to get you from 200 raw rows to a table exactly like this one.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Basic Functions</span>"
+    ]
+  },
+  {
+    "objectID": "06-functions.html#function-finder",
+    "href": "06-functions.html#function-finder",
+    "title": "6  Basic Functions",
+    "section": "6.5 Function finder",
+    "text": "6.5 Function finder\nNot sure which function you need? Choose a task below.\n\n Choose a task… I want the average of my numbers I want to peek at the top rows of a big table I want to know how many entries I have I want to understand what’s inside an object I want the smallest and largest values I want only the rows that match a condition I want a summary computed separately per group \n\n\n\nQuick check: to combine several numbers into one object, you use…\n\ngroup()\n\n\nc()\n\n\ncombine.numbers()\n\n\n\n\n\n\nQuick check: in the NutriHeart dataset, diet_type is best described as a…\n\nContinuous variable\n\n\nCategorical variable\n\n\nLogical variable\n\n\n\n\n\n\nQuick check: which dplyr verb would you use to keep only participants older than 60?\n\nselect()\n\n\narrange()\n\n\nfilter()",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Basic Functions</span>"
+    ]
+  },
+  {
+    "objectID": "07-plot.html",
+    "href": "07-plot.html",
+    "title": "7  Your First Plot",
+    "section": "",
+    "text": "7.1 Plotting the NutriHeart data with ggplot2\nOnce your numbers are in a vector, one line of code turns them into a picture. The built-in hist() function is the fastest way to see the shape of your data — how the values are distributed.\nThe chart below illustrates the idea: it redraws a histogram-shaped distribution with a different number of bins, the same way hist() would if you changed the breaks argument.\nEvery plot you make in RStudio or Posit Cloud appears in the Plots pane, where an Export button lets you save it as a PNG or PDF directly into your output/ folder.\nLet’s take that next step right away, using the same nutriheart_data dataframe we built in Chapter 6. ggplot2 builds a chart in layers, always starting from the same three ingredients:\nYou build a plot by adding these pieces together with +, the same way you chained dplyr steps together with |&gt;.\nlibrary(tibble)\nlibrary(dplyr)\nlibrary(ggplot2)\n\nset.seed(123)\n\nnutriheart_data &lt;- tibble(\n  patient_id = 1:200,\n  enrollment_date = sample(\n    seq(as.Date(\"2020-01-01\"), as.Date(\"2023-12-31\"), by = \"day\"),\n    size = 200, replace = TRUE\n  ),\n  gender = sample(c(\"Male\", \"Female\"), size = 200, replace = TRUE),\n  age = sample(18:85, size = 200, replace = TRUE),\n  bmi = round(runif(200, min = 18.0, max = 42.0), 1),\n  diet_type = factor(\n    sample(c(\"Mediterranean\", \"Western\", \"Vegan\", \"Keto\"),\n           size = 200, replace = TRUE, prob = c(0.40, 0.30, 0.15, 0.15))\n  ),\n  physical_activity_level = factor(\n    sample(c(\"Low\", \"Moderate\", \"High\"), size = 200, replace = TRUE,\n           prob = c(0.30, 0.45, 0.25)),\n    levels = c(\"Low\", \"Moderate\", \"High\"), ordered = TRUE\n  ),\n  daily_calories = round(rnorm(200, mean = 2200, sd = 450)),\n  sugar_intake_g = round(rnorm(200, mean = 55, sd = 20), 1),\n  hypertension = sample(c(TRUE, FALSE), size = 200, replace = TRUE, prob = c(0.35, 0.65)),\n  smoker = sample(c(TRUE, FALSE), size = 200, replace = TRUE, prob = c(0.20, 0.80)),\n  clinical_notes = sample(\n    c(\"Patient reports fatigue.\", \"Adheres strictly to diet.\",\n      \"Sedentary lifestyle.\", \"No recent complaints.\"),\n    size = 200, replace = TRUE\n  )\n)\nThis is the identical tibble() call from Chapter 6 — same set.seed(123), same arguments — so it reproduces the exact same 200 rows. From this point on in the chapter, nutriheart_data behaves exactly as it did before.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Your First Plot</span>"
+    ]
+  },
+  {
+    "objectID": "07-plot.html#plotting-the-nutriheart-data-with-ggplot2",
+    "href": "07-plot.html#plotting-the-nutriheart-data-with-ggplot2",
+    "title": "7  Your First Plot",
+    "section": "",
+    "text": "Data — which dataframe to draw from.\nAesthetics (aes()) — which columns map to which parts of the chart (x-axis, y-axis, color, …).\nGeometry (geom_*()) — what kind of shape represents the data: bars, points, boxes, lines.\n\n\ninstall.packages(\"ggplot2\")\nlibrary(ggplot2)\n\n\n\n\n\n\nNoteWhy we rebuild the dataset here\n\n\n\nEach .qmd file in this book renders in its own, independent R session — variables created in Chapter 6 do not automatically carry over into this chapter. In your own projects you would normally avoid copy-pasting code like this by keeping the dataset in one script and loading it (e.g. with readr::read_csv()) in every chapter that needs it. For now, we simply rebuild nutriheart_data with the exact same code as before, so this chapter can run entirely on its own.\n\n\n\n\n\n7.1.1 Histogram — one continuous variable\nJust like hist(), but built layer by layer. Let’s look at the distribution of bmi.\n\nggplot(nutriheart_data, aes(x = bmi)) +\n  geom_histogram(binwidth = 2, fill = \"#001D41\", color = \"white\") +\n  labs(title = \"Distribution of BMI\", x = \"BMI (kg/m²)\", y = \"Number of participants\")\n\n\n\n\n\n\n\n\n\nggplot(nutriheart_data, aes(x = bmi)) creates the empty “canvas”: it tells R which dataframe to use, and that whatever we draw next should read its x-position from the bmi column. Nothing is plotted yet — this line alone would produce a blank grid.\n+ geom_histogram(...) adds the actual bars. binwidth = 2 sets each bar to cover a 2-unit-wide range of BMI (the equivalent of hist()’s breaks); fill colors the inside of the bars, color colors their outline.\nlabs(title = , x = , y = ) sets readable labels instead of the raw column name bmi — always label your axes for a reader who has never seen your code.\n\n\n\n7.1.2 Bar chart — one categorical variable\nFor a column like diet_type, there is no “distribution” to draw — instead, we count how many participants fall into each category.\n\nggplot(nutriheart_data, aes(x = diet_type)) +\n  geom_bar(fill = \"#3E8E7E\") +\n  labs(title = \"Participants per diet type\", x = \"Diet type\", y = \"Count\")\n\n\n\n\n\n\n\n\ngeom_bar() is different from geom_histogram() in one important way: it counts rows for you, one bar per unique category found in x. You never need to compute the counts yourself with table() first — ggplot2 does it internally.\n\n\n7.1.3 Boxplot — one continuous variable across groups\nNow we connect a continuous variable to a categorical one — exactly the comparison our research question asked for: does BMI differ by diet type?\n\nggplot(nutriheart_data, aes(x = diet_type, y = bmi)) +\n  geom_boxplot(fill = \"#F2A541\") +\n  labs(title = \"BMI by diet type\", x = \"Diet type\", y = \"BMI (kg/m²)\")\n\n\n\n\n\n\n\n\nHere aes() maps two columns at once: diet_type to the x-axis (one box per category) and bmi to the y-axis (what each box summarizes). Each box shows the median (middle line), the interquartile range (the box itself — the middle 50% of values), and any unusually high or low values as individual dots.\n\n\n7.1.4 Line chart — a trend over time\nHistograms, bar charts, and boxplots all summarize the data we already have as columns. A line chart is different: it is almost always used to show a trend, and a trend needs an x-axis that is ordered — usually time. nutriheart_data doesn’t have an “enrollments per month” column yet, because nobody measured that directly; we have to derive it ourselves from enrollment_date.\n\nenrollment_by_month &lt;- nutriheart_data |&gt;\n  mutate(enrollment_month = format(enrollment_date, \"%Y-%m\")) |&gt;\n  group_by(enrollment_month) |&gt;\n  summarise(n_enrolled = n()) |&gt;\n  arrange(enrollment_month) |&gt;\n  mutate(cumulative_enrolled = cumsum(n_enrolled))\n\nhead(enrollment_by_month)\n\n# A tibble: 6 × 3\n  enrollment_month n_enrolled cumulative_enrolled\n  &lt;chr&gt;                 &lt;int&gt;               &lt;int&gt;\n1 2020-01                   2                   2\n2 2020-02                   5                   7\n3 2020-03                   5                  12\n4 2020-04                   1                  13\n5 2020-05                   4                  17\n6 2020-06                   7                  24\n\n\nThis chunk creates two brand-new, derived variables that did not exist in the original dataset — a very common step before plotting a trend:\n\nmutate(enrollment_month = format(enrollment_date, \"%Y-%m\")) builds enrollment_month out of enrollment_date. format(x, \"%Y-%m\") rewrites a Date as text showing only its year and month (e.g. 2021-07), which collapses every day in a month down to the same label — exactly what we need to count monthly enrollments.\ngroup_by(enrollment_month) |&gt; summarise(n_enrolled = n()) reuses the pattern from Chapter 6: split the data by month, then count how many rows (participants) fall in each one.\narrange(enrollment_month) puts the months back in chronological order — since enrollment_month is text, R would otherwise sort it alphabetically, which happens to work for \"YYYY-MM\" labels, but it’s good practice to be explicit.\nmutate(cumulative_enrolled = cumsum(n_enrolled)) adds a second derived variable: the running total of participants recruited so far. cumsum() (“cumulative sum”) adds each value to the sum of all values before it — turning monthly counts into a classic recruitment curve.\n\nNow we can plot both derived variables as lines:\n\nggplot(enrollment_by_month, aes(x = enrollment_month, y = n_enrolled, group = 1)) +\n  geom_line(color = \"#001D41\", linewidth = 1) +\n  geom_point(color = \"#001D41\") +\n  labs(title = \"New participants enrolled per month\",\n       x = \"Month\", y = \"Number enrolled\") +\n  theme(axis.text.x = element_text(angle = 90))\n\n\n\n\n\n\n\n\nA couple of details are new here, and both matter every time you draw a line over time:\n\ngroup = 1 tells ggplot2 “treat every row as part of the same single line.” Without it, ggplot2 sees a text column on the x-axis and, not knowing how to connect separate categories together, refuses to draw a continuous line. This is a very common beginner error — if your line chart comes out empty, check for a missing group.\ngeom_line() connects the points in the order of the x-axis; adding geom_point() on top just marks each actual monthly value, which makes the chart easier to read.\ntheme(axis.text.x = element_text(angle = 90)) rotates the month labels 90 degrees so they don’t overlap each other — a small but frequent fix once your x-axis has many labels.\n\nThe same idea works for the cumulative version — only the y and the label change:\n\nggplot(enrollment_by_month, aes(x = enrollment_month, y = cumulative_enrolled, group = 1)) +\n  geom_line(color = \"#3E8E7E\", linewidth = 1) +\n  labs(title = \"Cumulative participant enrollment\",\n       x = \"Month\", y = \"Total participants enrolled\") +\n  theme(axis.text.x = element_text(angle = 90))\n\n\n\n\n\n\n\n\nThis second chart is a good example of why deriving variables is worth the extra step: cumsum() turned a simple monthly count into a recruitment curve, a chart type you will see constantly in the methods section of real cohort studies.\n\n\n7.1.5 Scatter plot — two continuous variables, colored by a third\nFinally, let’s look at the relationship between age and bmi, and use color to bring in a fourth piece of information: whether the participant has hypertension.\n\nggplot(nutriheart_data, aes(x = age, y = bmi, color = hypertension)) +\n  geom_point(alpha = 0.6) +\n  labs(title = \"Age vs. BMI, colored by hypertension status\",\n       x = \"Age (years)\", y = \"BMI (kg/m²)\", color = \"Hypertension\")\n\n\n\n\n\n\n\n\n\nAdding color = hypertension inside aes() tells ggplot2 to draw each point in a different color depending on that participant’s TRUE/FALSE value — it automatically builds a legend for us.\ngeom_point() draws one dot per row of the dataframe.\nalpha = 0.6 makes each point slightly transparent (60% opaque), which helps when points overlap — a simple but important trick once you have 200 dots on the same chart.\n\n\n\n\n\n\n\nTipThe pattern to remember\n\n\n\nEvery ggplot2 chart you will ever build follows the same skeleton:\nggplot(your_data, aes(x = ..., y = ...)) +\n  geom_something() +\n  labs(title = \"...\", x = \"...\", y = \"...\")\nOnly the dataframe, the columns inside aes(), and the geom_*() you choose ever really change.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Your First Plot</span>"
+    ]
+  },
+  {
+    "objectID": "07-plot.html#function-finder",
+    "href": "07-plot.html#function-finder",
+    "title": "7  Your First Plot",
+    "section": "7.2 Function finder",
+    "text": "7.2 Function finder\nNot sure which function you need? Choose a task below.\n\n Choose a task… I want to see the shape of one numeric variable I want to count how many rows fall into each category I want to compare a numeric variable across groups I want to see the relationship between two numeric variables I want to see how a value changes over time \n\n\n\nQuick check: in ggplot2, which function actually draws the bars, points, or lines onto the canvas?\n\naes()\n\n\nggplot()\n\n\ngeom_*()\n\n\n\n\n\n\nQuick check: your geom_line() chart shows nothing but an empty grid. The x-axis is text (like enrollment_month). What did you most likely forget?\n\nlabs()\n\n\ngroup = 1 inside aes()\n\n\nlibrary(ggplot2)\n\n\n\n\n\n\nQuick check: to compare BMI across the four diet types in one chart, the best choice is…\n\ngeom_histogram()\n\n\ngeom_boxplot()\n\n\ngeom_bar()",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Your First Plot</span>"
+    ]
+  },
+  {
+    "objectID": "08-posit-cloud.html",
+    "href": "08-posit-cloud.html",
+    "title": "8  Getting Started with Posit Cloud",
+    "section": "",
+    "text": "8.1 Creating your project\nEverything in Chapters 1–7 works identically here — Posit Cloud is the same RStudio, running in your browser instead of on your own machine. This entire course is taught in Posit Cloud, so this chapter is a complete, standalone walkthrough: account creation, the interface, uploading files, rendering the documents you’ll build later in the course, and the handful of places where the cloud version behaves a little differently.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Getting Started with Posit Cloud</span>"
+    ]
+  },
+  {
+    "objectID": "08-posit-cloud.html#creating-your-project",
+    "href": "08-posit-cloud.html#creating-your-project",
+    "title": "8  Getting Started with Posit Cloud",
+    "section": "",
+    "text": "Create a free account\n\n\nGo to posit.cloud and choose the free plan. Sign up with an email address, or use an existing Google or GitHub account.\n\n\n\n\n\n\n\n\n\nOpen your Workspace\n\n\nAfter logging in you land on “Your Workspace” — a list of your projects (empty at first) with a New Project button in the top-right corner.\n\n\n\n\n\n\n\n\n\nStart a new RStudio Project\n\n\nClick New Project → New RStudio Project. A private container spins up for you — this takes roughly 10–30 seconds the first time.\n\n\n\n\n\n\n\n\n\nName your project\n\n\nClick “Untitled Project” at the top of the page and type a clear name, matching the folder convention from Chapter 2 — for example, my-first-project.\n\n\n\n\n\n8.1.1 Projects, not just files\nIt’s worth being precise about a word we’ll use constantly: a Project in Posit Cloud is not one file — it’s an entire, self-contained workspace: its own R session, its own installed packages, its own files, all bundled together and listed as one card in “Your Workspace.” Every time you click New Project, you get a completely fresh, empty one — nothing carries over automatically from a previous project unless you upload it yourself. Keep the whole course inside a single project (as instructed in Chapter 2) so your scripts, data, and installed packages all stay in one place, instead of scattered across several projects.\n\n\n8.1.2 If your instructor invited you to a Space\nMany courses run inside a shared Space — a folder-like area where an instructor can pre-load starter files or a template project for every student. If you were given a join link or a Space code, use it before creating your own project: joining a Space just adds it to your Workspace as another tab alongside “Your Workspace,” and any project your instructor shared with the class will already be waiting for you there, ready to be copied (“Save a Permanent Copy”) into your own account.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Getting Started with Posit Cloud</span>"
+    ]
+  },
+  {
+    "objectID": "08-posit-cloud.html#the-interface",
+    "href": "08-posit-cloud.html#the-interface",
+    "title": "8  Getting Started with Posit Cloud",
+    "section": "8.2 The interface",
+    "text": "8.2 The interface\nOnce your project opens, you’ll see the same four panels every RStudio user relies on, whether on the desktop app or here:\n\n\nSourceTop-left. Where you write and save R scripts (.R files) and Quarto documents (.qmd files).\n\n\nEnvironmentTop-right. Every object you’ve created, listed by name.\n\n\nConsoleBottom-left. Type a command, press Enter, see the answer.\n\n\nFiles · Plots · PackagesBottom-right. Your folders, your charts, your installed packages.\n\n\nA few small differences from a desktop install are worth knowing before you start clicking around:\n\nThe browser tab is your window manager. You can resize the four panes by dragging the thin bars between them, exactly like on the desktop app — but closing the browser tab does not close your R session (more on this below).\nThe top-right corner of the page (not of any pane) shows your project’s name, its Space (if any), and a gear icon for Project Options, which we’ll use later to manage compute resources.\nA small green dot next to the project name means your R session is live and connected. If it turns grey or shows a “disconnected” banner, see Common hiccups below.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Getting Started with Posit Cloud</span>"
+    ]
+  },
+  {
+    "objectID": "08-posit-cloud.html#uploading-files",
+    "href": "08-posit-cloud.html#uploading-files",
+    "title": "8  Getting Started with Posit Cloud",
+    "section": "8.3 Uploading files",
+    "text": "8.3 Uploading files\nYour computer’s files aren’t automatically visible to the cloud. In the Files pane, click Upload, then choose a file from your computer — or drag and drop it directly into the pane. This is the cloud equivalent of copying a file into a folder, and it’s the one extra step referenced back in Chapter 3.\nOnce uploaded, the file behaves exactly as described in Chapter 3:\nsurvey &lt;- read.csv(\"data/survey_results.csv\")\nGetting a file back out of Posit Cloud works the same way in reverse: right-click any file or folder in the Files pane and choose Export, which downloads it as a .zip (for folders) or the original file straight to your computer’s Downloads folder. Use this whenever you want a local copy of a chart you exported, a .csv you cleaned, or a finished script.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Getting Started with Posit Cloud</span>"
+    ]
+  },
+  {
+    "objectID": "08-posit-cloud.html#installing-packages-here",
+    "href": "08-posit-cloud.html#installing-packages-here",
+    "title": "8  Getting Started with Posit Cloud",
+    "section": "8.4 Installing packages here",
+    "text": "8.4 Installing packages here\nPopular packages are often pre-installed, so try loading a package first:\nlibrary(tidyverse)\nIf R replies that it can’t find the package, install it exactly as in Chapter 4 — it will stay installed for that project going forward.\ninstall.packages(\"tidyverse\")\nTwo cloud-specific things are worth knowing about packages:\n\nPackages are per-project, not per-account. Installing tidyverse in one project does not make it available in a different project — each one keeps its own separate library, just like each one keeps its own separate files. This is exactly why we asked you to do all of your work inside a single project for this course.\nThe very first install.packages() in a project is the slowest one. Posit Cloud downloads and compiles the package from scratch the first time; later installs of other packages are faster because common building blocks are already cached. If a package seems “stuck,” give it a minute or two before assuming something went wrong.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Getting Started with Posit Cloud</span>"
+    ]
+  },
+  {
+    "objectID": "08-posit-cloud.html#rendering-quarto-documents-in-the-cloud",
+    "href": "08-posit-cloud.html#rendering-quarto-documents-in-the-cloud",
+    "title": "8  Getting Started with Posit Cloud",
+    "section": "8.5 Rendering Quarto documents in the cloud",
+    "text": "8.5 Rendering Quarto documents in the cloud\nStarting in the next chapters, you’ll write .qmd files instead of plain .R scripts — the same format this course itself is written in. Rendering one works identically to the desktop app, with one extra convenience:\n\nOpen any .qmd file in the Source pane.\nClick the blue Render button (or the keyboard shortcut Ctrl/Cmd + Shift + K) at the top of the pane.\nPosit Cloud runs every code chunk in the document top to bottom, then builds an HTML file and opens it automatically in a Viewer tab, right inside your browser — no download or separate app needed to preview it.\n\nThe rendered .html file is saved into your project’s Files pane alongside your .qmd, and you can Export it the same way as any other file if you want to share it outside Posit Cloud.\n\n\n\n\n\n\nTipRendering can take longer here than on your own computer\n\n\n\nFree-tier cloud projects have modest CPU and memory. A .qmd with several plots or a large dataset may render more slowly than the same file would on a fast laptop — this is normal, not a sign that something broke. Let it finish before re-clicking Render.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Getting Started with Posit Cloud</span>"
+    ]
+  },
+  {
+    "objectID": "08-posit-cloud.html#managing-your-free-hours",
+    "href": "08-posit-cloud.html#managing-your-free-hours",
+    "title": "8  Getting Started with Posit Cloud",
+    "section": "8.6 Managing your free hours",
+    "text": "8.6 Managing your free hours\n\n\n\n\n\n\nWarningFree plans have a monthly compute allowance\n\n\n\nIdle projects pause themselves automatically to conserve your hours. If a project looks “greyed out” in your Workspace, just click it again to wake it back up — nothing is lost. You can also lower the CPU and RAM a project uses from the gear icon in the project’s top-right corner (Project Options → Resources) to make your monthly hours last longer.\n\n\nA project only spends hours while its R session is actively running — simply having a browser tab open with nothing happening in the console still counts as “running,” so it’s worth getting into the habit of noticing the green connection dot mentioned earlier. You can check exactly how many hours you have left at any time from Account → Usage & Billing in the menu on the left side of “Your Workspace.” If you’re taking this course over several weeks, budgeting your monthly hours across sessions (rather than leaving a project open in the background for days) will make them last considerably longer.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Getting Started with Posit Cloud</span>"
+    ]
+  },
+  {
+    "objectID": "08-posit-cloud.html#common-hiccups",
+    "href": "08-posit-cloud.html#common-hiccups",
+    "title": "8  Getting Started with Posit Cloud",
+    "section": "8.7 Common hiccups",
+    "text": "8.7 Common hiccups\nA handful of small issues account for almost every “something’s broken” moment in a browser-based RStudio, and all of them are quick fixes:\n\nThe console looks frozen / nothing responds. Click inside the console and press Esc — this cancels whatever command was running. If that doesn’t help, the session may have genuinely crashed; go to Session → Restart R from the top menu.\nA red “Disconnected from R Session” banner appears. This usually means your free-tier hours ran out mid-session, or the connection briefly dropped. Refresh the browser page — Posit Cloud will reconnect you to the same project, with your files exactly as you left them (though any object you hadn’t saved will need to be recreated by re-running your script).\nA plot or Render seems to hang indefinitely. Wait roughly a minute before concluding something is wrong — cloud sessions are genuinely slower than a personal laptop for compute-heavy tasks. If it truly never finishes, Session → Restart R and try again.\nYou can’t find a file you know you uploaded. Check that you’re looking inside the correct project — remember, each project has its own separate Files pane, so a file uploaded to one project will not appear in another.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Getting Started with Posit Cloud</span>"
+    ]
+  },
+  {
+    "objectID": "08-posit-cloud.html#returning-to-your-work",
+    "href": "08-posit-cloud.html#returning-to-your-work",
+    "title": "8  Getting Started with Posit Cloud",
+    "section": "8.8 Returning to your work",
+    "text": "8.8 Returning to your work\nEverything saves automatically. The next time you log in, click the project’s name in your Workspace list and you’ll land exactly where you left off — scripts, uploaded files, and installed packages all intact.\n\n\n\n\n\n\nTipThat’s it\n\n\n\nThere is no separate “Posit Cloud version” of anything in this guide to learn. Go back to Chapter 1 and work through the examples here instead of on a local install — the code on the page is identical either way.\n\n\n\nQuick check: you install janitor in my-first-project on Monday. On Tuesday you open a brand-new project and type library(janitor). What happens?\n\nIt loads normally, since packages are tied to your account\n\n\nR says it can’t find the package — it must be installed again in this project\n\n\nPosit Cloud automatically copies all packages into every new project\n\n\n\n\n\n\nQuick check: your project looks greyed out in “Your Workspace.” What should you do?\n\nDelete it and start over — it’s corrupted\n\n\nClick it again to wake it back up — nothing is lost\n\n\nNothing can be done — free-tier projects can’t be reopened",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Getting Started with Posit Cloud</span>"
+    ]
+  }
+]

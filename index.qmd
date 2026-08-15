@@ -1,0 +1,55 @@
+# Preface {.unnumbered}
+
+**Profa. Carolina Abreu de Carvalho, PhD & Lucas Helal, MMSc, PhD**
+*Departamento de Saúde Coletiva · Programa de Pós-Graduação em Saúde Coletiva · Universidade Federal do Maranhão*
+
+This is a short, practical guide to getting started with R. It assumes no prior programming experience. By the end, you will be able to open R, keep your files organized, read in a dataset, install a package, do basic arithmetic and summary statistics, and produce a simple plot.
+
+## Who this is for
+
+Anyone starting R for the first time — for a course, a research project, or general curiosity. If you have used a spreadsheet before, you already have the right instincts; R just asks you to type the instructions instead of clicking them.
+
+## Working entirely in Posit Cloud
+
+::: {.callout-note}
+## This course runs in your browser, from day one
+Every chapter of this guide is taught and evaluated using **Posit Cloud** — there is nothing to install on your own computer. Before opening Chapter 1, go straight to **[Chapter 8 — Getting Started with Posit Cloud](08-posit-cloud.qmd)**, create your free account, and set up the single project you will keep using for the whole course. Once that's done, come back here and start with Chapter 1 — every example from Chapter 1 onward runs inside that same Posit Cloud project.
+:::
+
+## How this guide is organized
+
+The chapters are numbered in the order they appear in the sidebar, and Chapters 1–7 build on each other in sequence. **Chapter 8 is the one exception: read it first**, even though it's numbered last — it gets your Posit Cloud account and project set up before you touch any code.
+
+1. **What Is R?** — R, RStudio, and Posit Cloud, and how they relate to each other
+2. **Folders and Projects** — keeping your files organized from day one
+3. **Opening Files** — reading a spreadsheet into R
+4. **Installing Packages** — adding extra tools to R
+5. **R as a Calculator** — arithmetic and simple functions
+6. **Basic Functions** — vectors, dataframes, and descriptive statistics
+7. **Your First Plot** — histograms and `ggplot2`, built on a shared example dataset
+8. **Getting Started with Posit Cloud** — set up your free account and project (**read this one first**)
+
+Chapters 6 and 7 both use the same simulated dataset, `nutriheart_data`, so that data wrangling and plotting are practiced on one consistent, realistic example rather than a new toy dataset every time. If you ever feel unsure whether you're in the right place, the sidebar on the left always shows exactly where you are and what comes next — chapters are numbered in the order you should read them.
+
+## Conventions used in this guide
+
+- Code you can type appears in a monospaced font, like `mean(x)`.
+- The `<-` arrow means "store this value." It is read as *"gets"* — `x <- 5` means *"x gets 5."*
+- Console output is shown exactly as R prints it, usually starting with `[1]`.
+- Grey boxes titled **Note**, green boxes titled **Tip**, and red boxes titled **Warning** flag information worth pausing on — notes give context, tips save you time, warnings prevent a common mistake.
+- Every chapter ends with a short **Quick check** or two. These aren't graded — they exist so you can confirm you followed the chapter before moving to the next one. If a quiz surprises you, it's worth re-reading the section just above it before continuing.
+
+## If you get stuck
+
+Getting an error message is a normal, constant part of writing R — it happens to experienced researchers just as often as to beginners. Before asking for help, it usually pays to:
+
+1. Read the error message itself, not just its color. R's errors are usually specific about what went wrong (a missing object, an unloaded package, a typo in a function name).
+2. Re-run the chunk just above the one that failed — most errors come from an earlier step that didn't run, not the line where the error appears.
+3. Check the chapter's **Quick check** questions — they're often written around the exact mistake you just made.
+
+If none of that resolves it, bring the exact error message (not just "it didn't work") to your instructor — that single detail is usually enough to diagnose the problem in seconds.
+
+## About the authors
+
+**Profa. Carolina Abreu de Carvalho, PhD** and **Lucas Helal, MMSc, PhD** are faculty and visiting scholar/post doc fellow at the Departamento de Saúde Coletiva, Universidade Federal do Maranhão (UFMA), where they teach and supervise students in the Programa de Pós-Graduação em Saúde Coletiva. This guide grew out of the R instruction they give to incoming students in their birth cohort and epidemiological research programs, and it is taught here in the same order and style used in that coursework.
+

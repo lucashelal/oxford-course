@@ -1,0 +1,42 @@
+# R as a Calculator {#sec-calculator}
+
+Before anything else, R is simply a very good calculator. Type an expression, press Enter, and it answers — with the result wrapped in `[1]`, R's way of labeling item number one of your answer.
+
+```r
+5 + 3 * 2
+```
+
+```
+[1] 11
+```
+
+## The essentials
+
+`+` `-` `*` `/` work as expected. Use `^` for "to the power of," and parentheses `()` to control order of operations, exactly as in arithmetic class.
+
+## A few built-in functions
+
+| Function | What it does | Example |
+|---|---|---|
+| `sqrt(x)` | Square root | `sqrt(144)` → `12` |
+| `abs(x)` | Absolute value | `abs(-7)` → `7` |
+| `round(x, n)` | Round to `n` decimal places | `round(3.14159, 2)` → `3.14` |
+
+## Try it
+
+The box below evaluates real arithmetic in your browser — type an expression and press **Run**, or click one of the examples.
+
+::: {.calc-box}
+<div class="row">
+<input type="text" id="calcInput" placeholder="e.g. 12 * (4 + 1)">
+<button id="calcRun">Run</button>
+</div>
+<div class="row">
+<span class="example" data-expr="5 + 3 * 2">5 + 3 * 2</span>
+<span class="example" data-expr="10 / 4">10 / 4</span>
+<span class="example" data-expr="2^5">2^5</span>
+<span class="example" data-expr="sqrt(144)">sqrt(144)</span>
+<span class="example" data-expr="round(3.14159, 2)">round(3.14159, 2)</span>
+</div>
+<div class="calc-out" id="calcOut"><div><span class="prompt">&gt;</span> waiting for input…</div></div>
+:::

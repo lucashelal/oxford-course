@@ -1,0 +1,145 @@
+# Getting Started with Posit Cloud {#sec-posit-cloud}
+
+Everything in Chapters 1–7 works identically here — Posit Cloud is the same RStudio, running in your browser instead of on your own machine. This entire course is taught in Posit Cloud, so this chapter is a complete, standalone walkthrough: account creation, the interface, uploading files, rendering the documents you'll build later in the course, and the handful of places where the cloud version behaves a little differently.
+
+::: {.callout-note}
+## Why a browser and not an install
+Posit Cloud runs RStudio on a server, not on your laptop. That means: no installation, no "it works on my machine but not yours," and every student in this course starts from the exact same R version and the exact same blank project — which matters far more in a classroom than it does working alone.
+:::
+
+## Creating your project
+
+::: {.step-list}
+<div class="step"><div class="n"></div><div>
+<h4>Create a free account</h4>
+<p>Go to <a href="https://posit.cloud" target="_blank" rel="noopener">posit.cloud</a> and choose the free plan. Sign up with an email address, or use an existing Google or GitHub account.</p>
+</div></div>
+<div class="step"><div class="n"></div><div>
+<h4>Open your Workspace</h4>
+<p>After logging in you land on "Your Workspace" — a list of your projects (empty at first) with a <strong>New Project</strong> button in the top-right corner.</p>
+</div></div>
+<div class="step"><div class="n"></div><div>
+<h4>Start a new RStudio Project</h4>
+<p>Click <strong>New Project → New RStudio Project</strong>. A private container spins up for you — this takes roughly 10–30 seconds the first time.</p>
+</div></div>
+<div class="step"><div class="n"></div><div>
+<h4>Name your project</h4>
+<p>Click "Untitled Project" at the top of the page and type a clear name, matching the folder convention from <a href="02-folders.qmd">Chapter 2</a> — for example, <code>my-first-project</code>.</p>
+</div></div>
+:::
+
+### Projects, not just files
+
+It's worth being precise about a word we'll use constantly: a **Project** in Posit Cloud is not one file — it's an entire, self-contained workspace: its own R session, its own installed packages, its own files, all bundled together and listed as one card in "Your Workspace." Every time you click **New Project**, you get a completely fresh, empty one — nothing carries over automatically from a previous project unless you upload it yourself. Keep the whole course inside a **single** project (as instructed in Chapter 2) so your scripts, data, and installed packages all stay in one place, instead of scattered across several projects.
+
+### If your instructor invited you to a Space
+
+Many courses run inside a shared **Space** — a folder-like area where an instructor can pre-load starter files or a template project for every student. If you were given a join link or a Space code, use it *before* creating your own project: joining a Space just adds it to your Workspace as another tab alongside "Your Workspace," and any project your instructor shared with the class will already be waiting for you there, ready to be copied ("Save a Permanent Copy") into your own account.
+
+## The interface
+
+Once your project opens, you'll see the same four panels every RStudio user relies on, whether on the desktop app or here:
+
+::: {.pane-grid}
+<div class="pane p-source"><strong>Source</strong>Top-left. Where you write and save R scripts (.R files) and Quarto documents (.qmd files).</div>
+<div class="pane p-env"><strong>Environment</strong>Top-right. Every object you've created, listed by name.</div>
+<div class="pane p-console"><strong>Console</strong>Bottom-left. Type a command, press Enter, see the answer.</div>
+<div class="pane p-files"><strong>Files · Plots · Packages</strong>Bottom-right. Your folders, your charts, your installed packages.</div>
+:::
+
+A few small differences from a desktop install are worth knowing before you start clicking around:
+
+- **The browser tab is your window manager.** You can resize the four panes by dragging the thin bars between them, exactly like on the desktop app — but closing the *browser tab* does not close your R session (more on this below).
+- **The top-right corner of the page** (not of any pane) shows your project's name, its Space (if any), and a gear icon for **Project Options**, which we'll use later to manage compute resources.
+- **A small green dot** next to the project name means your R session is live and connected. If it turns grey or shows a "disconnected" banner, see [Common hiccups](#common-hiccups) below.
+
+## Uploading files
+
+Your computer's files aren't automatically visible to the cloud. In the **Files** pane, click **Upload**, then choose a file from your computer — or drag and drop it directly into the pane. This is the cloud equivalent of copying a file into a folder, and it's the one extra step referenced back in [Chapter 3](03-open-files.qmd).
+
+Once uploaded, the file behaves exactly as described in Chapter 3:
+
+```r
+survey <- read.csv("data/survey_results.csv")
+```
+
+Getting a file back **out** of Posit Cloud works the same way in reverse: right-click any file or folder in the **Files** pane and choose **Export**, which downloads it as a `.zip` (for folders) or the original file straight to your computer's Downloads folder. Use this whenever you want a local copy of a chart you exported, a `.csv` you cleaned, or a finished script.
+
+## Installing packages here
+
+Popular packages are often pre-installed, so try loading a package first:
+
+```r
+library(tidyverse)
+```
+
+If R replies that it can't find the package, install it exactly as in [Chapter 4](04-packages.qmd) — it will stay installed for that project going forward.
+
+```r
+install.packages("tidyverse")
+```
+
+Two cloud-specific things are worth knowing about packages:
+
+- **Packages are per-project, not per-account.** Installing `tidyverse` in one project does not make it available in a different project — each one keeps its own separate library, just like each one keeps its own separate files. This is exactly why we asked you to do all of your work inside a single project for this course.
+- **The very first `install.packages()` in a project is the slowest one.** Posit Cloud downloads and compiles the package from scratch the first time; later installs of other packages are faster because common building blocks are already cached. If a package seems "stuck," give it a minute or two before assuming something went wrong.
+
+## Rendering Quarto documents in the cloud
+
+Starting in the next chapters, you'll write `.qmd` files instead of plain `.R` scripts — the same format this course itself is written in. Rendering one works identically to the desktop app, with one extra convenience:
+
+1. Open any `.qmd` file in the **Source** pane.
+2. Click the blue **Render** button (or the keyboard shortcut `Ctrl/Cmd + Shift + K`) at the top of the pane.
+3. Posit Cloud runs every code chunk in the document top to bottom, then builds an HTML file and opens it automatically in a **Viewer** tab, right inside your browser — no download or separate app needed to preview it.
+
+The rendered `.html` file is saved into your project's **Files** pane alongside your `.qmd`, and you can **Export** it the same way as any other file if you want to share it outside Posit Cloud.
+
+::: {.callout-tip}
+## Rendering can take longer here than on your own computer
+Free-tier cloud projects have modest CPU and memory. A `.qmd` with several plots or a large dataset may render more slowly than the same file would on a fast laptop — this is normal, not a sign that something broke. Let it finish before re-clicking Render.
+:::
+
+## Managing your free hours
+
+::: {.callout-warning}
+## Free plans have a monthly compute allowance
+Idle projects pause themselves automatically to conserve your hours. If a project looks "greyed out" in your Workspace, just click it again to wake it back up — nothing is lost. You can also lower the CPU and RAM a project uses from the gear icon in the project's top-right corner (**Project Options → Resources**) to make your monthly hours last longer.
+:::
+
+A project only *spends* hours while its R session is actively running — simply having a browser tab open with nothing happening in the console still counts as "running," so it's worth getting into the habit of noticing the green connection dot mentioned earlier. You can check exactly how many hours you have left at any time from **Account → Usage & Billing** in the menu on the left side of "Your Workspace." If you're taking this course over several weeks, budgeting your monthly hours across sessions (rather than leaving a project open in the background for days) will make them last considerably longer.
+
+## Common hiccups {#common-hiccups}
+
+A handful of small issues account for almost every "something's broken" moment in a browser-based RStudio, and all of them are quick fixes:
+
+- **The console looks frozen / nothing responds.** Click inside the console and press `Esc` — this cancels whatever command was running. If that doesn't help, the session may have genuinely crashed; go to **Session → Restart R** from the top menu.
+- **A red "Disconnected from R Session" banner appears.** This usually means your free-tier hours ran out mid-session, or the connection briefly dropped. Refresh the browser page — Posit Cloud will reconnect you to the same project, with your files exactly as you left them (though any object you hadn't saved will need to be recreated by re-running your script).
+- **A plot or `Render` seems to hang indefinitely.** Wait roughly a minute before concluding something is wrong — cloud sessions are genuinely slower than a personal laptop for compute-heavy tasks. If it truly never finishes, `Session → Restart R` and try again.
+- **You can't find a file you know you uploaded.** Check that you're looking inside the correct **project** — remember, each project has its own separate Files pane, so a file uploaded to one project will not appear in another.
+
+## Returning to your work
+
+Everything saves automatically. The next time you log in, click the project's name in your Workspace list and you'll land exactly where you left off — scripts, uploaded files, and installed packages all intact.
+
+::: {.callout-tip}
+## That's it
+There is no separate "Posit Cloud version" of anything in this guide to learn. Go back to [Chapter 1](01-what-is-r.qmd) and work through the examples here instead of on a local install — the code on the page is identical either way.
+:::
+
+::: {.quiz-box}
+**Quick check:** you install `janitor` in `my-first-project` on Monday. On Tuesday you open a brand-new project and type `library(janitor)`. What happens?
+
+<div class="opt" data-correct="false"><code>It loads normally, since packages are tied to your account</code></div>
+<div class="opt" data-correct="true"><code>R says it can't find the package — it must be installed again in this project</code></div>
+<div class="opt" data-correct="false"><code>Posit Cloud automatically copies all packages into every new project</code></div>
+<div class="fb"></div>
+:::
+
+::: {.quiz-box}
+**Quick check:** your project looks greyed out in "Your Workspace." What should you do?
+
+<div class="opt" data-correct="false"><code>Delete it and start over — it's corrupted</code></div>
+<div class="opt" data-correct="true"><code>Click it again to wake it back up — nothing is lost</code></div>
+<div class="opt" data-correct="false"><code>Nothing can be done — free-tier projects can't be reopened</code></div>
+<div class="fb"></div>
+:::

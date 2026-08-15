@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>7&nbsp; Your First Plot – First Steps in R</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./08-posit-cloud.html" rel="next">
+<link href="./06-functions.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-3eb597036da341c70c29541d6edf80e9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-fb699e119766c5307384d4a9fedd9ae5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07-plot.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Your First Plot</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">First Steps in R</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-what-is-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What Is R?</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-folders.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Folders and Projects</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-open-files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Opening Files</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Installing Packages</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-calculator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R as a Calculator</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Basic Functions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-plot.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Your First Plot</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-posit-cloud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Getting Started with Posit Cloud</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#plotting-the-nutriheart-data-with-ggplot2" id="toc-plotting-the-nutriheart-data-with-ggplot2" class="nav-link active" data-scroll-target="#plotting-the-nutriheart-data-with-ggplot2"><span class="header-section-number">7.1</span> Plotting the NutriHeart data with <code>ggplot2</code></a>
+  <ul class="collapse">
+  <li><a href="#histogram-one-continuous-variable" id="toc-histogram-one-continuous-variable" class="nav-link" data-scroll-target="#histogram-one-continuous-variable"><span class="header-section-number">7.1.1</span> Histogram — one continuous variable</a></li>
+  <li><a href="#bar-chart-one-categorical-variable" id="toc-bar-chart-one-categorical-variable" class="nav-link" data-scroll-target="#bar-chart-one-categorical-variable"><span class="header-section-number">7.1.2</span> Bar chart — one categorical variable</a></li>
+  <li><a href="#boxplot-one-continuous-variable-across-groups" id="toc-boxplot-one-continuous-variable-across-groups" class="nav-link" data-scroll-target="#boxplot-one-continuous-variable-across-groups"><span class="header-section-number">7.1.3</span> Boxplot — one continuous variable across groups</a></li>
+  <li><a href="#line-chart-a-trend-over-time" id="toc-line-chart-a-trend-over-time" class="nav-link" data-scroll-target="#line-chart-a-trend-over-time"><span class="header-section-number">7.1.4</span> Line chart — a trend over time</a></li>
+  <li><a href="#scatter-plot-two-continuous-variables-colored-by-a-third" id="toc-scatter-plot-two-continuous-variables-colored-by-a-third" class="nav-link" data-scroll-target="#scatter-plot-two-continuous-variables-colored-by-a-third"><span class="header-section-number">7.1.5</span> Scatter plot — two continuous variables, colored by a third</a></li>
+  </ul></li>
+  <li><a href="#function-finder" id="toc-function-finder" class="nav-link" data-scroll-target="#function-finder"><span class="header-section-number">7.2</span> Function finder</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-plot" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Your First Plot</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Once your numbers are in a vector, one line of code turns them into a picture. The built-in <code>hist()</code> function is the fastest way to see the shape of your data — how the values are distributed.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ages,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Distribution of ages"</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Age"</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col  =</span> <span class="st">"#001D41"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The chart below illustrates the idea: it redraws a histogram-shaped distribution with a different number of bins, the same way <code>hist()</code> would if you changed the <code>breaks</code> argument.</p>
+<div class="plot-box">
+<div class="bins">
+<button data-bins="5">
+5 bins
+</button>
+<button class="active" data-bins="8">
+8 bins
+</button>
+<button data-bins="12">
+12 bins
+</button>
+</div>
+<svg id="histSvg" viewbox="0 0 560 240" style="width:100%; height:auto;">
+</svg>
+</div>
+<p>Every plot you make in RStudio or Posit Cloud appears in the <strong>Plots</strong> pane, where an <strong>Export</strong> button lets you save it as a PNG or PDF directly into your <code>output/</code> folder.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>When you’re ready to go further
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Once <code>hist()</code> and <code>plot()</code> feel comfortable, the <code>ggplot2</code> package (part of <code>tidyverse</code>) is the natural next step — same idea, far more control over how your charts look.</p>
+</div>
+</div>
+<section id="plotting-the-nutriheart-data-with-ggplot2" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="plotting-the-nutriheart-data-with-ggplot2"><span class="header-section-number">7.1</span> Plotting the NutriHeart data with <code>ggplot2</code></h2>
+<p>Let’s take that next step right away, using the same <code>nutriheart_data</code> dataframe we built in <a href="06-functions.html" class="quarto-xref"><span>Chapter 6</span></a>. <code>ggplot2</code> builds a chart in <strong>layers</strong>, always starting from the same three ingredients:</p>
+<ol type="1">
+<li><strong>Data</strong> — which dataframe to draw from.</li>
+<li><strong>Aesthetics</strong> (<code>aes()</code>) — which columns map to which parts of the chart (x-axis, y-axis, color, …).</li>
+<li><strong>Geometry</strong> (<code>geom_*()</code>) — what <em>kind</em> of shape represents the data: bars, points, boxes, lines.</li>
+</ol>
+<p>You build a plot by adding these pieces together with <code>+</code>, the same way you chained dplyr steps together with <code>|&gt;</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Why we rebuild the dataset here
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Each <code>.qmd</code> file in this book renders in its <strong>own, independent R session</strong> — variables created in <a href="06-functions.html" class="quarto-xref"><span>Chapter 6</span></a> do not automatically carry over into this chapter. In your own projects you would normally avoid copy-pasting code like this by keeping the dataset in one script and loading it (e.g.&nbsp;with <code>readr::read_csv()</code>) in every chapter that needs it. For now, we simply rebuild <code>nutriheart_data</code> with the exact same code as before, so this chapter can run entirely on its own.</p>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>nutriheart_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">patient_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">enrollment_date =</span> <span class="fu">sample</span>(</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">"2020-01-01"</span>), <span class="fu">as.Date</span>(<span class="st">"2023-12-31"</span>), <span class="at">by =</span> <span class="st">"day"</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">gender =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>), <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">sample</span>(<span class="dv">18</span><span class="sc">:</span><span class="dv">85</span>, <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">bmi =</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">200</span>, <span class="at">min =</span> <span class="fl">18.0</span>, <span class="at">max =</span> <span class="fl">42.0</span>), <span class="dv">1</span>),</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">diet_type =</span> <span class="fu">factor</span>(</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Mediterranean"</span>, <span class="st">"Western"</span>, <span class="st">"Vegan"</span>, <span class="st">"Keto"</span>),</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>           <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.40</span>, <span class="fl">0.30</span>, <span class="fl">0.15</span>, <span class="fl">0.15</span>))</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">physical_activity_level =</span> <span class="fu">factor</span>(</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Moderate"</span>, <span class="st">"High"</span>), <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>           <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.30</span>, <span class="fl">0.45</span>, <span class="fl">0.25</span>)),</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Moderate"</span>, <span class="st">"High"</span>), <span class="at">ordered =</span> <span class="cn">TRUE</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">daily_calories =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="at">mean =</span> <span class="dv">2200</span>, <span class="at">sd =</span> <span class="dv">450</span>)),</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">sugar_intake_g =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="at">mean =</span> <span class="dv">55</span>, <span class="at">sd =</span> <span class="dv">20</span>), <span class="dv">1</span>),</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">hypertension =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.35</span>, <span class="fl">0.65</span>)),</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">smoker =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.20</span>, <span class="fl">0.80</span>)),</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">clinical_notes =</span> <span class="fu">sample</span>(</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="st">"Patient reports fatigue."</span>, <span class="st">"Adheres strictly to diet."</span>,</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Sedentary lifestyle."</span>, <span class="st">"No recent complaints."</span>),</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This is the identical <code>tibble()</code> call from <a href="06-functions.html" class="quarto-xref"><span>Chapter 6</span></a> — same <code>set.seed(123)</code>, same arguments — so it reproduces the exact same 200 rows. From this point on in the chapter, <code>nutriheart_data</code> behaves exactly as it did before.</p>
+<section id="histogram-one-continuous-variable" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="histogram-one-continuous-variable"><span class="header-section-number">7.1.1</span> Histogram — one continuous variable</h3>
+<p>Just like <code>hist()</code>, but built layer by layer. Let’s look at the distribution of <code>bmi</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nutriheart_data, <span class="fu">aes</span>(<span class="at">x =</span> bmi)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">2</span>, <span class="at">fill =</span> <span class="st">"#001D41"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of BMI"</span>, <span class="at">x =</span> <span class="st">"BMI (kg/m²)"</span>, <span class="at">y =</span> <span class="st">"Number of participants"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-plot_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><code>ggplot(nutriheart_data, aes(x = bmi))</code> creates the empty “canvas”: it tells R which dataframe to use, and that whatever we draw next should read its x-position from the <code>bmi</code> column. Nothing is plotted yet — this line alone would produce a blank grid.</li>
+<li><code>+ geom_histogram(...)</code> adds the actual bars. <code>binwidth = 2</code> sets each bar to cover a 2-unit-wide range of BMI (the equivalent of <code>hist()</code>’s <code>breaks</code>); <code>fill</code> colors the inside of the bars, <code>color</code> colors their outline.</li>
+<li><code>labs(title = , x = , y = )</code> sets readable labels instead of the raw column name <code>bmi</code> — always label your axes for a reader who has never seen your code.</li>
+</ul>
+</section>
+<section id="bar-chart-one-categorical-variable" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="bar-chart-one-categorical-variable"><span class="header-section-number">7.1.2</span> Bar chart — one categorical variable</h3>
+<p>For a column like <code>diet_type</code>, there is no “distribution” to draw — instead, we count how many participants fall into each category.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nutriheart_data, <span class="fu">aes</span>(<span class="at">x =</span> diet_type)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"#3E8E7E"</span>) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Participants per diet type"</span>, <span class="at">x =</span> <span class="st">"Diet type"</span>, <span class="at">y =</span> <span class="st">"Count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-plot_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><code>geom_bar()</code> is different from <code>geom_histogram()</code> in one important way: it counts rows <em>for you</em>, one bar per unique category found in <code>x</code>. You never need to compute the counts yourself with <code>table()</code> first — <code>ggplot2</code> does it internally.</p>
+</section>
+<section id="boxplot-one-continuous-variable-across-groups" class="level3" data-number="7.1.3">
+<h3 data-number="7.1.3" class="anchored" data-anchor-id="boxplot-one-continuous-variable-across-groups"><span class="header-section-number">7.1.3</span> Boxplot — one continuous variable across groups</h3>
+<p>Now we connect a continuous variable to a categorical one — exactly the comparison our research question asked for: does BMI differ by diet type?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nutriheart_data, <span class="fu">aes</span>(<span class="at">x =</span> diet_type, <span class="at">y =</span> bmi)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"#F2A541"</span>) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"BMI by diet type"</span>, <span class="at">x =</span> <span class="st">"Diet type"</span>, <span class="at">y =</span> <span class="st">"BMI (kg/m²)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-plot_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Here <code>aes()</code> maps two columns at once: <code>diet_type</code> to the x-axis (one box per category) and <code>bmi</code> to the y-axis (what each box summarizes). Each box shows the median (middle line), the interquartile range (the box itself — the middle 50% of values), and any unusually high or low values as individual dots.</p>
+</section>
+<section id="line-chart-a-trend-over-time" class="level3" data-number="7.1.4">
+<h3 data-number="7.1.4" class="anchored" data-anchor-id="line-chart-a-trend-over-time"><span class="header-section-number">7.1.4</span> Line chart — a trend over time</h3>
+<p>Histograms, bar charts, and boxplots all summarize the data we already have as columns. A line chart is different: it is almost always used to show a <strong>trend</strong>, and a trend needs an x-axis that is ordered — usually time. <code>nutriheart_data</code> doesn’t have an “enrollments per month” column yet, because nobody measured that directly; we have to <strong>derive</strong> it ourselves from <code>enrollment_date</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>enrollment_by_month <span class="ot">&lt;-</span> nutriheart_data <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">enrollment_month =</span> <span class="fu">format</span>(enrollment_date, <span class="st">"%Y-%m"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(enrollment_month) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n_enrolled =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(enrollment_month) <span class="sc">|&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cumulative_enrolled =</span> <span class="fu">cumsum</span>(n_enrolled))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(enrollment_by_month)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  enrollment_month n_enrolled cumulative_enrolled
+  &lt;chr&gt;                 &lt;int&gt;               &lt;int&gt;
+1 2020-01                   2                   2
+2 2020-02                   5                   7
+3 2020-03                   5                  12
+4 2020-04                   1                  13
+5 2020-05                   4                  17
+6 2020-06                   7                  24</code></pre>
+</div>
+</div>
+<p>This chunk creates <strong>two brand-new, derived variables</strong> that did not exist in the original dataset — a very common step before plotting a trend:</p>
+<ul>
+<li><code>mutate(enrollment_month = format(enrollment_date, "%Y-%m"))</code> builds <code>enrollment_month</code> out of <code>enrollment_date</code>. <code>format(x, "%Y-%m")</code> rewrites a <code>Date</code> as text showing only its year and month (e.g.&nbsp;<code>2021-07</code>), which collapses every day in a month down to the same label — exactly what we need to count <em>monthly</em> enrollments.</li>
+<li><code>group_by(enrollment_month) |&gt; summarise(n_enrolled = n())</code> reuses the pattern from <a href="06-functions.html" class="quarto-xref"><span>Chapter 6</span></a>: split the data by month, then count how many rows (participants) fall in each one.</li>
+<li><code>arrange(enrollment_month)</code> puts the months back in chronological order — since <code>enrollment_month</code> is text, R would otherwise sort it alphabetically, which happens to work for <code>"YYYY-MM"</code> labels, but it’s good practice to be explicit.</li>
+<li><code>mutate(cumulative_enrolled = cumsum(n_enrolled))</code> adds a second derived variable: the <strong>running total</strong> of participants recruited so far. <code>cumsum()</code> (“cumulative sum”) adds each value to the sum of all values before it — turning monthly counts into a classic recruitment curve.</li>
+</ul>
+<p>Now we can plot both derived variables as lines:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(enrollment_by_month, <span class="fu">aes</span>(<span class="at">x =</span> enrollment_month, <span class="at">y =</span> n_enrolled, <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"#001D41"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#001D41"</span>) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"New participants enrolled per month"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Month"</span>, <span class="at">y =</span> <span class="st">"Number enrolled"</span>) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-plot_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A couple of details are new here, and both matter every time you draw a line over time:</p>
+<ul>
+<li><code>group = 1</code> tells <code>ggplot2</code> “treat every row as part of the <em>same single line</em>.” Without it, <code>ggplot2</code> sees a text column on the x-axis and, not knowing how to connect separate categories together, refuses to draw a continuous line. This is a very common beginner error — if your line chart comes out empty, check for a missing <code>group</code>.</li>
+<li><code>geom_line()</code> connects the points in the order of the x-axis; adding <code>geom_point()</code> on top just marks each actual monthly value, which makes the chart easier to read.</li>
+<li><code>theme(axis.text.x = element_text(angle = 90))</code> rotates the month labels 90 degrees so they don’t overlap each other — a small but frequent fix once your x-axis has many labels.</li>
+</ul>
+<p>The same idea works for the cumulative version — only the <code>y</code> and the label change:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(enrollment_by_month, <span class="fu">aes</span>(<span class="at">x =</span> enrollment_month, <span class="at">y =</span> cumulative_enrolled, <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"#3E8E7E"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Cumulative participant enrollment"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Month"</span>, <span class="at">y =</span> <span class="st">"Total participants enrolled"</span>) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-plot_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This second chart is a good example of why deriving variables is worth the extra step: <code>cumsum()</code> turned a simple monthly count into a recruitment curve, a chart type you will see constantly in the methods section of real cohort studies.</p>
+</section>
+<section id="scatter-plot-two-continuous-variables-colored-by-a-third" class="level3" data-number="7.1.5">
+<h3 data-number="7.1.5" class="anchored" data-anchor-id="scatter-plot-two-continuous-variables-colored-by-a-third"><span class="header-section-number">7.1.5</span> Scatter plot — two continuous variables, colored by a third</h3>
+<p>Finally, let’s look at the relationship between <code>age</code> and <code>bmi</code>, and use color to bring in a fourth piece of information: whether the participant has <code>hypertension</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nutriheart_data, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> bmi, <span class="at">color =</span> hypertension)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Age vs. BMI, colored by hypertension status"</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Age (years)"</span>, <span class="at">y =</span> <span class="st">"BMI (kg/m²)"</span>, <span class="at">color =</span> <span class="st">"Hypertension"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-plot_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>Adding <code>color = hypertension</code> inside <code>aes()</code> tells <code>ggplot2</code> to draw each point in a different color depending on that participant’s <code>TRUE</code>/<code>FALSE</code> value — it automatically builds a legend for us.</li>
+<li><code>geom_point()</code> draws one dot per row of the dataframe.</li>
+<li><code>alpha = 0.6</code> makes each point slightly transparent (60% opaque), which helps when points overlap — a simple but important trick once you have 200 dots on the same chart.</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>The pattern to remember
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Every <code>ggplot2</code> chart you will ever build follows the same skeleton:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(your_data, <span class="fu">aes</span>(<span class="at">x =</span> ..., <span class="at">y =</span> ...)) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_something</span>() <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"..."</span>, <span class="at">x =</span> <span class="st">"..."</span>, <span class="at">y =</span> <span class="st">"..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Only the dataframe, the columns inside <code>aes()</code>, and the <code>geom_*()</code> you choose ever really change.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="function-finder" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="function-finder"><span class="header-section-number">7.2</span> Function finder</h2>
+<p>Not sure which function you need? Choose a task below.</p>
+<div class="matcher-box">
+<select id="matcherSelect2"> <option value="">Choose a task…</option> <option value="hist">I want to see the shape of one numeric variable</option> <option value="bar">I want to count how many rows fall into each category</option> <option value="box">I want to compare a numeric variable across groups</option> <option value="scatter">I want to see the relationship between two numeric variables</option> <option value="line">I want to see how a value changes over time</option> </select>
+<pre class="matcher-out" id="matcherOut2"></pre>
+</div>
+<div class="quiz-box">
+<p><strong>Quick check:</strong> in <code>ggplot2</code>, which function actually draws the bars, points, or lines onto the canvas?</p>
+<div class="opt" data-correct="false">
+<code>aes()</code>
+</div>
+<div class="opt" data-correct="false">
+<code>ggplot()</code>
+</div>
+<div class="opt" data-correct="true">
+<code>geom_*()</code>
+</div>
+<div class="fb">
+
+</div>
+</div>
+<div class="quiz-box">
+<p><strong>Quick check:</strong> your <code>geom_line()</code> chart shows nothing but an empty grid. The x-axis is text (like <code>enrollment_month</code>). What did you most likely forget?</p>
+<div class="opt" data-correct="false">
+<code>labs()</code>
+</div>
+<div class="opt" data-correct="true">
+<code>group = 1</code> inside <code>aes()</code>
+</div>
+<div class="opt" data-correct="false">
+<code>library(ggplot2)</code>
+</div>
+<div class="fb">
+
+</div>
+</div>
+<div class="quiz-box">
+<p><strong>Quick check:</strong> to compare BMI across the four diet types in one chart, the best choice is…</p>
+<div class="opt" data-correct="false">
+<code>geom_histogram()</code>
+</div>
+<div class="opt" data-correct="true">
+<code>geom_boxplot()</code>
+</div>
+<div class="opt" data-correct="false">
+<code>geom_bar()</code>
+</div>
+<div class="fb">
+
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  /* ---- collapsible folder tree ---- */
+  document.querySelectorAll(".tree-box .node.folder").forEach(function (node) {
+    node.addEventListener("click", function () {
+      node.parentElement.classList.toggle("closed");
+    });
+  });
+
+  /* ---- safe arithmetic calculator ---- */
+  function safeEval(expr) {
+    var allowed = /^[0-9+\-*/^().\s,a-z]*$/i;
+    if (!allowed.test(expr)) throw new Error("bad characters");
+    var cleaned = expr.replace(/(sqrt|abs|round|floor|ceiling|log|exp)/gi, function (m) {
+      return "__" + m.toLowerCase() + "__";
+    });
+    if (/[a-z]/i.test(cleaned.replace(/__(sqrt|abs|round|floor|ceiling|log|exp)__/gi, ""))) {
+      throw new Error("unknown symbol");
+    }
+    var js = cleaned
+      .replace(/__sqrt__/g, "Math.sqrt")
+      .replace(/__abs__/g, "Math.abs")
+      .replace(/__floor__/g, "Math.floor")
+      .replace(/__ceiling__/g, "Math.ceil")
+      .replace(/__log__/g, "Math.log")
+      .replace(/__exp__/g, "Math.exp")
+      .replace(/__round__\(([^,]+),\s*([^)]+)\)/g, "roundTo($1,$2)")
+      .replace(/__round__\(([^)]+)\)/g, "Math.round($1)")
+      .replace(/\^/g, "**");
+    var roundTo = function (x, n) { return Math.round(x * Math.pow(10, n)) / Math.pow(10, n); };
+    var fn = new Function("roundTo", "return (" + js + ");");
+    var result = fn(roundTo);
+    if (typeof result !== "number" || !isFinite(result)) throw new Error("not a number");
+    return Math.round(result * 1e6) / 1e6;
+  }
+
+  var calcInput = document.getElementById("calcInput");
+  var calcOut = document.getElementById("calcOut");
+  var calcRun = document.getElementById("calcRun");
+  if (calcInput) {
+    function runCalc() {
+      var expr = calcInput.value.trim();
+      if (!expr) return;
+      var l1 = document.createElement("div");
+      l1.innerHTML = '<span class="prompt">&gt;</span> ' + expr.replace(/</g, "&lt;");
+      var l2 = document.createElement("div");
+      try {
+        var r = safeEval(expr);
+        l2.innerHTML = '<span class="ans">[1] ' + r + "</span>";
+      } catch (e) {
+        l2.innerHTML = '<span class="err">Error: could not evaluate that expression</span>';
+      }
+      calcOut.innerHTML = "";
+      calcOut.appendChild(l1);
+      calcOut.appendChild(l2);
+    }
+    calcRun.addEventListener("click", runCalc);
+    calcInput.addEventListener("keydown", function (e) { if (e.key === "Enter") runCalc(); });
+    document.querySelectorAll(".calc-box .example").forEach(function (ex) {
+      ex.addEventListener("click", function () {
+        calcInput.value = ex.getAttribute("data-expr");
+        runCalc();
+      });
+    });
+  }
+
+  /* ---- function finder ---- */
+  var matcherData = {
+    avg:   { label: "mean()",    code: "mean(ages)\n[1] 32.71" },
+    rows:  { label: "head()",    code: "head(my_data)\n# shows the first 6 rows" },
+    count: { label: "length()",  code: "length(ages)\n[1] 7" },
+    shape: { label: "str()",     code: "str(ages)\n num [1:7] 21 34 19 45 30 28 52" },
+    range: { label: "min() / max()", code: "min(ages); max(ages)\n[1] 19\n[1] 52" }
+  };
+  var matcherSelect = document.getElementById("matcherSelect");
+  if (matcherSelect) {
+    var out = document.getElementById("matcherOut");
+    matcherSelect.addEventListener("change", function () {
+      var v = matcherSelect.value;
+      if (!v) { out.classList.remove("show"); return; }
+      out.textContent = matcherData[v].label + "\n\n" + matcherData[v].code;
+      out.classList.add("show");
+    });
+  }
+
+  /* ---- quizzes ---- */
+  document.querySelectorAll(".quiz-box").forEach(function (quiz) {
+    var opts = quiz.querySelectorAll(".opt");
+    var fb = quiz.querySelector(".fb");
+    opts.forEach(function (opt) {
+      opt.addEventListener("click", function () {
+        opts.forEach(function (o) { o.classList.remove("correct", "wrong"); });
+        var correct = opt.getAttribute("data-correct") === "true";
+        opt.classList.add(correct ? "correct" : "wrong");
+        if (!correct) {
+          opts.forEach(function (o) { if (o.getAttribute("data-correct") === "true") o.classList.add("correct"); });
+        }
+        fb.textContent = correct ? "Correct." : "Not quite — the right answer is highlighted above.";
+        fb.classList.add("show");
+      });
+    });
+  });
+
+  /* ---- histogram bin demo ---- */
+  var svg = document.getElementById("histSvg");
+  if (svg) {
+    function makeBins(n) {
+      var arr = [];
+      for (var i = 0; i < n; i++) {
+        var x = (i / (n - 1)) * 2 - 1;
+        var h = Math.max(6, Math.round(100 * Math.exp(-x * x * 2) + 10 * Math.sin(i * 1.7)));
+        arr.push(h);
+      }
+      return arr;
+    }
+    function drawHist(n) {
+      var heights = makeBins(n);
+      var W = 560, H = 240, padB = 28, padT = 8, padX = 16, gap = 5;
+      var max = Math.max.apply(null, heights);
+      var barW = (W - padX * 2 - gap * (n - 1)) / n;
+      var bars = "";
+      heights.forEach(function (h, i) {
+        var barH = (h / max) * (H - padT - padB);
+        var x = padX + i * (barW + gap);
+        var y = H - padB - barH;
+        bars += '<rect x="' + x + '" y="' + y + '" width="' + barW + '" height="' + barH +
+          '" fill="#001D41"></rect>';
+      });
+      svg.innerHTML = '<line x1="' + padX + '" y1="' + (H - padB) + '" x2="' + (W - padX) + '" y2="' + (H - padB) +
+        '" stroke="#ccc" stroke-width="1"/>' + bars;
+    }
+    drawHist(8);
+    document.querySelectorAll(".plot-box .bins button").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll(".plot-box .bins button").forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        drawHist(parseInt(btn.getAttribute("data-bins"), 10));
+      });
+    });
+  }
+
+  /* ---- sidebar authorship footer ---- */
+  (function () {
+    var sidebar = document.getElementById("quarto-sidebar");
+    if (!sidebar) return;
+    var footer = document.createElement("div");
+    footer.className = "sidebar-authors";
+    footer.innerHTML =
+      '<div class="sidebar-authors-names">' +
+        '<span>Profa. Carolina Abreu de Carvalho, PhD</span>' +
+        '<span>Lucas Helal, MMSc, PhD</span>' +
+      '</div>' +
+      '<div class="sidebar-authors-affil">' +
+        'Departamento de Sa\u00fade Coletiva<br>' +
+        'Programa de P\u00f3s-Gradua\u00e7\u00e3o em Sa\u00fade Coletiva<br>' +
+        'Universidade Federal do Maranh\u00e3o' +
+      '</div>';
+    sidebar.appendChild(footer);
+  })();
+
+});
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./06-functions.html" class="pagination-link" aria-label="Basic Functions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Basic Functions</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./08-posit-cloud.html" class="pagination-link" aria-label="Getting Started with Posit Cloud">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Getting Started with Posit Cloud</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

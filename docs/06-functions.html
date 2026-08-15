@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>6&nbsp; Basic Functions – First Steps in R</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./07-plot.html" rel="next">
+<link href="./05-calculator.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-3eb597036da341c70c29541d6edf80e9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-fb699e119766c5307384d4a9fedd9ae5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-functions.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Basic Functions</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">First Steps in R</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-what-is-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What Is R?</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-folders.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Folders and Projects</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-open-files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Opening Files</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Installing Packages</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-calculator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R as a Calculator</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-functions.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Basic Functions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Your First Plot</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-posit-cloud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Getting Started with Posit Cloud</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#descriptive-statistics-at-a-glance" id="toc-descriptive-statistics-at-a-glance" class="nav-link active" data-scroll-target="#descriptive-statistics-at-a-glance"><span class="header-section-number">6.1</span> Descriptive statistics at a glance</a></li>
+  <li><a href="#working-with-dataframes-the-nutriheart-study" id="toc-working-with-dataframes-the-nutriheart-study" class="nav-link" data-scroll-target="#working-with-dataframes-the-nutriheart-study"><span class="header-section-number">6.2</span> Working with Dataframes: The NutriHeart Study</a>
+  <ul class="collapse">
+  <li><a href="#the-study-context" id="toc-the-study-context" class="nav-link" data-scroll-target="#the-study-context"><span class="header-section-number">6.2.1</span> The study context</a></li>
+  <li><a href="#loading-the-tools-we-need" id="toc-loading-the-tools-we-need" class="nav-link" data-scroll-target="#loading-the-tools-we-need"><span class="header-section-number">6.2.2</span> 1. Loading the tools we need</a></li>
+  <li><a href="#building-the-dataset-line-by-line" id="toc-building-the-dataset-line-by-line" class="nav-link" data-scroll-target="#building-the-dataset-line-by-line"><span class="header-section-number">6.2.3</span> 2. Building the dataset, line by line</a></li>
+  <li><a href="#inspecting-the-result" id="toc-inspecting-the-result" class="nav-link" data-scroll-target="#inspecting-the-result"><span class="header-section-number">6.2.4</span> 3. Inspecting the result</a></li>
+  </ul></li>
+  <li><a href="#descriptive-statistics-by-variable-type" id="toc-descriptive-statistics-by-variable-type" class="nav-link" data-scroll-target="#descriptive-statistics-by-variable-type"><span class="header-section-number">6.3</span> Descriptive statistics by variable type</a>
+  <ul class="collapse">
+  <li><a href="#continuous-variables-age-bmi-daily_calories-sugar_intake_g" id="toc-continuous-variables-age-bmi-daily_calories-sugar_intake_g" class="nav-link" data-scroll-target="#continuous-variables-age-bmi-daily_calories-sugar_intake_g"><span class="header-section-number">6.3.1</span> Continuous variables (<code>age</code>, <code>bmi</code>, <code>daily_calories</code>, <code>sugar_intake_g</code>)</a></li>
+  <li><a href="#categorical-variables-gender-diet_type-physical_activity_level" id="toc-categorical-variables-gender-diet_type-physical_activity_level" class="nav-link" data-scroll-target="#categorical-variables-gender-diet_type-physical_activity_level"><span class="header-section-number">6.3.2</span> Categorical variables (<code>gender</code>, <code>diet_type</code>, <code>physical_activity_level</code>)</a></li>
+  <li><a href="#logical-variables-hypertension-smoker" id="toc-logical-variables-hypertension-smoker" class="nav-link" data-scroll-target="#logical-variables-hypertension-smoker"><span class="header-section-number">6.3.3</span> Logical variables (<code>hypertension</code>, <code>smoker</code>)</a></li>
+  <li><a href="#date-variables-enrollment_date" id="toc-date-variables-enrollment_date" class="nav-link" data-scroll-target="#date-variables-enrollment_date"><span class="header-section-number">6.3.4</span> Date variables (<code>enrollment_date</code>)</a></li>
+  <li><a href="#string-variables-clinical_notes" id="toc-string-variables-clinical_notes" class="nav-link" data-scroll-target="#string-variables-clinical_notes"><span class="header-section-number">6.3.5</span> String variables (<code>clinical_notes</code>)</a></li>
+  </ul></li>
+  <li><a href="#data-wrangling-with-dplyr" id="toc-data-wrangling-with-dplyr" class="nav-link" data-scroll-target="#data-wrangling-with-dplyr"><span class="header-section-number">6.4</span> Data wrangling with <code>dplyr</code></a>
+  <ul class="collapse">
+  <li><a href="#select-keep-only-certain-columns" id="toc-select-keep-only-certain-columns" class="nav-link" data-scroll-target="#select-keep-only-certain-columns"><span class="header-section-number">6.4.1</span> <code>select()</code> — keep only certain columns</a></li>
+  <li><a href="#filter-keep-only-certain-rows" id="toc-filter-keep-only-certain-rows" class="nav-link" data-scroll-target="#filter-keep-only-certain-rows"><span class="header-section-number">6.4.2</span> <code>filter()</code> — keep only certain rows</a></li>
+  <li><a href="#mutate-create-a-new-column" id="toc-mutate-create-a-new-column" class="nav-link" data-scroll-target="#mutate-create-a-new-column"><span class="header-section-number">6.4.3</span> <code>mutate()</code> — create a new column</a></li>
+  <li><a href="#arrange-reorder-rows" id="toc-arrange-reorder-rows" class="nav-link" data-scroll-target="#arrange-reorder-rows"><span class="header-section-number">6.4.4</span> <code>arrange()</code> — reorder rows</a></li>
+  <li><a href="#group_by-summarise-the-real-payoff" id="toc-group_by-summarise-the-real-payoff" class="nav-link" data-scroll-target="#group_by-summarise-the-real-payoff"><span class="header-section-number">6.4.5</span> <code>group_by()</code> + <code>summarise()</code> — the real payoff</a></li>
+  </ul></li>
+  <li><a href="#function-finder" id="toc-function-finder" class="nav-link" data-scroll-target="#function-finder"><span class="header-section-number">6.5</span> Function finder</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-functions" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Basic Functions</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Most real work starts by grouping numbers into a <strong>vector</strong> with <code>c()</code>, short for “combine.” Once your numbers live in one object, R provides ready-made functions to summarize them instantly.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">21</span>, <span class="dv">34</span>, <span class="dv">19</span>, <span class="dv">45</span>, <span class="dv">30</span>, <span class="dv">28</span>, <span class="dv">52</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="descriptive-statistics-at-a-glance" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="descriptive-statistics-at-a-glance"><span class="header-section-number">6.1</span> Descriptive statistics at a glance</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>Function</th>
+<th>Result for <code>ages</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>How many values?</td>
+<td><code>length(ages)</code></td>
+<td><code>7</code></td>
+</tr>
+<tr class="even">
+<td>The average</td>
+<td><code>mean(ages)</code></td>
+<td><code>32.71</code></td>
+</tr>
+<tr class="odd">
+<td>The middle value</td>
+<td><code>median(ages)</code></td>
+<td><code>30</code></td>
+</tr>
+<tr class="even">
+<td>Smallest / largest</td>
+<td><code>min(ages)</code> / <code>max(ages)</code></td>
+<td><code>19</code> / <code>52</code></td>
+</tr>
+<tr class="odd">
+<td>Spread of the data</td>
+<td><code>sd(ages)</code></td>
+<td><code>11.32</code></td>
+</tr>
+<tr class="even">
+<td>A quick full summary</td>
+<td><code>summary(ages)</code></td>
+<td>min, quartiles, mean, max</td>
+</tr>
+<tr class="odd">
+<td>First rows of a table</td>
+<td><code>head(data)</code></td>
+<td>top 6 rows</td>
+</tr>
+<tr class="even">
+<td>What kind of object is this?</td>
+<td><code>str(ages)</code></td>
+<td>type + preview</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="working-with-dataframes-the-nutriheart-study" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="working-with-dataframes-the-nutriheart-study"><span class="header-section-number">6.2</span> Working with Dataframes: The NutriHeart Study</h2>
+<p>A single vector is fine for one measurement, but real research almost never stops at one measurement. A real study measures <em>many</em> things about the <em>same</em> person — their age, their diet, whether they smoke, when they joined the study. R stores this kind of data in a <strong>dataframe</strong>: a table where every <strong>row</strong> is one participant and every <strong>column</strong> is one variable.</p>
+<p>To practice this, we will build a small, simulated dataset modeled on a real type of study in nutritional epidemiology.</p>
+<section id="the-study-context" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="the-study-context"><span class="header-section-number">6.2.1</span> The study context</h3>
+<p>Imagine a research team wants to understand how eating patterns relate to cardiometabolic health — that is, health related to the heart and metabolism. They design a study called the <strong>NutriHeart Study</strong>.</p>
+<blockquote class="blockquote">
+<p><strong>Research question:</strong> Among adults, is the type of diet a person follows (Mediterranean, Western, Vegan, or Keto) associated with cardiometabolic risk markers such as body mass index (BMI) and hypertension — and does the person’s physical activity level change that relationship?</p>
+</blockquote>
+<p>To answer this, the team recruits 200 adult participants between 2020 and 2023. At enrollment, each participant answers a questionnaire and undergoes a short clinical exam. This is a <strong>cross-sectional study</strong>: everyone is measured once, at a single point in time, which lets the researchers describe patterns in the population but not prove that diet <em>causes</em> the outcomes.</p>
+<p>Every variable the team collects has a reason for being there. Before writing a single line of code, it helps to know what we are about to build and why:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Variable</th>
+<th>What it means</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><code>patient_id</code></td>
+<td>A unique number identifying each participant (like a folder number)</td>
+<td>Identifier</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><code>enrollment_date</code></td>
+<td>The calendar date the participant joined the study</td>
+<td>Date</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><code>gender</code></td>
+<td>Self-reported gender of the participant</td>
+<td>Categorical</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><code>age</code></td>
+<td>Age in completed years at enrollment</td>
+<td>Continuous</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><code>bmi</code></td>
+<td>Body Mass Index (kg/m²), a common marker of nutritional status</td>
+<td>Continuous</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><code>diet_type</code></td>
+<td>The dominant diet pattern the participant reports following</td>
+<td>Categorical</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td><code>physical_activity_level</code></td>
+<td>Self-reported activity level: Low, Moderate, or High</td>
+<td>Categorical (ordered)</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td><code>daily_calories</code></td>
+<td>Estimated average daily caloric intake (kcal), from a dietary recall</td>
+<td>Continuous</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td><code>sugar_intake_g</code></td>
+<td>Estimated average daily sugar intake, in grams</td>
+<td>Continuous</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td><code>hypertension</code></td>
+<td>Whether the participant has a clinical diagnosis of high blood pressure</td>
+<td>Logical (yes/no)</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td><code>smoker</code></td>
+<td>Whether the participant currently smokes</td>
+<td>Logical (yes/no)</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td><code>clinical_notes</code></td>
+<td>A short free-text note written by the clinician during the exam</td>
+<td>String (text)</td>
+</tr>
+</tbody>
+</table>
+<p>Notice that these 12 variables cover every basic data type you will meet in R: numbers that can take any value (<strong>continuous</strong>), numbers or labels that fall into groups (<strong>categorical</strong>), dates, <code>TRUE</code>/<code>FALSE</code> values (<strong>logical</strong>), and free text (<strong>string</strong>). Real datasets are almost always this mixed — this is exactly why R needs different functions for different types of variables, which is what the rest of this chapter is about.</p>
+</section>
+<section id="loading-the-tools-we-need" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="loading-the-tools-we-need"><span class="header-section-number">6.2.2</span> 1. Loading the tools we need</h3>
+<p>We will use the <code>tibble</code> package to build a modern, easy-to-read dataframe (a “tibble” is just RStudio’s improved version of a dataframe). We install it once per computer, and load it once per R session.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tibble"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><code>install.packages("tibble")</code> downloads the package from the internet and installs it on your computer. You only need to run this <strong>once</strong> — after that, R remembers it.</li>
+<li><code>library(tibble)</code> loads the package into your current R session, making its functions (like <code>tibble()</code>) available to use. You need to run this <strong>every time</strong> you open a new R session.</li>
+</ul>
+</section>
+<section id="building-the-dataset-line-by-line" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="building-the-dataset-line-by-line"><span class="header-section-number">6.2.3</span> 2. Building the dataset, line by line</h3>
+<p>Before generating anything random, we fix R’s “randomness” with <code>set.seed()</code>. Computers cannot generate truly random numbers — they use a formula that <em>looks</em> random. <code>set.seed()</code> tells that formula where to start, so that everyone who runs this exact code gets the exact same “random” numbers. This is essential for reproducible research.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now we build the dataframe itself. Each argument inside <code>tibble()</code> becomes one column. Read the explanation below the code slowly, matching each line back to the table above.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>nutriheart_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1. patient_id: a simple sequence from 1 to 200, one number per participant</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">patient_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 2. enrollment_date: pick 200 random dates between two limits, with repetition allowed</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">enrollment_date =</span> <span class="fu">sample</span>(</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">"2020-01-01"</span>), <span class="fu">as.Date</span>(<span class="st">"2023-12-31"</span>), <span class="at">by =</span> <span class="st">"day"</span>),</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">200</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace =</span> <span class="cn">TRUE</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 3. gender: pick "Male" or "Female" at random for each participant</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">gender =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>), <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 4. age: pick a whole number of years between 18 and 85 for each participant</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">sample</span>(<span class="dv">18</span><span class="sc">:</span><span class="dv">85</span>, <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 5. bmi: draw from a uniform range (18.0 to 42.0), then round to 1 decimal</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">bmi =</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">200</span>, <span class="at">min =</span> <span class="fl">18.0</span>, <span class="at">max =</span> <span class="fl">42.0</span>), <span class="dv">1</span>),</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 6. diet_type: pick one diet label per participant, but NOT with equal chances</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">diet_type =</span> <span class="fu">factor</span>(</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample</span>(</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="st">"Mediterranean"</span>, <span class="st">"Western"</span>, <span class="st">"Vegan"</span>, <span class="st">"Keto"</span>),</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">200</span>,</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.40</span>, <span class="fl">0.30</span>, <span class="fl">0.15</span>, <span class="fl">0.15</span>)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 7. physical_activity_level: an ORDERED categorical variable (Low &lt; Moderate &lt; High)</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">physical_activity_level =</span> <span class="fu">factor</span>(</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Moderate"</span>, <span class="st">"High"</span>), <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>           <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.30</span>, <span class="fl">0.45</span>, <span class="fl">0.25</span>)),</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Moderate"</span>, <span class="st">"High"</span>),</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">ordered =</span> <span class="cn">TRUE</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 8. daily_calories: draw from a normal (bell-curve) distribution around 2200 kcal</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">daily_calories =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="at">mean =</span> <span class="dv">2200</span>, <span class="at">sd =</span> <span class="dv">450</span>)),</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 9. sugar_intake_g: same idea, centered on 55 grams per day</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">sugar_intake_g =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="at">mean =</span> <span class="dv">55</span>, <span class="at">sd =</span> <span class="dv">20</span>), <span class="dv">1</span>),</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 10. hypertension: TRUE/FALSE, but only 35% of participants are TRUE</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>  <span class="at">hypertension =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>                         <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.35</span>, <span class="fl">0.65</span>)),</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 11. smoker: TRUE/FALSE, only 20% of participants are TRUE</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">smoker =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>                   <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.20</span>, <span class="fl">0.80</span>)),</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 12. clinical_notes: pick one short sentence per participant from a fixed list</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>  <span class="at">clinical_notes =</span> <span class="fu">sample</span>(</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="st">"Patient reports fatigue."</span>,</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Adheres strictly to diet."</span>,</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Sedentary lifestyle."</span>,</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>      <span class="st">"No recent complaints."</span>),</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Let’s unpack the functions that keep reappearing above, since they do most of the work:</p>
+<ul>
+<li><strong><code>sample(x, size, replace, prob)</code></strong> picks values at random out of a set <code>x</code>. <code>size</code> is how many picks we want, <code>replace = TRUE</code> means the same value can be picked more than once (essential here, since we need 200 picks from only a handful of options), and <code>prob</code> optionally sets how likely each option is — without it, every option is equally likely.</li>
+<li><strong><code>runif(n, min, max)</code></strong> draws <code>n</code> random numbers uniformly between <code>min</code> and <code>max</code> — every value in that range is equally likely. Good for something like BMI, where we only know a plausible range.</li>
+<li><strong><code>rnorm(n, mean, sd)</code></strong> draws <code>n</code> random numbers from a <strong>normal (bell-curve) distribution</strong> — most values land near <code>mean</code>, and <code>sd</code> (standard deviation) controls how spread out they are. Good for something like daily calories, which tends to cluster around a typical value.</li>
+<li><strong><code>round(x, digits)</code></strong> rounds a number to a chosen number of decimal places. <code>round(x)</code> with no second argument rounds to a whole number.</li>
+<li><strong><code>factor()</code></strong> tells R “this is a categorical variable, not free text.” Adding <code>levels = c(...)</code> and <code>ordered = TRUE</code>, as we did for <code>physical_activity_level</code>, tells R the categories have a natural order (Low is less than Moderate is less than High) — this matters later for correct sorting and modeling.</li>
+<li><strong><code>seq(from, to, by)</code></strong> generates a full sequence of values — here, every single calendar day between 2020-01-01 and 2023-12-31 — which <code>sample()</code> then picks 200 dates out of.</li>
+</ul>
+</section>
+<section id="inspecting-the-result" class="level3" data-number="6.2.4">
+<h3 data-number="6.2.4" class="anchored" data-anchor-id="inspecting-the-result"><span class="header-section-number">6.2.4</span> 3. Inspecting the result</h3>
+<p>Before doing anything else with a new dataset, always look at its structure first.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(nutriheart_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [200 × 12] (S3: tbl_df/tbl/data.frame)
+ $ patient_id             : int [1:200] 1 2 3 4 5 6 7 8 9 10 ...
+ $ enrollment_date        : Date[1:200], format: "2021-02-18" "2021-04-07" ...
+ $ gender                 : chr [1:200] "Male" "Male" "Male" "Female" ...
+ $ age                    : int [1:200] 48 47 39 33 53 67 50 45 66 29 ...
+ $ bmi                    : num [1:200] 24.9 20.3 41.1 35.7 32.7 20.9 31.2 24.3 39.6 18.2 ...
+ $ diet_type              : Factor w/ 4 levels "Keto","Mediterranean",..: 4 4 3 3 4 4 2 2 2 2 ...
+ $ physical_activity_level: Ord.factor w/ 3 levels "Low"&lt;"Moderate"&lt;..: 3 2 2 2 1 2 3 2 1 2 ...
+ $ daily_calories         : num [1:200] 2381 1731 1422 2489 1512 ...
+ $ sugar_intake_g         : num [1:200] 86.9 46.7 50.8 54.3 62.3 ...
+ $ hypertension           : logi [1:200] FALSE TRUE FALSE TRUE FALSE TRUE ...
+ $ smoker                 : logi [1:200] FALSE FALSE FALSE FALSE FALSE FALSE ...
+ $ clinical_notes         : chr [1:200] "Adheres strictly to diet." "Patient reports fatigue." "Patient reports fatigue." "Patient reports fatigue." ...</code></pre>
+</div>
+</div>
+<p><code>str()</code> (short for “structure”) prints, for every column: its name, its type (<code>int</code>, <code>chr</code>, <code>Date</code>, <code>Factor</code>, <code>num</code>, <code>logi</code>), and a preview of the first few values. This is the fastest way to confirm the dataframe was built the way you expected — always run it right after creating or importing data.</p>
+</section>
+</section>
+<section id="descriptive-statistics-by-variable-type" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="descriptive-statistics-by-variable-type"><span class="header-section-number">6.3</span> Descriptive statistics by variable type</h2>
+<p>Different variable types answer different questions, so they need different summary functions. We will now go through the four families of variables in <code>nutriheart_data</code> and summarize each one appropriately, using <code>$</code> to pull out a single column (e.g.&nbsp;<code>nutriheart_data$age</code> means “the <code>age</code> column inside <code>nutriheart_data</code>”).</p>
+<section id="continuous-variables-age-bmi-daily_calories-sugar_intake_g" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="continuous-variables-age-bmi-daily_calories-sugar_intake_g"><span class="header-section-number">6.3.1</span> Continuous variables (<code>age</code>, <code>bmi</code>, <code>daily_calories</code>, <code>sugar_intake_g</code>)</h3>
+<p>For continuous variables, we want to know the center of the data and how spread out it is.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(nutriheart_data<span class="sc">$</span>bmi)      <span class="co"># the average BMI</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 29.7445</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(nutriheart_data<span class="sc">$</span>bmi)    <span class="co"># the middle BMI, if all values were sorted</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 30.2</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(nutriheart_data<span class="sc">$</span>bmi)        <span class="co"># standard deviation: typical distance from the mean</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.729241</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(nutriheart_data<span class="sc">$</span>bmi)     <span class="co"># smallest and largest BMI values, as one vector</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 18.1 41.8</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nutriheart_data<span class="sc">$</span>bmi)   <span class="co"># all of the above, in one call</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  18.10   24.45   30.20   29.74   35.25   41.80 </code></pre>
+</div>
+</div>
+<p><code>summary()</code> is often the fastest first step: with one function call it returns the minimum, the 1st quartile (the value below which 25% of the data falls), the median, the mean, the 3rd quartile, and the maximum — a compact picture of the whole distribution.</p>
+</section>
+<section id="categorical-variables-gender-diet_type-physical_activity_level" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="categorical-variables-gender-diet_type-physical_activity_level"><span class="header-section-number">6.3.2</span> Categorical variables (<code>gender</code>, <code>diet_type</code>, <code>physical_activity_level</code>)</h3>
+<p>For categorical variables, “average” makes no sense — instead, we want counts and proportions per group.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(nutriheart_data<span class="sc">$</span>diet_type)                       <span class="co"># how many participants per diet</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+         Keto Mediterranean         Vegan       Western 
+           28            83            35            54 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(nutriheart_data<span class="sc">$</span>diet_type)) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>)  <span class="co"># same thing, as percentages</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+         Keto Mediterranean         Vegan       Western 
+         14.0          41.5          17.5          27.0 </code></pre>
+</div>
+</div>
+<ul>
+<li><strong><code>table(x)</code></strong> counts how many times each unique category appears in <code>x</code>.</li>
+<li><strong><code>prop.table(t)</code></strong> takes a table of counts and converts every count into a proportion of the total (values between 0 and 1). Multiplying by 100 and wrapping in <code>round(..., 1)</code> turns those proportions into readable percentages with one decimal place.</li>
+</ul>
+</section>
+<section id="logical-variables-hypertension-smoker" class="level3" data-number="6.3.3">
+<h3 data-number="6.3.3" class="anchored" data-anchor-id="logical-variables-hypertension-smoker"><span class="header-section-number">6.3.3</span> Logical variables (<code>hypertension</code>, <code>smoker</code>)</h3>
+<p>Logical variables only ever hold <code>TRUE</code> or <code>FALSE</code>. Two small tricks make them easy to summarize:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(nutriheart_data<span class="sc">$</span>hypertension)          <span class="co"># counts of TRUE and FALSE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+FALSE  TRUE 
+  132    68 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(nutriheart_data<span class="sc">$</span>hypertension) <span class="sc">*</span> <span class="dv">100</span>      <span class="co"># % of participants with hypertension</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 34</code></pre>
+</div>
+</div>
+<p>This second trick works because R secretly stores <code>TRUE</code> as <code>1</code> and <code>FALSE</code> as <code>0</code>. So <code>mean()</code> of a logical column is really “how many 1s, divided by the total” — in other words, exactly the proportion of <code>TRUE</code> values. This shortcut is used constantly in epidemiology to compute prevalences.</p>
+</section>
+<section id="date-variables-enrollment_date" class="level3" data-number="6.3.4">
+<h3 data-number="6.3.4" class="anchored" data-anchor-id="date-variables-enrollment_date"><span class="header-section-number">6.3.4</span> Date variables (<code>enrollment_date</code>)</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(nutriheart_data<span class="sc">$</span>enrollment_date)   <span class="co"># earliest enrollment date</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2020-01-13"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(nutriheart_data<span class="sc">$</span>enrollment_date)   <span class="co"># latest enrollment date</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2023-12-24"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(nutriheart_data<span class="sc">$</span>enrollment_date) <span class="co"># both at once</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2020-01-13" "2023-12-24"</code></pre>
+</div>
+</div>
+<p>Because R recognizes this column as a proper <code>Date</code> type (not text), it knows how to compare and order dates correctly — <code>min()</code> and <code>max()</code> work exactly as they would on numbers.</p>
+</section>
+<section id="string-variables-clinical_notes" class="level3" data-number="6.3.5">
+<h3 data-number="6.3.5" class="anchored" data-anchor-id="string-variables-clinical_notes"><span class="header-section-number">6.3.5</span> String variables (<code>clinical_notes</code>)</h3>
+<p>Free text needs its own logic, since there is no “average sentence.”</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(nutriheart_data<span class="sc">$</span>clinical_notes)   <span class="co"># every distinct note that appears</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Adheres strictly to diet." "Patient reports fatigue." 
+[3] "No recent complaints."     "Sedentary lifestyle."     </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(nutriheart_data<span class="sc">$</span>clinical_notes)    <span class="co"># how often each one was written</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Adheres strictly to diet.     No recent complaints.  Patient reports fatigue. 
+                       38                        54                        62 
+     Sedentary lifestyle. 
+                       46 </code></pre>
+</div>
+</div>
+<p><code>unique(x)</code> lists each distinct value in <code>x</code> exactly once, which is a quick way to see the full range of answers hiding inside a text column before deciding how (or whether) to categorize them.</p>
+</section>
+</section>
+<section id="data-wrangling-with-dplyr" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="data-wrangling-with-dplyr"><span class="header-section-number">6.4</span> Data wrangling with <code>dplyr</code></h2>
+<p>“Wrangling” means reshaping and filtering a dataframe to answer a specific question — without ever changing the original file on disk. The <code>dplyr</code> package (part of the <code>tidyverse</code>) gives us a small set of verbs that cover almost everything.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"dplyr"</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>We will also meet the <strong>pipe</strong>, written <code>|&gt;</code>. The pipe takes whatever is on its left and feeds it in as the <em>first</em> argument of the function on its right. So <code>x |&gt; f()</code> means exactly the same as <code>f(x)</code> — it just lets us chain several steps in the order we think about them, top to bottom, instead of nesting functions inside each other.</p>
+<section id="select-keep-only-certain-columns" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="select-keep-only-certain-columns"><span class="header-section-number">6.4.1</span> <code>select()</code> — keep only certain columns</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>nutriheart_data <span class="sc">|&gt;</span> <span class="fu">select</span>(patient_id, diet_type, bmi)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 200 × 3
+   patient_id diet_type       bmi
+        &lt;int&gt; &lt;fct&gt;         &lt;dbl&gt;
+ 1          1 Western        24.9
+ 2          2 Western        20.3
+ 3          3 Vegan          41.1
+ 4          4 Vegan          35.7
+ 5          5 Western        32.7
+ 6          6 Western        20.9
+ 7          7 Mediterranean  31.2
+ 8          8 Mediterranean  24.3
+ 9          9 Mediterranean  39.6
+10         10 Mediterranean  18.2
+# ℹ 190 more rows</code></pre>
+</div>
+</div>
+<p>We start with <code>nutriheart_data</code>, pipe it into <code>select()</code>, and list the columns we want to keep. Every other column is dropped from this output (the original dataframe is untouched).</p>
+</section>
+<section id="filter-keep-only-certain-rows" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="filter-keep-only-certain-rows"><span class="header-section-number">6.4.2</span> <code>filter()</code> — keep only certain rows</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>nutriheart_data <span class="sc">|&gt;</span> <span class="fu">filter</span>(hypertension <span class="sc">==</span> <span class="cn">TRUE</span>, age <span class="sc">&gt;=</span> <span class="dv">60</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 30 × 12
+   patient_id enrollment_date gender   age   bmi diet_type    
+        &lt;int&gt; &lt;date&gt;          &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;fct&gt;        
+ 1          6 2022-07-26      Male      67  20.9 Western      
+ 2         13 2021-10-26      Female    83  25.8 Vegan        
+ 3         14 2021-08-24      Male      67  35.4 Vegan        
+ 4         16 2022-10-07      Male      68  35.2 Western      
+ 5         23 2020-01-26      Male      65  28.2 Vegan        
+ 6         24 2021-06-02      Female    62  19   Mediterranean
+ 7         44 2020-08-04      Male      84  40.1 Mediterranean
+ 8         60 2021-06-11      Female    77  27.1 Western      
+ 9         64 2021-03-31      Male      71  31   Vegan        
+10         70 2021-01-08      Male      65  39.7 Keto         
+# ℹ 20 more rows
+# ℹ 6 more variables: physical_activity_level &lt;ord&gt;, daily_calories &lt;dbl&gt;,
+#   sugar_intake_g &lt;dbl&gt;, hypertension &lt;lgl&gt;, smoker &lt;lgl&gt;,
+#   clinical_notes &lt;chr&gt;</code></pre>
+</div>
+</div>
+<p><code>filter()</code> keeps only the rows where the condition is <code>TRUE</code>. Note the double equals sign <code>==</code>: it means “is equal to” (a question), while a single <code>=</code> is used for setting an argument’s value. Separating two conditions with a comma means “both must be true” — here, only participants who have hypertension <strong>and</strong> are 60 or older survive the filter.</p>
+</section>
+<section id="mutate-create-a-new-column" class="level3" data-number="6.4.3">
+<h3 data-number="6.4.3" class="anchored" data-anchor-id="mutate-create-a-new-column"><span class="header-section-number">6.4.3</span> <code>mutate()</code> — create a new column</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>nutriheart_data <span class="sc">|&gt;</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">calories_per_kg =</span> daily_calories <span class="sc">/</span> bmi) <span class="sc">|&gt;</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(patient_id, daily_calories, bmi, calories_per_kg)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 200 × 4
+   patient_id daily_calories   bmi calories_per_kg
+        &lt;int&gt;          &lt;dbl&gt; &lt;dbl&gt;           &lt;dbl&gt;
+ 1          1           2381  24.9            95.6
+ 2          2           1731  20.3            85.3
+ 3          3           1422  41.1            34.6
+ 4          4           2489  35.7            69.7
+ 5          5           1512  32.7            46.2
+ 6          6           2201  20.9           105. 
+ 7          7           2313  31.2            74.1
+ 8          8           2454  24.3           101. 
+ 9          9           2285  39.6            57.7
+10         10           1870  18.2           103. 
+# ℹ 190 more rows</code></pre>
+</div>
+</div>
+<p><code>mutate()</code> adds a new column computed from existing ones, without deleting anything. Here we chain three steps with the pipe: start with the data, add the new <code>calories_per_kg</code> column, then <code>select()</code> a few columns just so the new one is easy to see in the output.</p>
+</section>
+<section id="arrange-reorder-rows" class="level3" data-number="6.4.4">
+<h3 data-number="6.4.4" class="anchored" data-anchor-id="arrange-reorder-rows"><span class="header-section-number">6.4.4</span> <code>arrange()</code> — reorder rows</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>nutriheart_data <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(bmi)) <span class="sc">|&gt;</span> <span class="fu">select</span>(patient_id, bmi)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 200 × 2
+   patient_id   bmi
+        &lt;int&gt; &lt;dbl&gt;
+ 1         15  41.8
+ 2        103  41.4
+ 3          3  41.1
+ 4        118  41.1
+ 5         78  41  
+ 6         97  41  
+ 7        115  41  
+ 8         19  40.8
+ 9        139  40.8
+10         48  40.6
+# ℹ 190 more rows</code></pre>
+</div>
+</div>
+<p><code>arrange()</code> sorts rows by a column, smallest to largest by default. Wrapping the column in <code>desc()</code> reverses that, so here we see the participants with the <strong>highest</strong> BMI first.</p>
+</section>
+<section id="group_by-summarise-the-real-payoff" class="level3" data-number="6.4.5">
+<h3 data-number="6.4.5" class="anchored" data-anchor-id="group_by-summarise-the-real-payoff"><span class="header-section-number">6.4.5</span> <code>group_by()</code> + <code>summarise()</code> — the real payoff</h3>
+<p>This is where dplyr answers our actual research question: does BMI differ across diet types?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>nutriheart_data <span class="sc">|&gt;</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(diet_type) <span class="sc">|&gt;</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_participants =</span> <span class="fu">n</span>(),</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_bmi =</span> <span class="fu">mean</span>(bmi),</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">hypertension_pct =</span> <span class="fu">mean</span>(hypertension) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 4
+  diet_type     n_participants mean_bmi hypertension_pct
+  &lt;fct&gt;                  &lt;int&gt;    &lt;dbl&gt;            &lt;dbl&gt;
+1 Keto                      28     29.3             32.1
+2 Mediterranean             83     28.9             32.5
+3 Vegan                     35     31.8             40  
+4 Western                   54     30.0             33.3</code></pre>
+</div>
+</div>
+<ul>
+<li><strong><code>group_by(diet_type)</code></strong> does not change what is printed — it silently splits the dataframe into invisible sub-groups, one per diet type.</li>
+<li><strong><code>summarise()</code></strong> then collapses each group down to a single row, computing whatever we ask for inside it: <code>n()</code> counts rows per group, <code>mean(bmi)</code> computes the average BMI <em>within each diet group separately</em>, and <code>mean(hypertension) * 100</code> reuses our logical-variable trick from earlier to get the hypertension prevalence, again per group.</li>
+</ul>
+<p>The output is a small, four-row table — one row per diet — that is the actual, publishable answer to the NutriHeart research question stated at the beginning of this section. Every wrangling step you just learned exists to get you from 200 raw rows to a table exactly like this one.</p>
+</section>
+</section>
+<section id="function-finder" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="function-finder"><span class="header-section-number">6.5</span> Function finder</h2>
+<p>Not sure which function you need? Choose a task below.</p>
+<div class="matcher-box">
+<select id="matcherSelect"> <option value="">Choose a task…</option> <option value="avg">I want the average of my numbers</option> <option value="rows">I want to peek at the top rows of a big table</option> <option value="count">I want to know how many entries I have</option> <option value="shape">I want to understand what’s inside an object</option> <option value="range">I want the smallest and largest values</option> <option value="filter">I want only the rows that match a condition</option> <option value="group">I want a summary computed separately per group</option> </select>
+<pre class="matcher-out" id="matcherOut"></pre>
+</div>
+<div class="quiz-box">
+<p><strong>Quick check:</strong> to combine several numbers into one object, you use…</p>
+<div class="opt" data-correct="false">
+<code>group()</code>
+</div>
+<div class="opt" data-correct="true">
+<code>c()</code>
+</div>
+<div class="opt" data-correct="false">
+<code>combine.numbers()</code>
+</div>
+<div class="fb">
+
+</div>
+</div>
+<div class="quiz-box">
+<p><strong>Quick check:</strong> in the NutriHeart dataset, <code>diet_type</code> is best described as a…</p>
+<div class="opt" data-correct="false">
+<code>Continuous variable</code>
+</div>
+<div class="opt" data-correct="true">
+<code>Categorical variable</code>
+</div>
+<div class="opt" data-correct="false">
+<code>Logical variable</code>
+</div>
+<div class="fb">
+
+</div>
+</div>
+<div class="quiz-box">
+<p><strong>Quick check:</strong> which dplyr verb would you use to keep only participants older than 60?</p>
+<div class="opt" data-correct="false">
+<code>select()</code>
+</div>
+<div class="opt" data-correct="false">
+<code>arrange()</code>
+</div>
+<div class="opt" data-correct="true">
+<code>filter()</code>
+</div>
+<div class="fb">
+
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  /* ---- collapsible folder tree ---- */
+  document.querySelectorAll(".tree-box .node.folder").forEach(function (node) {
+    node.addEventListener("click", function () {
+      node.parentElement.classList.toggle("closed");
+    });
+  });
+
+  /* ---- safe arithmetic calculator ---- */
+  function safeEval(expr) {
+    var allowed = /^[0-9+\-*/^().\s,a-z]*$/i;
+    if (!allowed.test(expr)) throw new Error("bad characters");
+    var cleaned = expr.replace(/(sqrt|abs|round|floor|ceiling|log|exp)/gi, function (m) {
+      return "__" + m.toLowerCase() + "__";
+    });
+    if (/[a-z]/i.test(cleaned.replace(/__(sqrt|abs|round|floor|ceiling|log|exp)__/gi, ""))) {
+      throw new Error("unknown symbol");
+    }
+    var js = cleaned
+      .replace(/__sqrt__/g, "Math.sqrt")
+      .replace(/__abs__/g, "Math.abs")
+      .replace(/__floor__/g, "Math.floor")
+      .replace(/__ceiling__/g, "Math.ceil")
+      .replace(/__log__/g, "Math.log")
+      .replace(/__exp__/g, "Math.exp")
+      .replace(/__round__\(([^,]+),\s*([^)]+)\)/g, "roundTo($1,$2)")
+      .replace(/__round__\(([^)]+)\)/g, "Math.round($1)")
+      .replace(/\^/g, "**");
+    var roundTo = function (x, n) { return Math.round(x * Math.pow(10, n)) / Math.pow(10, n); };
+    var fn = new Function("roundTo", "return (" + js + ");");
+    var result = fn(roundTo);
+    if (typeof result !== "number" || !isFinite(result)) throw new Error("not a number");
+    return Math.round(result * 1e6) / 1e6;
+  }
+
+  var calcInput = document.getElementById("calcInput");
+  var calcOut = document.getElementById("calcOut");
+  var calcRun = document.getElementById("calcRun");
+  if (calcInput) {
+    function runCalc() {
+      var expr = calcInput.value.trim();
+      if (!expr) return;
+      var l1 = document.createElement("div");
+      l1.innerHTML = '<span class="prompt">&gt;</span> ' + expr.replace(/</g, "&lt;");
+      var l2 = document.createElement("div");
+      try {
+        var r = safeEval(expr);
+        l2.innerHTML = '<span class="ans">[1] ' + r + "</span>";
+      } catch (e) {
+        l2.innerHTML = '<span class="err">Error: could not evaluate that expression</span>';
+      }
+      calcOut.innerHTML = "";
+      calcOut.appendChild(l1);
+      calcOut.appendChild(l2);
+    }
+    calcRun.addEventListener("click", runCalc);
+    calcInput.addEventListener("keydown", function (e) { if (e.key === "Enter") runCalc(); });
+    document.querySelectorAll(".calc-box .example").forEach(function (ex) {
+      ex.addEventListener("click", function () {
+        calcInput.value = ex.getAttribute("data-expr");
+        runCalc();
+      });
+    });
+  }
+
+  /* ---- function finder ---- */
+  var matcherData = {
+    avg:   { label: "mean()",    code: "mean(ages)\n[1] 32.71" },
+    rows:  { label: "head()",    code: "head(my_data)\n# shows the first 6 rows" },
+    count: { label: "length()",  code: "length(ages)\n[1] 7" },
+    shape: { label: "str()",     code: "str(ages)\n num [1:7] 21 34 19 45 30 28 52" },
+    range: { label: "min() / max()", code: "min(ages); max(ages)\n[1] 19\n[1] 52" }
+  };
+  var matcherSelect = document.getElementById("matcherSelect");
+  if (matcherSelect) {
+    var out = document.getElementById("matcherOut");
+    matcherSelect.addEventListener("change", function () {
+      var v = matcherSelect.value;
+      if (!v) { out.classList.remove("show"); return; }
+      out.textContent = matcherData[v].label + "\n\n" + matcherData[v].code;
+      out.classList.add("show");
+    });
+  }
+
+  /* ---- quizzes ---- */
+  document.querySelectorAll(".quiz-box").forEach(function (quiz) {
+    var opts = quiz.querySelectorAll(".opt");
+    var fb = quiz.querySelector(".fb");
+    opts.forEach(function (opt) {
+      opt.addEventListener("click", function () {
+        opts.forEach(function (o) { o.classList.remove("correct", "wrong"); });
+        var correct = opt.getAttribute("data-correct") === "true";
+        opt.classList.add(correct ? "correct" : "wrong");
+        if (!correct) {
+          opts.forEach(function (o) { if (o.getAttribute("data-correct") === "true") o.classList.add("correct"); });
+        }
+        fb.textContent = correct ? "Correct." : "Not quite — the right answer is highlighted above.";
+        fb.classList.add("show");
+      });
+    });
+  });
+
+  /* ---- histogram bin demo ---- */
+  var svg = document.getElementById("histSvg");
+  if (svg) {
+    function makeBins(n) {
+      var arr = [];
+      for (var i = 0; i < n; i++) {
+        var x = (i / (n - 1)) * 2 - 1;
+        var h = Math.max(6, Math.round(100 * Math.exp(-x * x * 2) + 10 * Math.sin(i * 1.7)));
+        arr.push(h);
+      }
+      return arr;
+    }
+    function drawHist(n) {
+      var heights = makeBins(n);
+      var W = 560, H = 240, padB = 28, padT = 8, padX = 16, gap = 5;
+      var max = Math.max.apply(null, heights);
+      var barW = (W - padX * 2 - gap * (n - 1)) / n;
+      var bars = "";
+      heights.forEach(function (h, i) {
+        var barH = (h / max) * (H - padT - padB);
+        var x = padX + i * (barW + gap);
+        var y = H - padB - barH;
+        bars += '<rect x="' + x + '" y="' + y + '" width="' + barW + '" height="' + barH +
+          '" fill="#001D41"></rect>';
+      });
+      svg.innerHTML = '<line x1="' + padX + '" y1="' + (H - padB) + '" x2="' + (W - padX) + '" y2="' + (H - padB) +
+        '" stroke="#ccc" stroke-width="1"/>' + bars;
+    }
+    drawHist(8);
+    document.querySelectorAll(".plot-box .bins button").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll(".plot-box .bins button").forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        drawHist(parseInt(btn.getAttribute("data-bins"), 10));
+      });
+    });
+  }
+
+  /* ---- sidebar authorship footer ---- */
+  (function () {
+    var sidebar = document.getElementById("quarto-sidebar");
+    if (!sidebar) return;
+    var footer = document.createElement("div");
+    footer.className = "sidebar-authors";
+    footer.innerHTML =
+      '<div class="sidebar-authors-names">' +
+        '<span>Profa. Carolina Abreu de Carvalho, PhD</span>' +
+        '<span>Lucas Helal, MMSc, PhD</span>' +
+      '</div>' +
+      '<div class="sidebar-authors-affil">' +
+        'Departamento de Sa\u00fade Coletiva<br>' +
+        'Programa de P\u00f3s-Gradua\u00e7\u00e3o em Sa\u00fade Coletiva<br>' +
+        'Universidade Federal do Maranh\u00e3o' +
+      '</div>';
+    sidebar.appendChild(footer);
+  })();
+
+});
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./05-calculator.html" class="pagination-link" aria-label="R as a Calculator">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R as a Calculator</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./07-plot.html" class="pagination-link" aria-label="Your First Plot">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Your First Plot</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

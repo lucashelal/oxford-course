@@ -1,0 +1,44 @@
+# Installing Packages {#sec-packages}
+
+R ships with a solid toolkit built in, but its real strength is **packages** — free add-ons written by the community that add extra functions. Think of them as apps for R.
+
+## Step 1 — Install it, once
+
+```r
+install.packages("tidyverse")
+```
+
+This downloads the package from CRAN, R's official package repository. You only need to run this once per computer (or once per Posit Cloud project).
+
+## Step 2 — Load it, every session
+
+```r
+library(tidyverse)
+```
+
+Installing puts a tool in the toolbox; `library()` takes it out and puts it on the table. Run this line every time you restart R and want to use that package.
+
+::: {.callout-warning}
+## Quotes on, quotes off
+Notice the quotation marks appear in `install.packages("tidyverse")` but disappear in `library(tidyverse)`. This inconsistency trips up almost everyone at least once — it isn't a mistake on your part.
+:::
+
+## Packages worth knowing early
+
+| Package | What it's for |
+|---|---|
+| `tidyverse` | A bundle of packages for wrangling and plotting data |
+| `readxl` | Reading Excel files |
+| `rmarkdown` / `quarto` | Turning your code into reports, like this guide |
+| `descr` | Descriptive statistics and frequency tables |
+| `lubridate` | Transform text in dates and manipulate date formats as well |
+| `janitor` | To clean variables artifacts mainly
+| `ggplot2` | Make beautiful plots to visualize your data |
+| `here` | Use relative paths instead of absolute paths |
+| `pacman` | Install, read and open automatically a bunch of packages | 
+| `gt` | Make presentable tables |
+
+::: {.callout-note}
+## Posit Cloud
+Popular packages are often pre-installed there — try `library(...)` first before reaching for `install.packages()`. Details in [Chapter 8](08-posit-cloud.qmd).
+:::

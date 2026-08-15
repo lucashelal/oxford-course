@@ -1,0 +1,163 @@
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  /* ---- collapsible folder tree ---- */
+  document.querySelectorAll(".tree-box .node.folder").forEach(function (node) {
+    node.addEventListener("click", function () {
+      node.parentElement.classList.toggle("closed");
+    });
+  });
+
+  /* ---- safe arithmetic calculator ---- */
+  function safeEval(expr) {
+    var allowed = /^[0-9+\-*/^().\s,a-z]*$/i;
+    if (!allowed.test(expr)) throw new Error("bad characters");
+    var cleaned = expr.replace(/(sqrt|abs|round|floor|ceiling|log|exp)/gi, function (m) {
+      return "__" + m.toLowerCase() + "__";
+    });
+    if (/[a-z]/i.test(cleaned.replace(/__(sqrt|abs|round|floor|ceiling|log|exp)__/gi, ""))) {
+      throw new Error("unknown symbol");
+    }
+    var js = cleaned
+      .replace(/__sqrt__/g, "Math.sqrt")
+      .replace(/__abs__/g, "Math.abs")
+      .replace(/__floor__/g, "Math.floor")
+      .replace(/__ceiling__/g, "Math.ceil")
+      .replace(/__log__/g, "Math.log")
+      .replace(/__exp__/g, "Math.exp")
+      .replace(/__round__\(([^,]+),\s*([^)]+)\)/g, "roundTo($1,$2)")
+      .replace(/__round__\(([^)]+)\)/g, "Math.round($1)")
+      .replace(/\^/g, "**");
+    var roundTo = function (x, n) { return Math.round(x * Math.pow(10, n)) / Math.pow(10, n); };
+    var fn = new Function("roundTo", "return (" + js + ");");
+    var result = fn(roundTo);
+    if (typeof result !== "number" || !isFinite(result)) throw new Error("not a number");
+    return Math.round(result * 1e6) / 1e6;
+  }
+
+  var calcInput = document.getElementById("calcInput");
+  var calcOut = document.getElementById("calcOut");
+  var calcRun = document.getElementById("calcRun");
+  if (calcInput) {
+    function runCalc() {
+      var expr = calcInput.value.trim();
+      if (!expr) return;
+      var l1 = document.createElement("div");
+      l1.innerHTML = '<span class="prompt">&gt;</span> ' + expr.replace(/</g, "&lt;");
+      var l2 = document.createElement("div");
+      try {
+        var r = safeEval(expr);
+        l2.innerHTML = '<span class="ans">[1] ' + r + "</span>";
+      } catch (e) {
+        l2.innerHTML = '<span class="err">Error: could not evaluate that expression</span>';
+      }
+      calcOut.innerHTML = "";
+      calcOut.appendChild(l1);
+      calcOut.appendChild(l2);
+    }
+    calcRun.addEventListener("click", runCalc);
+    calcInput.addEventListener("keydown", function (e) { if (e.key === "Enter") runCalc(); });
+    document.querySelectorAll(".calc-box .example").forEach(function (ex) {
+      ex.addEventListener("click", function () {
+        calcInput.value = ex.getAttribute("data-expr");
+        runCalc();
+      });
+    });
+  }
+
+  /* ---- function finder ---- */
+  var matcherData = {
+    avg:   { label: "mean()",    code: "mean(ages)\n[1] 32.71" },
+    rows:  { label: "head()",    code: "head(my_data)\n# shows the first 6 rows" },
+    count: { label: "length()",  code: "length(ages)\n[1] 7" },
+    shape: { label: "str()",     code: "str(ages)\n num [1:7] 21 34 19 45 30 28 52" },
+    range: { label: "min() / max()", code: "min(ages); max(ages)\n[1] 19\n[1] 52" }
+  };
+  var matcherSelect = document.getElementById("matcherSelect");
+  if (matcherSelect) {
+    var out = document.getElementById("matcherOut");
+    matcherSelect.addEventListener("change", function () {
+      var v = matcherSelect.value;
+      if (!v) { out.classList.remove("show"); return; }
+      out.textContent = matcherData[v].label + "\n\n" + matcherData[v].code;
+      out.classList.add("show");
+    });
+  }
+
+  /* ---- quizzes ---- */
+  document.querySelectorAll(".quiz-box").forEach(function (quiz) {
+    var opts = quiz.querySelectorAll(".opt");
+    var fb = quiz.querySelector(".fb");
+    opts.forEach(function (opt) {
+      opt.addEventListener("click", function () {
+        opts.forEach(function (o) { o.classList.remove("correct", "wrong"); });
+        var correct = opt.getAttribute("data-correct") === "true";
+        opt.classList.add(correct ? "correct" : "wrong");
+        if (!correct) {
+          opts.forEach(function (o) { if (o.getAttribute("data-correct") === "true") o.classList.add("correct"); });
+        }
+        fb.textContent = correct ? "Correct." : "Not quite — the right answer is highlighted above.";
+        fb.classList.add("show");
+      });
+    });
+  });
+
+  /* ---- histogram bin demo ---- */
+  var svg = document.getElementById("histSvg");
+  if (svg) {
+    function makeBins(n) {
+      var arr = [];
+      for (var i = 0; i < n; i++) {
+        var x = (i / (n - 1)) * 2 - 1;
+        var h = Math.max(6, Math.round(100 * Math.exp(-x * x * 2) + 10 * Math.sin(i * 1.7)));
+        arr.push(h);
+      }
+      return arr;
+    }
+    function drawHist(n) {
+      var heights = makeBins(n);
+      var W = 560, H = 240, padB = 28, padT = 8, padX = 16, gap = 5;
+      var max = Math.max.apply(null, heights);
+      var barW = (W - padX * 2 - gap * (n - 1)) / n;
+      var bars = "";
+      heights.forEach(function (h, i) {
+        var barH = (h / max) * (H - padT - padB);
+        var x = padX + i * (barW + gap);
+        var y = H - padB - barH;
+        bars += '<rect x="' + x + '" y="' + y + '" width="' + barW + '" height="' + barH +
+          '" fill="#001D41"></rect>';
+      });
+      svg.innerHTML = '<line x1="' + padX + '" y1="' + (H - padB) + '" x2="' + (W - padX) + '" y2="' + (H - padB) +
+        '" stroke="#ccc" stroke-width="1"/>' + bars;
+    }
+    drawHist(8);
+    document.querySelectorAll(".plot-box .bins button").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll(".plot-box .bins button").forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        drawHist(parseInt(btn.getAttribute("data-bins"), 10));
+      });
+    });
+  }
+
+  /* ---- sidebar authorship footer ---- */
+  (function () {
+    var sidebar = document.getElementById("quarto-sidebar");
+    if (!sidebar) return;
+    var footer = document.createElement("div");
+    footer.className = "sidebar-authors";
+    footer.innerHTML =
+      '<div class="sidebar-authors-names">' +
+        '<span>Profa. Carolina Abreu de Carvalho, PhD</span>' +
+        '<span>Lucas Helal, MMSc, PhD</span>' +
+      '</div>' +
+      '<div class="sidebar-authors-affil">' +
+        'Departamento de Sa\u00fade Coletiva<br>' +
+        'Programa de P\u00f3s-Gradua\u00e7\u00e3o em Sa\u00fade Coletiva<br>' +
+        'Universidade Federal do Maranh\u00e3o' +
+      '</div>';
+    sidebar.appendChild(footer);
+  })();
+
+});
+</script>

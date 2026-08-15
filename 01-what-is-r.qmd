@@ -1,0 +1,79 @@
+# What Is R? {#sec-what-is-r}
+
+R is a free and open-source computing programming language built for working with data and statistics. Natively, it has no windows or buttons of its own — it simply reads commands and does the math, statistics, or data-wrangling you ask for. However, with the use o RStudio or Posit Cloud, you can interact with R through a graphical interface in a very friendly manner.
+
+## R, RStudio, and Posit Cloud
+
+These three names get used almost interchangeably by beginners, but they are three different things:
+
+| Name | What it actually is |
+|---|---|
+| **R** | The language itself and the engine that runs it. No graphical interface. |
+| **RStudio** | A free application ("IDE") that wraps around R: a console, a script editor, a file browser, and a plot viewer in one window. |
+| **Posit Cloud** | The exact same RStudio, but running inside a web browser. Nothing to install. Covered fully in [Chapter 8](08-posit-cloud.qmd). |
+
+You write R code the same way regardless of which of the three you're looking at. The rest of this guide uses RStudio's and Posit Cloud's layout as the reference point.
+
+## The console
+
+Every screenshot and example in this guide refers to the **console** — the pane where you type one command, press Enter, and R answers immediately.
+
+```r
+print("Hello, R!")
+```
+
+```
+[1] "Hello, R!"
+```
+
+The `[1]` at the start of the output is not part of your answer — it's R's way of numbering the elements of the result. For a single value it will always read `[1]`; you'll see higher numbers later when a result contains many values.
+
+```r
+2 + 2
+```
+
+```
+[1] 4
+```
+
+::: {.callout-tip}
+## A useful habit
+Read code left to right, the same way you'd read a sentence: `x <- 5` reads as *"x gets 5."* The arrow always points toward where the value is being stored. R is a language oriented to objects - every value you create you store in a variable called
+**object** by using the *assignment operator* `<-`. You can also use `=`, but this is not a good practice in R coding. 
+:::
+
+## The pipe operator `|>`
+
+The pipe operator is one of the most useful tools of R coding. Think it about **putting something in a box**. Let's see an example with a mock dataframe called `df`. The `glimpse()` function is to see what is in the dataframe.
+
+**Option 1.** Without the pipe operator 
+
+```R
+glimpse(df)
+```
+
+**Option 2.** With the pipe operator
+
+```R
+df |>
+  glimpse()
+```
+
+It works like the pipe `|>` puts the object `df` inside the function `glimpse()`. It is very useful for sequential codes such as:
+
+```R 
+df |>
+  filter(baseline == 0) |>
+  select(var1, var2, var2, var3) |>
+  count()
+```
+Within this sequence of code, it means you first filtered your dataframe only for those in which the variable `baseline == 0`. Among them, selected the variables `var1, var2, var3` and applied the function `count()`, to check the total N among them.
+
+::: {.quiz-box}
+**Quick check:** R, RStudio, and Posit Cloud are...
+
+<div class="opt" data-correct="false">The same piece of software with three different names</div>
+<div class="opt" data-correct="true">Three different things — R is the language, RStudio is the application you write it in, and Posit Cloud is the web-based version of RStudio</div>
+<div class="opt" data-correct="false">RStudio is a type of dataset</div>
+<div class="fb"></div>
+:::
