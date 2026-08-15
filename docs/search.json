@@ -64,7 +64,7 @@
     "href": "index.html#about-the-authors",
     "title": "First Steps in R",
     "section": "About the authors",
-    "text": "About the authors\nProfa. Carolina Abreu de Carvalho, PhD and Lucas Helal, MMSc, PhD are faculty and visiting scholar/post doc fellow at the Departamento de Saúde Coletiva, Universidade Federal do Maranhão (UFMA), where they teach and supervise students in the Programa de Pós-Graduação em Saúde Coletiva. This guide grew out of the R instruction they give to incoming students in their birth cohort and epidemiological research programs, and it is taught here in the same order and style used in that coursework.",
+    "text": "About the authors\nProfa. Carolina Abreu de Carvalho, PhD and Lucas Helal, MMSc, PhD are faculty and visiting scholar/post doc fellow at the Departamento de Saúde Coletiva, Universidade Federal do Maranhão (UFMA). This R instruction is to incoming students learning R and examples are illustrative of a real-world setting based in Nutritional Epidemiology.",
     "crumbs": [
       "Preface"
     ]
@@ -144,7 +144,7 @@
     "href": "03-open-files.html",
     "title": "3  Opening Files",
     "section": "",
-    "text": "3.1 Reading a file with code\nMost projects start the same way: you have a spreadsheet, and you need R to read it. This chapter covers the most common case, a plain .csv file.\ndf &lt;- data.frame(\n  ID = seq(1:10),\n  age = rnorm(10, mean = 30, sd = 5), \n  weigth = rnorm(10, mean = 70, sd = 10),\n  height = rnorm(10, mean = 170, sd = 15))\nhead(df, n=5)\n\n  ID      age   weigth   height\n1  1 30.92817 64.65759 173.2794\n2  2 34.36844 88.09287 172.9238\n3  3 25.01708 80.90625 179.7793\n4  4 33.54504 91.40596 140.1303\n5  5 27.26670 76.35125 172.8402\nThe arrow &lt;- means “store this on the left.” This line reads: read the file, and save the result into an object called survey. From now on, typing survey shows you the data, and head(survey) shows just the first six rows.",
+    "text": "3.1 Reading a file with code\nMost projects start the same way: you have a spreadsheet, and you need R to read it. This chapter covers the most common case, a plain .csv file.\ndf &lt;- data.frame(\n  ID = seq(1:10),\n  age = rnorm(10, mean = 30, sd = 5), \n  weigth = rnorm(10, mean = 70, sd = 10),\n  height = rnorm(10, mean = 170, sd = 15))\nhead(df, n=5)\n\n  ID      age   weigth   height\n1  1 24.91905 70.82593 186.1634\n2  2 32.47211 71.10721 155.8393\n3  3 32.43873 51.33281 171.3873\n4  4 26.44450 72.64638 151.8911\n5  5 19.52043 64.75040 179.3487\nThe arrow &lt;- means “store this on the left.” This line reads: read the file, and save the result into an object called survey. From now on, typing survey shows you the data, and head(survey) shows just the first six rows.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Opening Files</span>"
     ]

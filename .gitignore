@@ -5,3 +5,5 @@
 /.quarto/
 *.rds
 .DS_Store
+
+**/*.quarto_ipynb
