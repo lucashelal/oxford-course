@@ -51,5 +51,5 @@ If none of that resolves it, bring the exact error message (not just "it didn't 
 
 ## About the authors
 
-**Profa. Carolina Abreu de Carvalho, PhD** and **Lucas Helal, MMSc, PhD** are faculty and visiting scholar/post doc fellow at the Departamento de Saúde Coletiva, Universidade Federal do Maranhão (UFMA). This R instruction is to incoming students learning R and examples are illustrative of a real-world setting based in Nutritional Epidemiology.
+**Profa. Carolina Abreu de Carvalho, PhD** and **Lucas Helal, MMSc, PhD** are faculty and post doc fellow respectively at the Departamento de Saúde Coletiva, Universidade Federal do Maranhão (UFMA). This R instruction is to incoming students learning R and examples are illustrative of a real-world setting based in Nutritional Epidemiology.
 

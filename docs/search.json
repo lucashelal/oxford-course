@@ -64,7 +64,7 @@
     "href": "index.html#about-the-authors",
     "title": "First Steps in R",
     "section": "About the authors",
-    "text": "About the authors\nProfa. Carolina Abreu de Carvalho, PhD and Lucas Helal, MMSc, PhD are faculty and visiting scholar/post doc fellow at the Departamento de Saúde Coletiva, Universidade Federal do Maranhão (UFMA). This R instruction is to incoming students learning R and examples are illustrative of a real-world setting based in Nutritional Epidemiology.",
+    "text": "About the authors\nProfa. Carolina Abreu de Carvalho, PhD and Lucas Helal, MMSc, PhD are faculty and post doc fellow respectively at the Departamento de Saúde Coletiva, Universidade Federal do Maranhão (UFMA). This R instruction is to incoming students learning R and examples are illustrative of a real-world setting based in Nutritional Epidemiology.",
     "crumbs": [
       "Preface"
     ]
@@ -144,7 +144,7 @@
     "href": "03-open-files.html",
     "title": "3  Opening Files",
     "section": "",
-    "text": "3.1 Reading a file with code\nMost projects start the same way: you have a spreadsheet, and you need R to read it. This chapter covers the most common case, a plain .csv file.\ndf &lt;- data.frame(\n  ID = seq(1:10),\n  age = rnorm(10, mean = 30, sd = 5), \n  weigth = rnorm(10, mean = 70, sd = 10),\n  height = rnorm(10, mean = 170, sd = 15))\nhead(df, n=5)\n\n  ID      age   weigth   height\n1  1 39.93417 63.24011 163.8944\n2  2 37.92588 78.89489 158.3968\n3  3 32.00425 70.88554 169.3659\n4  4 35.62832 79.88495 201.4689\n5  5 27.74562 72.30722 184.3725\nThe arrow &lt;- means “store this on the left.” This line reads: read the file, and save the result into an object called survey. From now on, typing survey shows you the data, and head(survey) shows just the first six rows.",
+    "text": "3.1 Reading a file with code\nMost projects start the same way: you have a spreadsheet, and you need R to read it. This chapter covers the most common case, a plain .csv file.\ndf &lt;- data.frame(\n  ID = seq(1:10),\n  age = rnorm(10, mean = 30, sd = 5), \n  weigth = rnorm(10, mean = 70, sd = 10),\n  height = rnorm(10, mean = 170, sd = 15))\nhead(df, n=5)\n\n  ID      age   weigth   height\n1  1 25.03392 58.68951 199.4368\n2  2 29.24709 64.98010 188.8636\n3  3 22.00165 71.42413 163.4332\n4  4 16.97134 64.95790 156.2204\n5  5 35.63084 82.43059 163.4393\nThe arrow &lt;- means “store this on the left.” This line reads: read the file, and save the result into an object called survey. From now on, typing survey shows you the data, and head(survey) shows just the first six rows.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Opening Files</span>"
     ]
