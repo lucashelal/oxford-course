@@ -212,15 +212,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#plotting-the-nutriheart-data-with-ggplot2" id="toc-plotting-the-nutriheart-data-with-ggplot2" class="nav-link active" data-scroll-target="#plotting-the-nutriheart-data-with-ggplot2"><span class="header-section-number">7.1</span> Plotting the NutriHeart data with <code>ggplot2</code></a>
-  <ul class="collapse">
-  <li><a href="#histogram-one-continuous-variable" id="toc-histogram-one-continuous-variable" class="nav-link" data-scroll-target="#histogram-one-continuous-variable"><span class="header-section-number">7.1.1</span> Histogram — one continuous variable</a></li>
-  <li><a href="#bar-chart-one-categorical-variable" id="toc-bar-chart-one-categorical-variable" class="nav-link" data-scroll-target="#bar-chart-one-categorical-variable"><span class="header-section-number">7.1.2</span> Bar chart — one categorical variable</a></li>
-  <li><a href="#boxplot-one-continuous-variable-across-groups" id="toc-boxplot-one-continuous-variable-across-groups" class="nav-link" data-scroll-target="#boxplot-one-continuous-variable-across-groups"><span class="header-section-number">7.1.3</span> Boxplot — one continuous variable across groups</a></li>
-  <li><a href="#line-chart-a-trend-over-time" id="toc-line-chart-a-trend-over-time" class="nav-link" data-scroll-target="#line-chart-a-trend-over-time"><span class="header-section-number">7.1.4</span> Line chart — a trend over time</a></li>
-  <li><a href="#scatter-plot-two-continuous-variables-colored-by-a-third" id="toc-scatter-plot-two-continuous-variables-colored-by-a-third" class="nav-link" data-scroll-target="#scatter-plot-two-continuous-variables-colored-by-a-third"><span class="header-section-number">7.1.5</span> Scatter plot — two continuous variables, colored by a third</a></li>
-  </ul></li>
-  <li><a href="#function-finder" id="toc-function-finder" class="nav-link" data-scroll-target="#function-finder"><span class="header-section-number">7.2</span> Function finder</a></li>
+  <li><a href="#plot-1-a-continuous-variable-hist" id="toc-plot-1-a-continuous-variable-hist" class="nav-link active" data-scroll-target="#plot-1-a-continuous-variable-hist"><span class="header-section-number">7.1</span> Plot 1 — a continuous variable: <code>hist()</code></a></li>
+  <li><a href="#plot-2-a-categorical-variable-barplot" id="toc-plot-2-a-categorical-variable-barplot" class="nav-link" data-scroll-target="#plot-2-a-categorical-variable-barplot"><span class="header-section-number">7.2</span> Plot 2 — a categorical variable: <code>barplot()</code></a></li>
+  <li><a href="#saving-your-plot" id="toc-saving-your-plot" class="nav-link" data-scroll-target="#saving-your-plot"><span class="header-section-number">7.3</span> Saving your plot</a></li>
+  <li><a href="#function-finder" id="toc-function-finder" class="nav-link" data-scroll-target="#function-finder"><span class="header-section-number">7.4</span> Function finder</a></li>
   </ul>
 </nav>
     </div>
@@ -246,109 +241,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Once your numbers are in a vector, one line of code turns them into a picture. The built-in <code>hist()</code> function is the fastest way to see the shape of your data — how the values are distributed.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ages,</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Distribution of ages"</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Age"</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col  =</span> <span class="st">"#001D41"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The chart below illustrates the idea: it redraws a histogram-shaped distribution with a different number of bins, the same way <code>hist()</code> would if you changed the <code>breaks</code> argument.</p>
-<div class="plot-box">
-<div class="bins">
-<button data-bins="5">
-5 bins
-</button>
-<button class="active" data-bins="8">
-8 bins
-</button>
-<button data-bins="12">
-12 bins
-</button>
-</div>
-<svg id="histSvg" viewbox="0 0 560 240" style="width:100%; height:auto;">
-</svg>
-</div>
-<p>Every plot you make in RStudio or Posit Cloud appears in the <strong>Plots</strong> pane, where an <strong>Export</strong> button lets you save it as a PNG or PDF directly into your <code>output/</code> folder.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>When you’re ready to go further
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Once <code>hist()</code> and <code>plot()</code> feel comfortable, the <code>ggplot2</code> package (part of <code>tidyverse</code>) is the natural next step — same idea, far more control over how your charts look.</p>
-</div>
-</div>
-<section id="plotting-the-nutriheart-data-with-ggplot2" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="plotting-the-nutriheart-data-with-ggplot2"><span class="header-section-number">7.1</span> Plotting the NutriHeart data with <code>ggplot2</code></h2>
-<p>Let’s take that next step right away, using the same <code>nutriheart_data</code> dataframe we built in <a href="06-functions.html" class="quarto-xref"><span>Chapter 6</span></a>. <code>ggplot2</code> builds a chart in <strong>layers</strong>, always starting from the same three ingredients:</p>
-<ol type="1">
-<li><strong>Data</strong> — which dataframe to draw from.</li>
-<li><strong>Aesthetics</strong> (<code>aes()</code>) — which columns map to which parts of the chart (x-axis, y-axis, color, …).</li>
-<li><strong>Geometry</strong> (<code>geom_*()</code>) — what <em>kind</em> of shape represents the data: bars, points, boxes, lines.</li>
-</ol>
-<p>You build a plot by adding these pieces together with <code>+</code>, the same way you chained dplyr steps together with <code>|&gt;</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Why we rebuild the dataset here
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Each <code>.qmd</code> file in this book renders in its <strong>own, independent R session</strong> — variables created in <a href="06-functions.html" class="quarto-xref"><span>Chapter 6</span></a> do not automatically carry over into this chapter. In your own projects you would normally avoid copy-pasting code like this by keeping the dataset in one script and loading it (e.g.&nbsp;with <code>readr::read_csv()</code>) in every chapter that needs it. For now, we simply rebuild <code>nutriheart_data</code> with the exact same code as before, so this chapter can run entirely on its own.</p>
-</div>
-</div>
+<p>Once your data is in R, one line of code turns it into a picture. This chapter covers exactly two plots — the two you will reach for constantly — using nothing beyond base R, no extra packages required.</p>
+<p>We will use the same <code>diet_habits.csv</code> dataset from <a href="03-open-files.html" class="quarto-xref"><span>Chapter 3</span></a>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>nutriheart_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">patient_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>,</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">enrollment_date =</span> <span class="fu">sample</span>(</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">"2020-01-01"</span>), <span class="fu">as.Date</span>(<span class="st">"2023-12-31"</span>), <span class="at">by =</span> <span class="st">"day"</span>),</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">gender =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>), <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">sample</span>(<span class="dv">18</span><span class="sc">:</span><span class="dv">85</span>, <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">bmi =</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">200</span>, <span class="at">min =</span> <span class="fl">18.0</span>, <span class="at">max =</span> <span class="fl">42.0</span>), <span class="dv">1</span>),</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">diet_type =</span> <span class="fu">factor</span>(</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Mediterranean"</span>, <span class="st">"Western"</span>, <span class="st">"Vegan"</span>, <span class="st">"Keto"</span>),</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>           <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.40</span>, <span class="fl">0.30</span>, <span class="fl">0.15</span>, <span class="fl">0.15</span>))</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">physical_activity_level =</span> <span class="fu">factor</span>(</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Moderate"</span>, <span class="st">"High"</span>), <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>           <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.30</span>, <span class="fl">0.45</span>, <span class="fl">0.25</span>)),</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Moderate"</span>, <span class="st">"High"</span>), <span class="at">ordered =</span> <span class="cn">TRUE</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">daily_calories =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="at">mean =</span> <span class="dv">2200</span>, <span class="at">sd =</span> <span class="dv">450</span>)),</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">sugar_intake_g =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="at">mean =</span> <span class="dv">55</span>, <span class="at">sd =</span> <span class="dv">20</span>), <span class="dv">1</span>),</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">hypertension =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.35</span>, <span class="fl">0.65</span>)),</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">smoker =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.20</span>, <span class="fl">0.80</span>)),</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">clinical_notes =</span> <span class="fu">sample</span>(</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="st">"Patient reports fatigue."</span>, <span class="st">"Adheres strictly to diet."</span>,</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Sedentary lifestyle."</span>, <span class="st">"No recent complaints."</span>),</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>survey <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/diet_habits.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(survey)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  participant_id age     diet_type  bmi daily_calories
+1              1  60 Mediterranean 25.8           1838
+2              2  28    Vegetarian 22.2           1438
+3              3  25       Western 27.7           2131
+4              4  34       Western 28.6           2139
+5              5  61    Vegetarian 22.2           2285
+6              6  37    Vegetarian 33.2           2126</code></pre>
 </div>
-<p>This is the identical <code>tibble()</code> call from <a href="06-functions.html" class="quarto-xref"><span>Chapter 6</span></a> — same <code>set.seed(123)</code>, same arguments — so it reproduces the exact same 200 rows. From this point on in the chapter, <code>nutriheart_data</code> behaves exactly as it did before.</p>
-<section id="histogram-one-continuous-variable" class="level3" data-number="7.1.1">
-<h3 data-number="7.1.1" class="anchored" data-anchor-id="histogram-one-continuous-variable"><span class="header-section-number">7.1.1</span> Histogram — one continuous variable</h3>
-<p>Just like <code>hist()</code>, but built layer by layer. Let’s look at the distribution of <code>bmi</code>.</p>
+</div>
+<section id="plot-1-a-continuous-variable-hist" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="plot-1-a-continuous-variable-hist"><span class="header-section-number">7.1</span> Plot 1 — a continuous variable: <code>hist()</code></h2>
+<p>The <code>hist()</code> function is the fastest way to see the shape of a numeric column — how the values are distributed. Let’s look at <code>bmi</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nutriheart_data, <span class="fu">aes</span>(<span class="at">x =</span> bmi)) <span class="sc">+</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">2</span>, <span class="at">fill =</span> <span class="st">"#001D41"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of BMI"</span>, <span class="at">x =</span> <span class="st">"BMI (kg/m²)"</span>, <span class="at">y =</span> <span class="st">"Number of participants"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(survey<span class="sc">$</span>bmi,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Distribution of BMI"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"BMI (kg/m²)"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"#001D41"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -357,36 +272,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<ul>
-<li><code>ggplot(nutriheart_data, aes(x = bmi))</code> creates the empty “canvas”: it tells R which dataframe to use, and that whatever we draw next should read its x-position from the <code>bmi</code> column. Nothing is plotted yet — this line alone would produce a blank grid.</li>
-<li><code>+ geom_histogram(...)</code> adds the actual bars. <code>binwidth = 2</code> sets each bar to cover a 2-unit-wide range of BMI (the equivalent of <code>hist()</code>’s <code>breaks</code>); <code>fill</code> colors the inside of the bars, <code>color</code> colors their outline.</li>
-<li><code>labs(title = , x = , y = )</code> sets readable labels instead of the raw column name <code>bmi</code> — always label your axes for a reader who has never seen your code.</li>
-</ul>
+<p>The chart below illustrates the same idea: it redraws a histogram-shaped distribution with a different number of bins, the same way <code>hist()</code> would if you changed the <code>breaks</code> argument.</p>
+<div class="plot-box">
+<div class="bins">
+<p><button data-bins="5">5 bins</button> <button class="active" data-bins="8">8 bins</button> <button data-bins="12">12 bins</button></p>
+</div>
+<svg id="histSvg" viewbox="0 0 560 240" style="width:100%; height:auto;">
+</svg>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Reading a histogram
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Each bar covers a range of BMI values; its height is how many participants fall in that range. A tall bar in the middle and short bars at the edges — like above — means most participants have a BMI near the average, with a few higher and lower.</p>
+</div>
+</div>
 </section>
-<section id="bar-chart-one-categorical-variable" class="level3" data-number="7.1.2">
-<h3 data-number="7.1.2" class="anchored" data-anchor-id="bar-chart-one-categorical-variable"><span class="header-section-number">7.1.2</span> Bar chart — one categorical variable</h3>
-<p>For a column like <code>diet_type</code>, there is no “distribution” to draw — instead, we count how many participants fall into each category.</p>
+<section id="plot-2-a-categorical-variable-barplot" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="plot-2-a-categorical-variable-barplot"><span class="header-section-number">7.2</span> Plot 2 — a categorical variable: <code>barplot()</code></h2>
+<p>For a column like <code>diet_type</code>, there is no “distribution” to draw — instead, we count how many participants fall into each category. In base R this takes two steps: count with <code>table()</code>, then plot the result.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nutriheart_data, <span class="fu">aes</span>(<span class="at">x =</span> diet_type)) <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"#3E8E7E"</span>) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Participants per diet type"</span>, <span class="at">x =</span> <span class="st">"Diet type"</span>, <span class="at">y =</span> <span class="st">"Count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="07-plot_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>diet_counts <span class="ot">&lt;-</span> <span class="fu">table</span>(survey<span class="sc">$</span>diet_type)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>diet_counts</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Mediterranean         Vegan    Vegetarian       Western 
+           14             5             6            15 </code></pre>
 </div>
 </div>
-</div>
-<p><code>geom_bar()</code> is different from <code>geom_histogram()</code> in one important way: it counts rows <em>for you</em>, one bar per unique category found in <code>x</code>. You never need to compute the counts yourself with <code>table()</code> first — <code>ggplot2</code> does it internally.</p>
-</section>
-<section id="boxplot-one-continuous-variable-across-groups" class="level3" data-number="7.1.3">
-<h3 data-number="7.1.3" class="anchored" data-anchor-id="boxplot-one-continuous-variable-across-groups"><span class="header-section-number">7.1.3</span> Boxplot — one continuous variable across groups</h3>
-<p>Now we connect a continuous variable to a categorical one — exactly the comparison our research question asked for: does BMI differ by diet type?</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nutriheart_data, <span class="fu">aes</span>(<span class="at">x =</span> diet_type, <span class="at">y =</span> bmi)) <span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"#F2A541"</span>) <span class="sc">+</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"BMI by diet type"</span>, <span class="at">x =</span> <span class="st">"Diet type"</span>, <span class="at">y =</span> <span class="st">"BMI (kg/m²)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(diet_counts,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Participants per diet type"</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Diet type"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Number of participants"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"#3E8E7E"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -395,165 +320,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Here <code>aes()</code> maps two columns at once: <code>diet_type</code> to the x-axis (one box per category) and <code>bmi</code> to the y-axis (what each box summarizes). Each box shows the median (middle line), the interquartile range (the box itself — the middle 50% of values), and any unusually high or low values as individual dots.</p>
+<p><code>table(survey$diet_type)</code> counts how many rows fall into each unique category first; <code>barplot()</code> then draws one bar per count. This two-step pattern — count, then plot — is worth remembering, since it’s exactly what <code>hist()</code> does for you automatically with numbers.</p>
 </section>
-<section id="line-chart-a-trend-over-time" class="level3" data-number="7.1.4">
-<h3 data-number="7.1.4" class="anchored" data-anchor-id="line-chart-a-trend-over-time"><span class="header-section-number">7.1.4</span> Line chart — a trend over time</h3>
-<p>Histograms, bar charts, and boxplots all summarize the data we already have as columns. A line chart is different: it is almost always used to show a <strong>trend</strong>, and a trend needs an x-axis that is ordered — usually time. <code>nutriheart_data</code> doesn’t have an “enrollments per month” column yet, because nobody measured that directly; we have to <strong>derive</strong> it ourselves from <code>enrollment_date</code>.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>enrollment_by_month <span class="ot">&lt;-</span> nutriheart_data <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">enrollment_month =</span> <span class="fu">format</span>(enrollment_date, <span class="st">"%Y-%m"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(enrollment_month) <span class="sc">|&gt;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n_enrolled =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(enrollment_month) <span class="sc">|&gt;</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cumulative_enrolled =</span> <span class="fu">cumsum</span>(n_enrolled))</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(enrollment_by_month)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-  enrollment_month n_enrolled cumulative_enrolled
-  &lt;chr&gt;                 &lt;int&gt;               &lt;int&gt;
-1 2020-01                   2                   2
-2 2020-02                   5                   7
-3 2020-03                   5                  12
-4 2020-04                   1                  13
-5 2020-05                   4                  17
-6 2020-06                   7                  24</code></pre>
+<section id="saving-your-plot" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="saving-your-plot"><span class="header-section-number">7.3</span> Saving your plot</h2>
+<p>Every plot you make in RStudio or Posit Cloud appears in the <strong>Plots</strong> pane.</p>
+<div id="fig-plots-export" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plots-export-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/07-plots-pane-export.png" class="img-fluid figure-img">
 </div>
-</div>
-<p>This chunk creates <strong>two brand-new, derived variables</strong> that did not exist in the original dataset — a very common step before plotting a trend:</p>
-<ul>
-<li><code>mutate(enrollment_month = format(enrollment_date, "%Y-%m"))</code> builds <code>enrollment_month</code> out of <code>enrollment_date</code>. <code>format(x, "%Y-%m")</code> rewrites a <code>Date</code> as text showing only its year and month (e.g.&nbsp;<code>2021-07</code>), which collapses every day in a month down to the same label — exactly what we need to count <em>monthly</em> enrollments.</li>
-<li><code>group_by(enrollment_month) |&gt; summarise(n_enrolled = n())</code> reuses the pattern from <a href="06-functions.html" class="quarto-xref"><span>Chapter 6</span></a>: split the data by month, then count how many rows (participants) fall in each one.</li>
-<li><code>arrange(enrollment_month)</code> puts the months back in chronological order — since <code>enrollment_month</code> is text, R would otherwise sort it alphabetically, which happens to work for <code>"YYYY-MM"</code> labels, but it’s good practice to be explicit.</li>
-<li><code>mutate(cumulative_enrolled = cumsum(n_enrolled))</code> adds a second derived variable: the <strong>running total</strong> of participants recruited so far. <code>cumsum()</code> (“cumulative sum”) adds each value to the sum of all values before it — turning monthly counts into a classic recruitment curve.</li>
-</ul>
-<p>Now we can plot both derived variables as lines:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(enrollment_by_month, <span class="fu">aes</span>(<span class="at">x =</span> enrollment_month, <span class="at">y =</span> n_enrolled, <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"#001D41"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#001D41"</span>) <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"New participants enrolled per month"</span>,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Month"</span>, <span class="at">y =</span> <span class="st">"Number enrolled"</span>) <span class="sc">+</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="07-plot_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plots-export-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.1: The Plots pane after running the barplot code above. Circled in red: the “Export” button, which saves the current plot as a PNG or PDF straight into your <code>output/</code> folder.
+</figcaption>
 </figure>
 </div>
-</div>
-</div>
-<p>A couple of details are new here, and both matter every time you draw a line over time:</p>
-<ul>
-<li><code>group = 1</code> tells <code>ggplot2</code> “treat every row as part of the <em>same single line</em>.” Without it, <code>ggplot2</code> sees a text column on the x-axis and, not knowing how to connect separate categories together, refuses to draw a continuous line. This is a very common beginner error — if your line chart comes out empty, check for a missing <code>group</code>.</li>
-<li><code>geom_line()</code> connects the points in the order of the x-axis; adding <code>geom_point()</code> on top just marks each actual monthly value, which makes the chart easier to read.</li>
-<li><code>theme(axis.text.x = element_text(angle = 90))</code> rotates the month labels 90 degrees so they don’t overlap each other — a small but frequent fix once your x-axis has many labels.</li>
-</ul>
-<p>The same idea works for the cumulative version — only the <code>y</code> and the label change:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(enrollment_by_month, <span class="fu">aes</span>(<span class="at">x =</span> enrollment_month, <span class="at">y =</span> cumulative_enrolled, <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"#3E8E7E"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Cumulative participant enrollment"</span>,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Month"</span>, <span class="at">y =</span> <span class="st">"Total participants enrolled"</span>) <span class="sc">+</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="07-plot_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>This second chart is a good example of why deriving variables is worth the extra step: <code>cumsum()</code> turned a simple monthly count into a recruitment curve, a chart type you will see constantly in the methods section of real cohort studies.</p>
-</section>
-<section id="scatter-plot-two-continuous-variables-colored-by-a-third" class="level3" data-number="7.1.5">
-<h3 data-number="7.1.5" class="anchored" data-anchor-id="scatter-plot-two-continuous-variables-colored-by-a-third"><span class="header-section-number">7.1.5</span> Scatter plot — two continuous variables, colored by a third</h3>
-<p>Finally, let’s look at the relationship between <code>age</code> and <code>bmi</code>, and use color to bring in a fourth piece of information: whether the participant has <code>hypertension</code>.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nutriheart_data, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> bmi, <span class="at">color =</span> hypertension)) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Age vs. BMI, colored by hypertension status"</span>,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Age (years)"</span>, <span class="at">y =</span> <span class="st">"BMI (kg/m²)"</span>, <span class="at">color =</span> <span class="st">"Hypertension"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="07-plot_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<ul>
-<li>Adding <code>color = hypertension</code> inside <code>aes()</code> tells <code>ggplot2</code> to draw each point in a different color depending on that participant’s <code>TRUE</code>/<code>FALSE</code> value — it automatically builds a legend for us.</li>
-<li><code>geom_point()</code> draws one dot per row of the dataframe.</li>
-<li><code>alpha = 0.6</code> makes each point slightly transparent (60% opaque), which helps when points overlap — a simple but important trick once you have 200 dots on the same chart.</li>
-</ul>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>The pattern to remember
+<span class="screen-reader-only">Tip</span>Which plot do I use?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Every <code>ggplot2</code> chart you will ever build follows the same skeleton:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(your_data, <span class="fu">aes</span>(<span class="at">x =</span> ..., <span class="at">y =</span> ...)) <span class="sc">+</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_something</span>() <span class="sc">+</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"..."</span>, <span class="at">x =</span> <span class="st">"..."</span>, <span class="at">y =</span> <span class="st">"..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Only the dataframe, the columns inside <code>aes()</code>, and the <code>geom_*()</code> you choose ever really change.</p>
+<ul>
+<li>One numeric column, and you want to see its shape → <code>hist()</code></li>
+<li>One category column, and you want to see counts per group → <code>table()</code> + <code>barplot()</code></li>
+</ul>
 </div>
 </div>
 </section>
-</section>
-<section id="function-finder" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="function-finder"><span class="header-section-number">7.2</span> Function finder</h2>
+<section id="function-finder" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="function-finder"><span class="header-section-number">7.4</span> Function finder</h2>
 <p>Not sure which function you need? Choose a task below.</p>
 <div class="matcher-box">
-<select id="matcherSelect2"> <option value="">Choose a task…</option> <option value="hist">I want to see the shape of one numeric variable</option> <option value="bar">I want to count how many rows fall into each category</option> <option value="box">I want to compare a numeric variable across groups</option> <option value="scatter">I want to see the relationship between two numeric variables</option> <option value="line">I want to see how a value changes over time</option> </select>
+<select id="matcherSelect2"> <option value="">Choose a task…</option> <option value="hist">I want to see the shape of one numeric variable</option> <option value="bar">I want to count how many rows fall into each category</option> </select>
 <pre class="matcher-out" id="matcherOut2"></pre>
 </div>
 <div class="quiz-box">
-<p><strong>Quick check:</strong> in <code>ggplot2</code>, which function actually draws the bars, points, or lines onto the canvas?</p>
-<div class="opt" data-correct="false">
-<code>aes()</code>
-</div>
-<div class="opt" data-correct="false">
-<code>ggplot()</code>
-</div>
+<strong>Quick check:</strong> to see how a numeric column like <code>bmi</code> is distributed, you use…
 <div class="opt" data-correct="true">
-<code>geom_*()</code>
+<code>hist()</code>
+</div>
+<div class="opt" data-correct="false">
+<code>barplot()</code>
+</div>
+<div class="opt" data-correct="false">
+<code>table()</code>
 </div>
 <div class="fb">
 
 </div>
 </div>
 <div class="quiz-box">
-<p><strong>Quick check:</strong> your <code>geom_line()</code> chart shows nothing but an empty grid. The x-axis is text (like <code>enrollment_month</code>). What did you most likely forget?</p>
+<strong>Quick check:</strong> before you can <code>barplot()</code> a categorical column, what do you need to run first?
 <div class="opt" data-correct="false">
-<code>labs()</code>
+<code>hist()</code>
 </div>
 <div class="opt" data-correct="true">
-<code>group = 1</code> inside <code>aes()</code>
+<code>table()</code>
 </div>
 <div class="opt" data-correct="false">
-<code>library(ggplot2)</code>
-</div>
-<div class="fb">
-
-</div>
-</div>
-<div class="quiz-box">
-<p><strong>Quick check:</strong> to compare BMI across the four diet types in one chart, the best choice is…</p>
-<div class="opt" data-correct="false">
-<code>geom_histogram()</code>
-</div>
-<div class="opt" data-correct="true">
-<code>geom_boxplot()</code>
-</div>
-<div class="opt" data-correct="false">
-<code>geom_bar()</code>
+<code>read.csv()</code>
 </div>
 <div class="fb">
 

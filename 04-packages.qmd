@@ -1,5 +1,13 @@
 # Installing Packages {#sec-packages}
 
+Before talking about opening packages and installing it, let's talk about `scripts`.
+
+`R Scripts` are a very powerful way to code at once, instead writing line by line, as said before in this tutorial. 
+
+To create an `R Script`, you can use the command `Cmd + N` if you are on MacOS or `Ctrl + N` if you are on Windows. Elsewhere, you can manually create a script and other several types of documents as follows:
+
+![File menu → New File → R Script.](figures/04-r-script.png){#fig-r-script}
+
 R ships with a solid toolkit built in, but its real strength is **packages** — free add-ons written by the community that add extra functions. Think of them as apps for R.
 
 ## Step 1 — Install it, once

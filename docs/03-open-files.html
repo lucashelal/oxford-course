@@ -212,9 +212,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#reading-a-file-with-code" id="toc-reading-a-file-with-code" class="nav-link active" data-scroll-target="#reading-a-file-with-code"><span class="header-section-number">3.1</span> Reading a file with code</a></li>
-  <li><a href="#reading-a-file-with-the-import-dataset-button" id="toc-reading-a-file-with-the-import-dataset-button" class="nav-link" data-scroll-target="#reading-a-file-with-the-import-dataset-button"><span class="header-section-number">3.2</span> Reading a file with the Import Dataset button</a></li>
-  <li><a href="#common-file-types" id="toc-common-file-types" class="nav-link" data-scroll-target="#common-file-types"><span class="header-section-number">3.3</span> Common file types</a></li>
+  <li><a href="#our-practice-dataset" id="toc-our-practice-dataset" class="nav-link active" data-scroll-target="#our-practice-dataset"><span class="header-section-number">3.1</span> Our practice dataset</a></li>
+  <li><a href="#reading-a-file-with-code" id="toc-reading-a-file-with-code" class="nav-link" data-scroll-target="#reading-a-file-with-code"><span class="header-section-number">3.2</span> Reading a file with code</a></li>
+  <li><a href="#reading-a-file-with-the-import-dataset-button" id="toc-reading-a-file-with-the-import-dataset-button" class="nav-link" data-scroll-target="#reading-a-file-with-the-import-dataset-button"><span class="header-section-number">3.3</span> Reading a file with the Import Dataset button</a></li>
+  <li><a href="#common-file-types" id="toc-common-file-types" class="nav-link" data-scroll-target="#common-file-types"><span class="header-section-number">3.4</span> Common file types</a></li>
   </ul>
 </nav>
     </div>
@@ -240,30 +241,118 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Most projects start the same way: you have a spreadsheet, and you need R to read it. This chapter covers the most common case, a plain <code>.csv</code> file.</p>
-<section id="reading-a-file-with-code" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="reading-a-file-with-code"><span class="header-section-number">3.1</span> Reading a file with code</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>survey <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/survey_results.csv"</span>)</span>
+<p>Most projects start the same way: you have a spreadsheet, and you need R to read it. This chapter covers the most common case, a plain <code>.csv</code> file — and this time you will do it twice: once by writing the code yourself, and once by clicking through RStudio’s menu.</p>
+<section id="our-practice-dataset" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="our-practice-dataset"><span class="header-section-number">3.1</span> Our practice dataset</h2>
+<p>Throughout this book we will use a small, fictional dataset called <code>diet_habits.csv</code> — 40 participants, 5 columns, nothing complicated. It’s a simplified stand-in for the kind of nutritional epidemiology data you’ll actually work with, without the size or complexity of a real study. Download it here: <a href="data/diet_habits.csv"><code>diet_habits.csv</code></a>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>What it means</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>participant_id</code></td>
+<td>A number identifying each participant</td>
+<td>Identifier</td>
+</tr>
+<tr class="even">
+<td><code>age</code></td>
+<td>Age in years</td>
+<td>Continuous</td>
+</tr>
+<tr class="odd">
+<td><code>diet_type</code></td>
+<td>The dominant diet pattern the participant reports following</td>
+<td>Categorical</td>
+</tr>
+<tr class="even">
+<td><code>bmi</code></td>
+<td>Body Mass Index (kg/m²)</td>
+<td>Continuous</td>
+</tr>
+<tr class="odd">
+<td><code>daily_calories</code></td>
+<td>Estimated average daily caloric intake (kcal)</td>
+<td>Continuous</td>
+</tr>
+</tbody>
+</table>
+<p>Save this file inside a <code>data/</code> folder in your project — the same folder structure we set up in <a href="02-folders.html" class="quarto-xref"><span>Chapter 2</span></a>.</p>
+</section>
+<section id="reading-a-file-with-code" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="reading-a-file-with-code"><span class="header-section-number">3.2</span> Reading a file with code</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>survey <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/diet_habits.csv"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(survey)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">ID =</span> <span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>),</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">30</span>, <span class="at">sd =</span> <span class="dv">5</span>), </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">weigth =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">70</span>, <span class="at">sd =</span> <span class="dv">10</span>),</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">170</span>, <span class="at">sd =</span> <span class="dv">15</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df, <span class="at">n=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  ID      age   weigth   height
-1  1 25.03392 58.68951 199.4368
-2  2 29.24709 64.98010 188.8636
-3  3 22.00165 71.42413 163.4332
-4  4 16.97134 64.95790 156.2204
-5  5 35.63084 82.43059 163.4393</code></pre>
-</div>
-</div>
 <p>The arrow <code>&lt;-</code> means “store this on the left.” This line reads: <em>read the file, and save the result into an object called <code>survey</code>.</em> From now on, typing <code>survey</code> shows you the data, and <code>head(survey)</code> shows just the first six rows.</p>
+<div id="fig-import-menu" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-import-menu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/03-import-menu.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-import-menu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: The console after running the two lines above: <code>survey</code> appears in the Environment pane (top-right), and <code>head(survey)</code> prints the first six rows below your code.
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>What to look for in <span class="quarto-unresolved-ref">?fig-console-read</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Two things confirm it worked: (1) <code>survey</code> shows up in the <strong>Environment</strong> pane, top-right, with “40 obs. of 5 variables” next to it; (2) the printed table below your code has the same 5 column names as the table above. If either is missing, check that <code>data/diet_habits.csv</code> is spelled exactly right and sits in the right folder.</p>
+</div>
+</div>
+</section>
+<section id="reading-a-file-with-the-import-dataset-button" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="reading-a-file-with-the-import-dataset-button"><span class="header-section-number">3.3</span> Reading a file with the Import Dataset button</h2>
+<p>RStudio also offers a point-and-click route, which quietly writes the same code above for you. This is the easiest way to open a file the very first time, before you’re comfortable typing <code>read.csv()</code> from memory.</p>
+<p><strong>Step 1 — open the menu.</strong></p>
+<div id="fig-import-menu" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-import-menu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/03-import-menu.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-import-menu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.2: File menu → Import Dataset → From Text (readr).
+</figcaption>
+</figure>
+</div>
+<p><strong>Step 2 — browse to <code>diet_habits.csv</code> and preview it.</strong></p>
+<div id="fig-import-preview" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-import-preview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/03-import-preview.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-import-preview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.3: The Import dataset window: the preview table on top, the automatically generated code at the bottom. Circled in red: the “Import” button you need to click.
+</figcaption>
+</figure>
+</div>
+<p><strong>Step 3 — watch the console.</strong></p>
+<div id="fig-import-console" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-import-console-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/03-import-console-output.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-import-console-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.4: After clicking Import, RStudio pastes the exact <code>read_csv(...)</code> line it used into your console — circled here. Copy this line into your script so the import is reproducible next time.
+</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -274,22 +363,12 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Above you can see the first five rows of the example data frame <code>df</code>, containing four columns: <code>ID</code>, <code>age</code>, <code>weight</code>, and <code>height</code>. The <code>head()</code> function is useful for quickly inspecting the first few rows of a data frame.</p>
+<p>This is a good way to learn the code by watching the point-and-click path generate it: do it once through the menu, copy the line RStudio prints for you, then paste that line into your <code>.qmd</code> or <code>.R</code> script so it re-runs automatically next time.</p>
 </div>
 </div>
 </section>
-<section id="reading-a-file-with-the-import-dataset-button" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="reading-a-file-with-the-import-dataset-button"><span class="header-section-number">3.2</span> Reading a file with the Import Dataset button</h2>
-<p>RStudio also offers a point-and-click route, which quietly writes the same code above for you:</p>
-<ol type="1">
-<li>Click <strong>File → Import Dataset → From Text (readr)</strong></li>
-<li>Browse to your file</li>
-<li>Preview the table, adjust options if needed, then click <strong>Import</strong></li>
-</ol>
-<p>Watch the console after clicking Import — RStudio pastes the exact <code>read.csv(...)</code> line it used. This is a good way to learn the code by watching the point-and-click path generate it.</p>
-</section>
-<section id="common-file-types" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="common-file-types"><span class="header-section-number">3.3</span> Common file types</h2>
+<section id="common-file-types" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="common-file-types"><span class="header-section-number">3.4</span> Common file types</h2>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -326,7 +405,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Uploading a file works a little differently there than on your own computer. See <a href="./08-posit-cloud.html">Chapter 8</a> for the exact steps.</p>
+<p>Uploading a file works a little differently there than on your own computer. See <a href="./08-posit-cloud.html">Chapter 8</a> for the exact steps, screenshots included.</p>
 </div>
 </div>
 

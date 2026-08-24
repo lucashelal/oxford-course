@@ -216,27 +216,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#working-with-dataframes-the-nutriheart-study" id="toc-working-with-dataframes-the-nutriheart-study" class="nav-link" data-scroll-target="#working-with-dataframes-the-nutriheart-study"><span class="header-section-number">6.2</span> Working with Dataframes: The NutriHeart Study</a>
   <ul class="collapse">
   <li><a href="#the-study-context" id="toc-the-study-context" class="nav-link" data-scroll-target="#the-study-context"><span class="header-section-number">6.2.1</span> The study context</a></li>
-  <li><a href="#loading-the-tools-we-need" id="toc-loading-the-tools-we-need" class="nav-link" data-scroll-target="#loading-the-tools-we-need"><span class="header-section-number">6.2.2</span> 1. Loading the tools we need</a></li>
-  <li><a href="#building-the-dataset-line-by-line" id="toc-building-the-dataset-line-by-line" class="nav-link" data-scroll-target="#building-the-dataset-line-by-line"><span class="header-section-number">6.2.3</span> 2. Building the dataset, line by line</a></li>
-  <li><a href="#inspecting-the-result" id="toc-inspecting-the-result" class="nav-link" data-scroll-target="#inspecting-the-result"><span class="header-section-number">6.2.4</span> 3. Inspecting the result</a></li>
+  <li><a href="#opening-the-dataset" id="toc-opening-the-dataset" class="nav-link" data-scroll-target="#opening-the-dataset"><span class="header-section-number">6.2.2</span> Opening the dataset</a></li>
+  <li><a href="#inspecting-the-result" id="toc-inspecting-the-result" class="nav-link" data-scroll-target="#inspecting-the-result"><span class="header-section-number">6.2.3</span> Inspecting the result</a></li>
   </ul></li>
   <li><a href="#descriptive-statistics-by-variable-type" id="toc-descriptive-statistics-by-variable-type" class="nav-link" data-scroll-target="#descriptive-statistics-by-variable-type"><span class="header-section-number">6.3</span> Descriptive statistics by variable type</a>
   <ul class="collapse">
-  <li><a href="#continuous-variables-age-bmi-daily_calories-sugar_intake_g" id="toc-continuous-variables-age-bmi-daily_calories-sugar_intake_g" class="nav-link" data-scroll-target="#continuous-variables-age-bmi-daily_calories-sugar_intake_g"><span class="header-section-number">6.3.1</span> Continuous variables (<code>age</code>, <code>bmi</code>, <code>daily_calories</code>, <code>sugar_intake_g</code>)</a></li>
-  <li><a href="#categorical-variables-gender-diet_type-physical_activity_level" id="toc-categorical-variables-gender-diet_type-physical_activity_level" class="nav-link" data-scroll-target="#categorical-variables-gender-diet_type-physical_activity_level"><span class="header-section-number">6.3.2</span> Categorical variables (<code>gender</code>, <code>diet_type</code>, <code>physical_activity_level</code>)</a></li>
-  <li><a href="#logical-variables-hypertension-smoker" id="toc-logical-variables-hypertension-smoker" class="nav-link" data-scroll-target="#logical-variables-hypertension-smoker"><span class="header-section-number">6.3.3</span> Logical variables (<code>hypertension</code>, <code>smoker</code>)</a></li>
-  <li><a href="#date-variables-enrollment_date" id="toc-date-variables-enrollment_date" class="nav-link" data-scroll-target="#date-variables-enrollment_date"><span class="header-section-number">6.3.4</span> Date variables (<code>enrollment_date</code>)</a></li>
-  <li><a href="#string-variables-clinical_notes" id="toc-string-variables-clinical_notes" class="nav-link" data-scroll-target="#string-variables-clinical_notes"><span class="header-section-number">6.3.5</span> String variables (<code>clinical_notes</code>)</a></li>
+  <li><a href="#continuous-variables-age-bmi-daily_calories" id="toc-continuous-variables-age-bmi-daily_calories" class="nav-link" data-scroll-target="#continuous-variables-age-bmi-daily_calories"><span class="header-section-number">6.3.1</span> Continuous variables (<code>age</code>, <code>bmi</code>, <code>daily_calories</code>)</a></li>
+  <li><a href="#categorical-variables-diet_type" id="toc-categorical-variables-diet_type" class="nav-link" data-scroll-target="#categorical-variables-diet_type"><span class="header-section-number">6.3.2</span> Categorical variables (<code>diet_type</code>)</a></li>
   </ul></li>
-  <li><a href="#data-wrangling-with-dplyr" id="toc-data-wrangling-with-dplyr" class="nav-link" data-scroll-target="#data-wrangling-with-dplyr"><span class="header-section-number">6.4</span> Data wrangling with <code>dplyr</code></a>
-  <ul class="collapse">
-  <li><a href="#select-keep-only-certain-columns" id="toc-select-keep-only-certain-columns" class="nav-link" data-scroll-target="#select-keep-only-certain-columns"><span class="header-section-number">6.4.1</span> <code>select()</code> — keep only certain columns</a></li>
-  <li><a href="#filter-keep-only-certain-rows" id="toc-filter-keep-only-certain-rows" class="nav-link" data-scroll-target="#filter-keep-only-certain-rows"><span class="header-section-number">6.4.2</span> <code>filter()</code> — keep only certain rows</a></li>
-  <li><a href="#mutate-create-a-new-column" id="toc-mutate-create-a-new-column" class="nav-link" data-scroll-target="#mutate-create-a-new-column"><span class="header-section-number">6.4.3</span> <code>mutate()</code> — create a new column</a></li>
-  <li><a href="#arrange-reorder-rows" id="toc-arrange-reorder-rows" class="nav-link" data-scroll-target="#arrange-reorder-rows"><span class="header-section-number">6.4.4</span> <code>arrange()</code> — reorder rows</a></li>
-  <li><a href="#group_by-summarise-the-real-payoff" id="toc-group_by-summarise-the-real-payoff" class="nav-link" data-scroll-target="#group_by-summarise-the-real-payoff"><span class="header-section-number">6.4.5</span> <code>group_by()</code> + <code>summarise()</code> — the real payoff</a></li>
-  </ul></li>
-  <li><a href="#function-finder" id="toc-function-finder" class="nav-link" data-scroll-target="#function-finder"><span class="header-section-number">6.5</span> Function finder</a></li>
+  <li><a href="#function-finder" id="toc-function-finder" class="nav-link" data-scroll-target="#function-finder"><span class="header-section-number">6.4</span> Function finder</a></li>
   </ul>
 </nav>
     </div>
@@ -320,16 +308,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="working-with-dataframes-the-nutriheart-study" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="working-with-dataframes-the-nutriheart-study"><span class="header-section-number">6.2</span> Working with Dataframes: The NutriHeart Study</h2>
-<p>A single vector is fine for one measurement, but real research almost never stops at one measurement. A real study measures <em>many</em> things about the <em>same</em> person — their age, their diet, whether they smoke, when they joined the study. R stores this kind of data in a <strong>dataframe</strong>: a table where every <strong>row</strong> is one participant and every <strong>column</strong> is one variable.</p>
-<p>To practice this, we will build a small, simulated dataset modeled on a real type of study in nutritional epidemiology.</p>
+<p>A single vector is fine for one measurement, but real research almost never stops at one measurement. A real study measures <em>several</em> things about the <em>same</em> person — their age, their diet, their body mass index. R stores this kind of data in a <strong>dataframe</strong>: a table where every <strong>row</strong> is one participant and every <strong>column</strong> is one variable.</p>
+<p>To practice this, we will use the same <code>diet_habits.csv</code> dataset from <a href="03-open-files.html" class="quarto-xref"><span>Chapter 3</span></a> — a small, simulated dataset modeled on a real type of study in nutritional epidemiology.</p>
 <section id="the-study-context" class="level3" data-number="6.2.1">
 <h3 data-number="6.2.1" class="anchored" data-anchor-id="the-study-context"><span class="header-section-number">6.2.1</span> The study context</h3>
 <p>Imagine a research team wants to understand how eating patterns relate to cardiometabolic health — that is, health related to the heart and metabolism. They design a study called the <strong>NutriHeart Study</strong>.</p>
 <blockquote class="blockquote">
-<p><strong>Research question:</strong> Among adults, is the type of diet a person follows (Mediterranean, Western, Vegan, or Keto) associated with cardiometabolic risk markers such as body mass index (BMI) and hypertension — and does the person’s physical activity level change that relationship?</p>
+<p><strong>Research question:</strong> Among adults, is the type of diet a person follows (Mediterranean, Western, Vegetarian, or Vegan) associated with cardiometabolic markers such as body mass index (BMI) and daily caloric intake?</p>
 </blockquote>
-<p>To answer this, the team recruits 200 adult participants between 2020 and 2023. At enrollment, each participant answers a questionnaire and undergoes a short clinical exam. This is a <strong>cross-sectional study</strong>: everyone is measured once, at a single point in time, which lets the researchers describe patterns in the population but not prove that diet <em>causes</em> the outcomes.</p>
-<p>Every variable the team collects has a reason for being there. Before writing a single line of code, it helps to know what we are about to build and why:</p>
+<p>To answer this, the team recruits 40 adult participants. Each participant answers a short questionnaire. This is a <strong>cross-sectional study</strong>: everyone is measured once, at a single point in time, which lets the researchers describe patterns in the population but not prove that diet <em>causes</em> the outcomes.</p>
+<p>Every variable the team collects has a reason for being there. Before opening the file, it helps to know what we expect to find and why:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -348,242 +336,145 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td>1</td>
-<td><code>patient_id</code></td>
-<td>A unique number identifying each participant (like a folder number)</td>
+<td><code>participant_id</code></td>
+<td>A unique number identifying each participant</td>
 <td>Identifier</td>
 </tr>
 <tr class="even">
 <td>2</td>
-<td><code>enrollment_date</code></td>
-<td>The calendar date the participant joined the study</td>
-<td>Date</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td><code>gender</code></td>
-<td>Self-reported gender of the participant</td>
-<td>Categorical</td>
-</tr>
-<tr class="even">
-<td>4</td>
 <td><code>age</code></td>
 <td>Age in completed years at enrollment</td>
 <td>Continuous</td>
 </tr>
 <tr class="odd">
-<td>5</td>
-<td><code>bmi</code></td>
-<td>Body Mass Index (kg/m²), a common marker of nutritional status</td>
-<td>Continuous</td>
-</tr>
-<tr class="even">
-<td>6</td>
+<td>3</td>
 <td><code>diet_type</code></td>
 <td>The dominant diet pattern the participant reports following</td>
 <td>Categorical</td>
 </tr>
-<tr class="odd">
-<td>7</td>
-<td><code>physical_activity_level</code></td>
-<td>Self-reported activity level: Low, Moderate, or High</td>
-<td>Categorical (ordered)</td>
-</tr>
 <tr class="even">
-<td>8</td>
+<td>4</td>
+<td><code>bmi</code></td>
+<td>Body Mass Index (kg/m²), a common marker of nutritional status</td>
+<td>Continuous</td>
+</tr>
+<tr class="odd">
+<td>5</td>
 <td><code>daily_calories</code></td>
-<td>Estimated average daily caloric intake (kcal), from a dietary recall</td>
+<td>Estimated average daily caloric intake (kcal)</td>
 <td>Continuous</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td><code>sugar_intake_g</code></td>
-<td>Estimated average daily sugar intake, in grams</td>
-<td>Continuous</td>
-</tr>
-<tr class="even">
-<td>10</td>
-<td><code>hypertension</code></td>
-<td>Whether the participant has a clinical diagnosis of high blood pressure</td>
-<td>Logical (yes/no)</td>
-</tr>
-<tr class="odd">
-<td>11</td>
-<td><code>smoker</code></td>
-<td>Whether the participant currently smokes</td>
-<td>Logical (yes/no)</td>
-</tr>
-<tr class="even">
-<td>12</td>
-<td><code>clinical_notes</code></td>
-<td>A short free-text note written by the clinician during the exam</td>
-<td>String (text)</td>
 </tr>
 </tbody>
 </table>
-<p>Notice that these 12 variables cover every basic data type you will meet in R: numbers that can take any value (<strong>continuous</strong>), numbers or labels that fall into groups (<strong>categorical</strong>), dates, <code>TRUE</code>/<code>FALSE</code> values (<strong>logical</strong>), and free text (<strong>string</strong>). Real datasets are almost always this mixed — this is exactly why R needs different functions for different types of variables, which is what the rest of this chapter is about.</p>
+<p>Notice that these 5 variables cover the two basic data types you’ll meet constantly in nutritional epidemiology: numbers that can take any value (<strong>continuous</strong>), and labels that fall into groups (<strong>categorical</strong>).</p>
 </section>
-<section id="loading-the-tools-we-need" class="level3" data-number="6.2.2">
-<h3 data-number="6.2.2" class="anchored" data-anchor-id="loading-the-tools-we-need"><span class="header-section-number">6.2.2</span> 1. Loading the tools we need</h3>
-<p>We will use the <code>tibble</code> package to build a modern, easy-to-read dataframe (a “tibble” is just RStudio’s improved version of a dataframe). We install it once per computer, and load it once per R session.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tibble"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li><code>install.packages("tibble")</code> downloads the package from the internet and installs it on your computer. You only need to run this <strong>once</strong> — after that, R remembers it.</li>
-<li><code>library(tibble)</code> loads the package into your current R session, making its functions (like <code>tibble()</code>) available to use. You need to run this <strong>every time</strong> you open a new R session.</li>
-</ul>
-</section>
-<section id="building-the-dataset-line-by-line" class="level3" data-number="6.2.3">
-<h3 data-number="6.2.3" class="anchored" data-anchor-id="building-the-dataset-line-by-line"><span class="header-section-number">6.2.3</span> 2. Building the dataset, line by line</h3>
-<p>Before generating anything random, we fix R’s “randomness” with <code>set.seed()</code>. Computers cannot generate truly random numbers — they use a formula that <em>looks</em> random. <code>set.seed()</code> tells that formula where to start, so that everyone who runs this exact code gets the exact same “random” numbers. This is essential for reproducible research.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Now we build the dataframe itself. Each argument inside <code>tibble()</code> becomes one column. Read the explanation below the code slowly, matching each line back to the table above.</p>
+<section id="opening-the-dataset" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="opening-the-dataset"><span class="header-section-number">6.2.2</span> Opening the dataset</h3>
+<p>We already imported this exact file once, in <a href="03-open-files.html" class="quarto-xref"><span>Chapter 3</span></a>. Do it again here, either by typing the code yourself:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>nutriheart_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1. patient_id: a simple sequence from 1 to 200, one number per participant</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">patient_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 2. enrollment_date: pick 200 random dates between two limits, with repetition allowed</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">enrollment_date =</span> <span class="fu">sample</span>(</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">"2020-01-01"</span>), <span class="fu">as.Date</span>(<span class="st">"2023-12-31"</span>), <span class="at">by =</span> <span class="st">"day"</span>),</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">200</span>,</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace =</span> <span class="cn">TRUE</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 3. gender: pick "Male" or "Female" at random for each participant</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">gender =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>), <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 4. age: pick a whole number of years between 18 and 85 for each participant</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">sample</span>(<span class="dv">18</span><span class="sc">:</span><span class="dv">85</span>, <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 5. bmi: draw from a uniform range (18.0 to 42.0), then round to 1 decimal</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">bmi =</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">200</span>, <span class="at">min =</span> <span class="fl">18.0</span>, <span class="at">max =</span> <span class="fl">42.0</span>), <span class="dv">1</span>),</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 6. diet_type: pick one diet label per participant, but NOT with equal chances</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">diet_type =</span> <span class="fu">factor</span>(</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample</span>(</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="st">"Mediterranean"</span>, <span class="st">"Western"</span>, <span class="st">"Vegan"</span>, <span class="st">"Keto"</span>),</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">200</span>,</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.40</span>, <span class="fl">0.30</span>, <span class="fl">0.15</span>, <span class="fl">0.15</span>)</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 7. physical_activity_level: an ORDERED categorical variable (Low &lt; Moderate &lt; High)</span></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">physical_activity_level =</span> <span class="fu">factor</span>(</span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Moderate"</span>, <span class="st">"High"</span>), <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>           <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.30</span>, <span class="fl">0.45</span>, <span class="fl">0.25</span>)),</span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Moderate"</span>, <span class="st">"High"</span>),</span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">ordered =</span> <span class="cn">TRUE</span></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 8. daily_calories: draw from a normal (bell-curve) distribution around 2200 kcal</span></span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">daily_calories =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="at">mean =</span> <span class="dv">2200</span>, <span class="at">sd =</span> <span class="dv">450</span>)),</span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 9. sugar_intake_g: same idea, centered on 55 grams per day</span></span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">sugar_intake_g =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="at">mean =</span> <span class="dv">55</span>, <span class="at">sd =</span> <span class="dv">20</span>), <span class="dv">1</span>),</span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 10. hypertension: TRUE/FALSE, but only 35% of participants are TRUE</span></span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>  <span class="at">hypertension =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>                         <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.35</span>, <span class="fl">0.65</span>)),</span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 11. smoker: TRUE/FALSE, only 20% of participants are TRUE</span></span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">smoker =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>                   <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.20</span>, <span class="fl">0.80</span>)),</span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 12. clinical_notes: pick one short sentence per participant from a fixed list</span></span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>  <span class="at">clinical_notes =</span> <span class="fu">sample</span>(</span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="st">"Patient reports fatigue."</span>,</span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Adheres strictly to diet."</span>,</span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Sedentary lifestyle."</span>,</span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>      <span class="st">"No recent complaints."</span>),</span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span></span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nutriheart_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/diet_habits.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Let’s unpack the functions that keep reappearing above, since they do most of the work:</p>
-<ul>
-<li><strong><code>sample(x, size, replace, prob)</code></strong> picks values at random out of a set <code>x</code>. <code>size</code> is how many picks we want, <code>replace = TRUE</code> means the same value can be picked more than once (essential here, since we need 200 picks from only a handful of options), and <code>prob</code> optionally sets how likely each option is — without it, every option is equally likely.</li>
-<li><strong><code>runif(n, min, max)</code></strong> draws <code>n</code> random numbers uniformly between <code>min</code> and <code>max</code> — every value in that range is equally likely. Good for something like BMI, where we only know a plausible range.</li>
-<li><strong><code>rnorm(n, mean, sd)</code></strong> draws <code>n</code> random numbers from a <strong>normal (bell-curve) distribution</strong> — most values land near <code>mean</code>, and <code>sd</code> (standard deviation) controls how spread out they are. Good for something like daily calories, which tends to cluster around a typical value.</li>
-<li><strong><code>round(x, digits)</code></strong> rounds a number to a chosen number of decimal places. <code>round(x)</code> with no second argument rounds to a whole number.</li>
-<li><strong><code>factor()</code></strong> tells R “this is a categorical variable, not free text.” Adding <code>levels = c(...)</code> and <code>ordered = TRUE</code>, as we did for <code>physical_activity_level</code>, tells R the categories have a natural order (Low is less than Moderate is less than High) — this matters later for correct sorting and modeling.</li>
-<li><strong><code>seq(from, to, by)</code></strong> generates a full sequence of values — here, every single calendar day between 2020-01-01 and 2023-12-31 — which <code>sample()</code> then picks 200 dates out of.</li>
-</ul>
+<p>or by clicking through <strong>File → Import Dataset → From Text (readr)</strong>, exactly as shown in <a href="03-open-files.html#fig-import-menu" class="quarto-xref">Figure&nbsp;<span>3.2</span></a> and <a href="03-open-files.html#fig-import-preview" class="quarto-xref">Figure&nbsp;<span>3.3</span></a> back in Chapter 3.</p>
+<div id="fig-import-nutriheart" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-import-nutriheart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/06-import-diet-habits.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-import-nutriheart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.1: The Import Dataset window with <code>diet_habits.csv</code> loaded: the preview table on top shows all 5 columns, the generated <code>read_csv(...)</code> code sits at the bottom. Circled in red: the “Import” button.
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Whichever route you use, name the resulting object <code>nutriheart_data</code> — that’s the name the rest of this chapter (and <a href="07-plot.html" class="quarto-xref"><span>Chapter 7</span></a>) assumes.</p>
+</div>
+</div>
 </section>
-<section id="inspecting-the-result" class="level3" data-number="6.2.4">
-<h3 data-number="6.2.4" class="anchored" data-anchor-id="inspecting-the-result"><span class="header-section-number">6.2.4</span> 3. Inspecting the result</h3>
+<section id="inspecting-the-result" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="inspecting-the-result"><span class="header-section-number">6.2.3</span> Inspecting the result</h3>
 <p>Before doing anything else with a new dataset, always look at its structure first.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(nutriheart_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(nutriheart_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>tibble [200 × 12] (S3: tbl_df/tbl/data.frame)
- $ patient_id             : int [1:200] 1 2 3 4 5 6 7 8 9 10 ...
- $ enrollment_date        : Date[1:200], format: "2021-02-18" "2021-04-07" ...
- $ gender                 : chr [1:200] "Male" "Male" "Male" "Female" ...
- $ age                    : int [1:200] 48 47 39 33 53 67 50 45 66 29 ...
- $ bmi                    : num [1:200] 24.9 20.3 41.1 35.7 32.7 20.9 31.2 24.3 39.6 18.2 ...
- $ diet_type              : Factor w/ 4 levels "Keto","Mediterranean",..: 4 4 3 3 4 4 2 2 2 2 ...
- $ physical_activity_level: Ord.factor w/ 3 levels "Low"&lt;"Moderate"&lt;..: 3 2 2 2 1 2 3 2 1 2 ...
- $ daily_calories         : num [1:200] 2381 1731 1422 2489 1512 ...
- $ sugar_intake_g         : num [1:200] 86.9 46.7 50.8 54.3 62.3 ...
- $ hypertension           : logi [1:200] FALSE TRUE FALSE TRUE FALSE TRUE ...
- $ smoker                 : logi [1:200] FALSE FALSE FALSE FALSE FALSE FALSE ...
- $ clinical_notes         : chr [1:200] "Adheres strictly to diet." "Patient reports fatigue." "Patient reports fatigue." "Patient reports fatigue." ...</code></pre>
+<pre><code>'data.frame':   40 obs. of  5 variables:
+ $ participant_id: int  1 2 3 4 5 6 7 8 9 10 ...
+ $ age           : int  60 28 25 34 61 37 64 41 42 54 ...
+ $ diet_type     : chr  "Mediterranean" "Vegetarian" "Western" "Western" ...
+ $ bmi           : num  25.8 22.2 27.7 28.6 22.2 33.2 25.5 23.3 28.3 27.4 ...
+ $ daily_calories: int  1838 1438 2131 2139 2285 2126 2340 2326 1570 2033 ...</code></pre>
 </div>
 </div>
-<p><code>str()</code> (short for “structure”) prints, for every column: its name, its type (<code>int</code>, <code>chr</code>, <code>Date</code>, <code>Factor</code>, <code>num</code>, <code>logi</code>), and a preview of the first few values. This is the fastest way to confirm the dataframe was built the way you expected — always run it right after creating or importing data.</p>
+<p><code>str()</code> (short for “structure”) prints, for every column: its name, its type (<code>int</code>, <code>chr</code>, <code>num</code>), and a preview of the first few values. This is the fastest way to confirm the dataframe was imported the way you expected — always run it right after importing data.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(nutriheart_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  participant_id age     diet_type  bmi daily_calories
+1              1  60 Mediterranean 25.8           1838
+2              2  28    Vegetarian 22.2           1438
+3              3  25       Western 27.7           2131
+4              4  34       Western 28.6           2139
+5              5  61    Vegetarian 22.2           2285
+6              6  37    Vegetarian 33.2           2126</code></pre>
+</div>
+</div>
+<p><code>head()</code> shows the first six rows in full, which is often the quickest sanity check of all: do the values in each column look like what the codebook table above led you to expect?</p>
 </section>
 </section>
 <section id="descriptive-statistics-by-variable-type" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="descriptive-statistics-by-variable-type"><span class="header-section-number">6.3</span> Descriptive statistics by variable type</h2>
-<p>Different variable types answer different questions, so they need different summary functions. We will now go through the four families of variables in <code>nutriheart_data</code> and summarize each one appropriately, using <code>$</code> to pull out a single column (e.g.&nbsp;<code>nutriheart_data$age</code> means “the <code>age</code> column inside <code>nutriheart_data</code>”).</p>
-<section id="continuous-variables-age-bmi-daily_calories-sugar_intake_g" class="level3" data-number="6.3.1">
-<h3 data-number="6.3.1" class="anchored" data-anchor-id="continuous-variables-age-bmi-daily_calories-sugar_intake_g"><span class="header-section-number">6.3.1</span> Continuous variables (<code>age</code>, <code>bmi</code>, <code>daily_calories</code>, <code>sugar_intake_g</code>)</h3>
+<p>Different variable types answer different questions, so they need different summary functions. <code>nutriheart_data</code> has two families of variables — continuous and categorical — and we’ll summarize each one appropriately, using <code>$</code> to pull out a single column (e.g.&nbsp;<code>nutriheart_data$age</code> means “the <code>age</code> column inside <code>nutriheart_data</code>”).</p>
+<section id="continuous-variables-age-bmi-daily_calories" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="continuous-variables-age-bmi-daily_calories"><span class="header-section-number">6.3.1</span> Continuous variables (<code>age</code>, <code>bmi</code>, <code>daily_calories</code>)</h3>
 <p>For continuous variables, we want to know the center of the data and how spread out it is.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(nutriheart_data<span class="sc">$</span>bmi)      <span class="co"># the average BMI</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 29.7445</code></pre>
+<pre><code>[1] 25.9075</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(nutriheart_data<span class="sc">$</span>bmi)    <span class="co"># the middle BMI, if all values were sorted</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 30.2</code></pre>
+<pre><code>[1] 25.85</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(nutriheart_data<span class="sc">$</span>bmi)        <span class="co"># standard deviation: typical distance from the mean</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 6.729241</code></pre>
+<pre><code>[1] 3.496987</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(nutriheart_data<span class="sc">$</span>bmi)     <span class="co"># smallest and largest BMI values, as one vector</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 18.1 41.8</code></pre>
+<pre><code>[1] 18.0 33.2</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nutriheart_data<span class="sc">$</span>bmi)   <span class="co"># all of the above, in one call</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  18.10   24.45   30.20   29.74   35.25   41.80 </code></pre>
+  18.00   23.23   25.85   25.91   28.38   33.20 </code></pre>
 </div>
 </div>
 <p><code>summary()</code> is often the fastest first step: with one function call it returns the minimum, the 1st quartile (the value below which 25% of the data falls), the median, the mean, the 3rd quartile, and the maximum — a compact picture of the whole distribution.</p>
 </section>
-<section id="categorical-variables-gender-diet_type-physical_activity_level" class="level3" data-number="6.3.2">
-<h3 data-number="6.3.2" class="anchored" data-anchor-id="categorical-variables-gender-diet_type-physical_activity_level"><span class="header-section-number">6.3.2</span> Categorical variables (<code>gender</code>, <code>diet_type</code>, <code>physical_activity_level</code>)</h3>
+<section id="categorical-variables-diet_type" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="categorical-variables-diet_type"><span class="header-section-number">6.3.2</span> Categorical variables (<code>diet_type</code>)</h3>
 <p>For categorical variables, “average” makes no sense — instead, we want counts and proportions per group.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(nutriheart_data<span class="sc">$</span>diet_type)                       <span class="co"># how many participants per diet</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(nutriheart_data<span class="sc">$</span>diet_type)                              <span class="co"># how many participants per diet</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-         Keto Mediterranean         Vegan       Western 
-           28            83            35            54 </code></pre>
+Mediterranean         Vegan    Vegetarian       Western 
+           14             5             6            15 </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(nutriheart_data<span class="sc">$</span>diet_type)) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>)  <span class="co"># same thing, as percentages</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-         Keto Mediterranean         Vegan       Western 
-         14.0          41.5          17.5          27.0 </code></pre>
+Mediterranean         Vegan    Vegetarian       Western 
+         35.0          12.5          15.0          37.5 </code></pre>
 </div>
 </div>
 <ul>
@@ -591,217 +482,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong><code>prop.table(t)</code></strong> takes a table of counts and converts every count into a proportion of the total (values between 0 and 1). Multiplying by 100 and wrapping in <code>round(..., 1)</code> turns those proportions into readable percentages with one decimal place.</li>
 </ul>
 </section>
-<section id="logical-variables-hypertension-smoker" class="level3" data-number="6.3.3">
-<h3 data-number="6.3.3" class="anchored" data-anchor-id="logical-variables-hypertension-smoker"><span class="header-section-number">6.3.3</span> Logical variables (<code>hypertension</code>, <code>smoker</code>)</h3>
-<p>Logical variables only ever hold <code>TRUE</code> or <code>FALSE</code>. Two small tricks make them easy to summarize:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(nutriheart_data<span class="sc">$</span>hypertension)          <span class="co"># counts of TRUE and FALSE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-FALSE  TRUE 
-  132    68 </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(nutriheart_data<span class="sc">$</span>hypertension) <span class="sc">*</span> <span class="dv">100</span>      <span class="co"># % of participants with hypertension</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 34</code></pre>
-</div>
-</div>
-<p>This second trick works because R secretly stores <code>TRUE</code> as <code>1</code> and <code>FALSE</code> as <code>0</code>. So <code>mean()</code> of a logical column is really “how many 1s, divided by the total” — in other words, exactly the proportion of <code>TRUE</code> values. This shortcut is used constantly in epidemiology to compute prevalences.</p>
 </section>
-<section id="date-variables-enrollment_date" class="level3" data-number="6.3.4">
-<h3 data-number="6.3.4" class="anchored" data-anchor-id="date-variables-enrollment_date"><span class="header-section-number">6.3.4</span> Date variables (<code>enrollment_date</code>)</h3>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(nutriheart_data<span class="sc">$</span>enrollment_date)   <span class="co"># earliest enrollment date</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "2020-01-13"</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(nutriheart_data<span class="sc">$</span>enrollment_date)   <span class="co"># latest enrollment date</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "2023-12-24"</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(nutriheart_data<span class="sc">$</span>enrollment_date) <span class="co"># both at once</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "2020-01-13" "2023-12-24"</code></pre>
-</div>
-</div>
-<p>Because R recognizes this column as a proper <code>Date</code> type (not text), it knows how to compare and order dates correctly — <code>min()</code> and <code>max()</code> work exactly as they would on numbers.</p>
-</section>
-<section id="string-variables-clinical_notes" class="level3" data-number="6.3.5">
-<h3 data-number="6.3.5" class="anchored" data-anchor-id="string-variables-clinical_notes"><span class="header-section-number">6.3.5</span> String variables (<code>clinical_notes</code>)</h3>
-<p>Free text needs its own logic, since there is no “average sentence.”</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(nutriheart_data<span class="sc">$</span>clinical_notes)   <span class="co"># every distinct note that appears</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Adheres strictly to diet." "Patient reports fatigue." 
-[3] "No recent complaints."     "Sedentary lifestyle."     </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(nutriheart_data<span class="sc">$</span>clinical_notes)    <span class="co"># how often each one was written</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Adheres strictly to diet.     No recent complaints.  Patient reports fatigue. 
-                       38                        54                        62 
-     Sedentary lifestyle. 
-                       46 </code></pre>
-</div>
-</div>
-<p><code>unique(x)</code> lists each distinct value in <code>x</code> exactly once, which is a quick way to see the full range of answers hiding inside a text column before deciding how (or whether) to categorize them.</p>
-</section>
-</section>
-<section id="data-wrangling-with-dplyr" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="data-wrangling-with-dplyr"><span class="header-section-number">6.4</span> Data wrangling with <code>dplyr</code></h2>
-<p>“Wrangling” means reshaping and filtering a dataframe to answer a specific question — without ever changing the original file on disk. The <code>dplyr</code> package (part of the <code>tidyverse</code>) gives us a small set of verbs that cover almost everything.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"dplyr"</span>)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>We will also meet the <strong>pipe</strong>, written <code>|&gt;</code>. The pipe takes whatever is on its left and feeds it in as the <em>first</em> argument of the function on its right. So <code>x |&gt; f()</code> means exactly the same as <code>f(x)</code> — it just lets us chain several steps in the order we think about them, top to bottom, instead of nesting functions inside each other.</p>
-<section id="select-keep-only-certain-columns" class="level3" data-number="6.4.1">
-<h3 data-number="6.4.1" class="anchored" data-anchor-id="select-keep-only-certain-columns"><span class="header-section-number">6.4.1</span> <code>select()</code> — keep only certain columns</h3>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'dplyr'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:stats':
-
-    filter, lag</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
-
-    intersect, setdiff, setequal, union</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>nutriheart_data <span class="sc">|&gt;</span> <span class="fu">select</span>(patient_id, diet_type, bmi)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 200 × 3
-   patient_id diet_type       bmi
-        &lt;int&gt; &lt;fct&gt;         &lt;dbl&gt;
- 1          1 Western        24.9
- 2          2 Western        20.3
- 3          3 Vegan          41.1
- 4          4 Vegan          35.7
- 5          5 Western        32.7
- 6          6 Western        20.9
- 7          7 Mediterranean  31.2
- 8          8 Mediterranean  24.3
- 9          9 Mediterranean  39.6
-10         10 Mediterranean  18.2
-# ℹ 190 more rows</code></pre>
-</div>
-</div>
-<p>We start with <code>nutriheart_data</code>, pipe it into <code>select()</code>, and list the columns we want to keep. Every other column is dropped from this output (the original dataframe is untouched).</p>
-</section>
-<section id="filter-keep-only-certain-rows" class="level3" data-number="6.4.2">
-<h3 data-number="6.4.2" class="anchored" data-anchor-id="filter-keep-only-certain-rows"><span class="header-section-number">6.4.2</span> <code>filter()</code> — keep only certain rows</h3>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>nutriheart_data <span class="sc">|&gt;</span> <span class="fu">filter</span>(hypertension <span class="sc">==</span> <span class="cn">TRUE</span>, age <span class="sc">&gt;=</span> <span class="dv">60</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 30 × 12
-   patient_id enrollment_date gender   age   bmi diet_type    
-        &lt;int&gt; &lt;date&gt;          &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;fct&gt;        
- 1          6 2022-07-26      Male      67  20.9 Western      
- 2         13 2021-10-26      Female    83  25.8 Vegan        
- 3         14 2021-08-24      Male      67  35.4 Vegan        
- 4         16 2022-10-07      Male      68  35.2 Western      
- 5         23 2020-01-26      Male      65  28.2 Vegan        
- 6         24 2021-06-02      Female    62  19   Mediterranean
- 7         44 2020-08-04      Male      84  40.1 Mediterranean
- 8         60 2021-06-11      Female    77  27.1 Western      
- 9         64 2021-03-31      Male      71  31   Vegan        
-10         70 2021-01-08      Male      65  39.7 Keto         
-# ℹ 20 more rows
-# ℹ 6 more variables: physical_activity_level &lt;ord&gt;, daily_calories &lt;dbl&gt;,
-#   sugar_intake_g &lt;dbl&gt;, hypertension &lt;lgl&gt;, smoker &lt;lgl&gt;,
-#   clinical_notes &lt;chr&gt;</code></pre>
-</div>
-</div>
-<p><code>filter()</code> keeps only the rows where the condition is <code>TRUE</code>. Note the double equals sign <code>==</code>: it means “is equal to” (a question), while a single <code>=</code> is used for setting an argument’s value. Separating two conditions with a comma means “both must be true” — here, only participants who have hypertension <strong>and</strong> are 60 or older survive the filter.</p>
-</section>
-<section id="mutate-create-a-new-column" class="level3" data-number="6.4.3">
-<h3 data-number="6.4.3" class="anchored" data-anchor-id="mutate-create-a-new-column"><span class="header-section-number">6.4.3</span> <code>mutate()</code> — create a new column</h3>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>nutriheart_data <span class="sc">|&gt;</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">calories_per_kg =</span> daily_calories <span class="sc">/</span> bmi) <span class="sc">|&gt;</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(patient_id, daily_calories, bmi, calories_per_kg)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 200 × 4
-   patient_id daily_calories   bmi calories_per_kg
-        &lt;int&gt;          &lt;dbl&gt; &lt;dbl&gt;           &lt;dbl&gt;
- 1          1           2381  24.9            95.6
- 2          2           1731  20.3            85.3
- 3          3           1422  41.1            34.6
- 4          4           2489  35.7            69.7
- 5          5           1512  32.7            46.2
- 6          6           2201  20.9           105. 
- 7          7           2313  31.2            74.1
- 8          8           2454  24.3           101. 
- 9          9           2285  39.6            57.7
-10         10           1870  18.2           103. 
-# ℹ 190 more rows</code></pre>
-</div>
-</div>
-<p><code>mutate()</code> adds a new column computed from existing ones, without deleting anything. Here we chain three steps with the pipe: start with the data, add the new <code>calories_per_kg</code> column, then <code>select()</code> a few columns just so the new one is easy to see in the output.</p>
-</section>
-<section id="arrange-reorder-rows" class="level3" data-number="6.4.4">
-<h3 data-number="6.4.4" class="anchored" data-anchor-id="arrange-reorder-rows"><span class="header-section-number">6.4.4</span> <code>arrange()</code> — reorder rows</h3>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>nutriheart_data <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(bmi)) <span class="sc">|&gt;</span> <span class="fu">select</span>(patient_id, bmi)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 200 × 2
-   patient_id   bmi
-        &lt;int&gt; &lt;dbl&gt;
- 1         15  41.8
- 2        103  41.4
- 3          3  41.1
- 4        118  41.1
- 5         78  41  
- 6         97  41  
- 7        115  41  
- 8         19  40.8
- 9        139  40.8
-10         48  40.6
-# ℹ 190 more rows</code></pre>
-</div>
-</div>
-<p><code>arrange()</code> sorts rows by a column, smallest to largest by default. Wrapping the column in <code>desc()</code> reverses that, so here we see the participants with the <strong>highest</strong> BMI first.</p>
-</section>
-<section id="group_by-summarise-the-real-payoff" class="level3" data-number="6.4.5">
-<h3 data-number="6.4.5" class="anchored" data-anchor-id="group_by-summarise-the-real-payoff"><span class="header-section-number">6.4.5</span> <code>group_by()</code> + <code>summarise()</code> — the real payoff</h3>
-<p>This is where dplyr answers our actual research question: does BMI differ across diet types?</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>nutriheart_data <span class="sc">|&gt;</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(diet_type) <span class="sc">|&gt;</span></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_participants =</span> <span class="fu">n</span>(),</span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_bmi =</span> <span class="fu">mean</span>(bmi),</span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">hypertension_pct =</span> <span class="fu">mean</span>(hypertension) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 4
-  diet_type     n_participants mean_bmi hypertension_pct
-  &lt;fct&gt;                  &lt;int&gt;    &lt;dbl&gt;            &lt;dbl&gt;
-1 Keto                      28     29.3             32.1
-2 Mediterranean             83     28.9             32.5
-3 Vegan                     35     31.8             40  
-4 Western                   54     30.0             33.3</code></pre>
-</div>
-</div>
-<ul>
-<li><strong><code>group_by(diet_type)</code></strong> does not change what is printed — it silently splits the dataframe into invisible sub-groups, one per diet type.</li>
-<li><strong><code>summarise()</code></strong> then collapses each group down to a single row, computing whatever we ask for inside it: <code>n()</code> counts rows per group, <code>mean(bmi)</code> computes the average BMI <em>within each diet group separately</em>, and <code>mean(hypertension) * 100</code> reuses our logical-variable trick from earlier to get the hypertension prevalence, again per group.</li>
-</ul>
-<p>The output is a small, four-row table — one row per diet — that is the actual, publishable answer to the NutriHeart research question stated at the beginning of this section. Every wrangling step you just learned exists to get you from 200 raw rows to a table exactly like this one.</p>
-</section>
-</section>
-<section id="function-finder" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="function-finder"><span class="header-section-number">6.5</span> Function finder</h2>
+<section id="function-finder" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="function-finder"><span class="header-section-number">6.4</span> Function finder</h2>
 <p>Not sure which function you need? Choose a task below.</p>
 <div class="matcher-box">
-<select id="matcherSelect"> <option value="">Choose a task…</option> <option value="avg">I want the average of my numbers</option> <option value="rows">I want to peek at the top rows of a big table</option> <option value="count">I want to know how many entries I have</option> <option value="shape">I want to understand what’s inside an object</option> <option value="range">I want the smallest and largest values</option> <option value="filter">I want only the rows that match a condition</option> <option value="group">I want a summary computed separately per group</option> </select>
+<select id="matcherSelect"> <option value="">Choose a task…</option> <option value="avg">I want the average of my numbers</option> <option value="rows">I want to peek at the top rows of a big table</option> <option value="count">I want to know how many entries I have</option> <option value="shape">I want to understand what’s inside an object</option> <option value="range">I want the smallest and largest values</option> </select>
 <pre class="matcher-out" id="matcherOut"></pre>
 </div>
 <div class="quiz-box">
-<p><strong>Quick check:</strong> to combine several numbers into one object, you use…</p>
+<strong>Quick check:</strong> to combine several numbers into one object, you use…
 <div class="opt" data-correct="false">
 <code>group()</code>
 </div>
@@ -816,7 +506,7 @@ Attaching package: 'dplyr'</code></pre>
 </div>
 </div>
 <div class="quiz-box">
-<p><strong>Quick check:</strong> in the NutriHeart dataset, <code>diet_type</code> is best described as a…</p>
+<strong>Quick check:</strong> in the NutriHeart dataset, <code>diet_type</code> is best described as a…
 <div class="opt" data-correct="false">
 <code>Continuous variable</code>
 </div>
@@ -825,21 +515,6 @@ Attaching package: 'dplyr'</code></pre>
 </div>
 <div class="opt" data-correct="false">
 <code>Logical variable</code>
-</div>
-<div class="fb">
-
-</div>
-</div>
-<div class="quiz-box">
-<p><strong>Quick check:</strong> which dplyr verb would you use to keep only participants older than 60?</p>
-<div class="opt" data-correct="false">
-<code>select()</code>
-</div>
-<div class="opt" data-correct="false">
-<code>arrange()</code>
-</div>
-<div class="opt" data-correct="true">
-<code>filter()</code>
 </div>
 <div class="fb">
 

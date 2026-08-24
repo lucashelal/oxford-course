@@ -1,44 +1,56 @@
 # Opening Files {#sec-open-files}
 
-Most projects start the same way: you have a spreadsheet, and you need R to read it. This chapter covers the most common case, a plain `.csv` file.
+Most projects start the same way: you have a spreadsheet, and you need R to read it. This chapter covers the most common case, a plain `.csv` file — and this time you will do it twice: once by writing the code yourself, and once by clicking through RStudio's menu.
+
+## Our practice dataset
+
+Throughout this book we will use a small, fictional dataset called `diet_habits.csv` — 40 participants, 5 columns, nothing complicated. It's a simplified stand-in for the kind of nutritional epidemiology data you'll actually work with, without the size or complexity of a real study. Download it here: [`diet_habits.csv`](data/diet_habits.csv).
+
+| Column | What it means | Type |
+|---|---|---|
+| `participant_id` | A number identifying each participant | Identifier |
+| `age` | Age in years | Continuous |
+| `diet_type` | The dominant diet pattern the participant reports following | Categorical |
+| `bmi` | Body Mass Index (kg/m²) | Continuous |
+| `daily_calories` | Estimated average daily caloric intake (kcal) | Continuous |
+
+Save this file inside a `data/` folder in your project — the same folder structure we set up in @sec-folders.
 
 ## Reading a file with code
 
 ```r
-survey <- read.csv("data/survey_results.csv")
+survey <- read.csv("data/diet_habits.csv")
 head(survey)
-```
-
-```{r}
-df <- data.frame(
-  ID = seq(1:10),
-  age = rnorm(10, mean = 30, sd = 5), 
-  weigth = rnorm(10, mean = 70, sd = 10),
-  height = rnorm(10, mean = 170, sd = 15))
-```
-
-
-
-```{r}
-
-head(df, n=5)
 ```
 
 The arrow `<-` means "store this on the left." This line reads: *read the file, and save the result into an object called `survey`.* From now on, typing `survey` shows you the data, and `head(survey)` shows just the first six rows.
 
+![The console after running the two lines above: `survey` appears in the Environment pane (top-right), and `head(survey)` prints the first six rows below your code.](figures/03-import-menu.png){#fig-import-menu}
+
 ::: {.callout-tip}
-Above you can see the first five rows of the example data frame `df`, containing four columns: `ID`, `age`, `weight`, and `height`. The `head()` function is useful for quickly inspecting the first few rows of a data frame.
-::: 
+## What to look for in @fig-console-read
+Two things confirm it worked: (1) `survey` shows up in the **Environment** pane, top-right, with "40 obs. of 5 variables" next to it; (2) the printed table below your code has the same 5 column names as the table above. If either is missing, check that `data/diet_habits.csv` is spelled exactly right and sits in the right folder.
+:::
 
 ## Reading a file with the Import Dataset button
 
-RStudio also offers a point-and-click route, which quietly writes the same code above for you:
+RStudio also offers a point-and-click route, which quietly writes the same code above for you. This is the easiest way to open a file the very first time, before you're comfortable typing `read.csv()` from memory.
 
-1. Click **File → Import Dataset → From Text (readr)**
-2. Browse to your file
-3. Preview the table, adjust options if needed, then click **Import**
+**Step 1 — open the menu.**
 
-Watch the console after clicking Import — RStudio pastes the exact `read.csv(...)` line it used. This is a good way to learn the code by watching the point-and-click path generate it.
+![File menu → Import Dataset → From Text (readr).](figures/03-import-menu.png){#fig-import-menu}
+
+**Step 2 — browse to `diet_habits.csv` and preview it.**
+
+![The Import dataset window: the preview table on top, the automatically generated code at the bottom. Circled in red: the "Import" button you need to click.](figures/03-import-preview.png){#fig-import-preview}
+
+**Step 3 — watch the console.**
+
+![After clicking Import, RStudio pastes the exact `read_csv(...)` line it used into your console — circled here. Copy this line into your script so the import is reproducible next time.](figures/03-import-console-output.png){#fig-import-console}
+
+::: {.callout-tip}
+This is a good way to learn the code by watching the point-and-click path generate it: do it once through the menu, copy the line RStudio prints for you, then paste that line into your `.qmd` or `.R` script so it re-runs automatically next time.
+:::
 
 ## Common file types
 
@@ -51,5 +63,5 @@ Watch the console after clicking Import — RStudio pastes the exact `read.csv(.
 
 ::: {.callout-note}
 ## Posit Cloud
-Uploading a file works a little differently there than on your own computer. See [Chapter 8](08-posit-cloud.qmd) for the exact steps.
+Uploading a file works a little differently there than on your own computer. See [Chapter 8](08-posit-cloud.qmd) for the exact steps, screenshots included.
 :::

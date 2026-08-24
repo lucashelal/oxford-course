@@ -21,139 +21,48 @@ ages <- c(21, 34, 19, 45, 30, 28, 52)
 
 ## Working with Dataframes: The NutriHeart Study
 
-A single vector is fine for one measurement, but real research almost never stops at one measurement. A real study measures *many* things about the *same* person — their age, their diet, whether they smoke, when they joined the study. R stores this kind of data in a **dataframe**: a table where every **row** is one participant and every **column** is one variable.
+A single vector is fine for one measurement, but real research almost never stops at one measurement. A real study measures *several* things about the *same* person — their age, their diet, their body mass index. R stores this kind of data in a **dataframe**: a table where every **row** is one participant and every **column** is one variable.
 
-To practice this, we will build a small, simulated dataset modeled on a real type of study in nutritional epidemiology.
+To practice this, we will use the same `diet_habits.csv` dataset from @sec-open-files — a small, simulated dataset modeled on a real type of study in nutritional epidemiology.
 
 ### The study context
 
 Imagine a research team wants to understand how eating patterns relate to cardiometabolic health — that is, health related to the heart and metabolism. They design a study called the **NutriHeart Study**.
 
-> **Research question:** Among adults, is the type of diet a person follows (Mediterranean, Western, Vegan, or Keto) associated with cardiometabolic risk markers such as body mass index (BMI) and hypertension — and does the person's physical activity level change that relationship?
+> **Research question:** Among adults, is the type of diet a person follows (Mediterranean, Western, Vegetarian, or Vegan) associated with cardiometabolic markers such as body mass index (BMI) and daily caloric intake?
 
-To answer this, the team recruits 200 adult participants between 2020 and 2023. At enrollment, each participant answers a questionnaire and undergoes a short clinical exam. This is a **cross-sectional study**: everyone is measured once, at a single point in time, which lets the researchers describe patterns in the population but not prove that diet *causes* the outcomes.
+To answer this, the team recruits 40 adult participants. Each participant answers a short questionnaire. This is a **cross-sectional study**: everyone is measured once, at a single point in time, which lets the researchers describe patterns in the population but not prove that diet *causes* the outcomes.
 
-Every variable the team collects has a reason for being there. Before writing a single line of code, it helps to know what we are about to build and why:
+Every variable the team collects has a reason for being there. Before opening the file, it helps to know what we expect to find and why:
 
 | # | Variable | What it means | Type |
 |---|---|---|---|
-| 1 | `patient_id` | A unique number identifying each participant (like a folder number) | Identifier |
-| 2 | `enrollment_date` | The calendar date the participant joined the study | Date |
-| 3 | `gender` | Self-reported gender of the participant | Categorical |
-| 4 | `age` | Age in completed years at enrollment | Continuous |
-| 5 | `bmi` | Body Mass Index (kg/m²), a common marker of nutritional status | Continuous |
-| 6 | `diet_type` | The dominant diet pattern the participant reports following | Categorical |
-| 7 | `physical_activity_level` | Self-reported activity level: Low, Moderate, or High | Categorical (ordered) |
-| 8 | `daily_calories` | Estimated average daily caloric intake (kcal), from a dietary recall | Continuous |
-| 9 | `sugar_intake_g` | Estimated average daily sugar intake, in grams | Continuous |
-| 10 | `hypertension` | Whether the participant has a clinical diagnosis of high blood pressure | Logical (yes/no) |
-| 11 | `smoker` | Whether the participant currently smokes | Logical (yes/no) |
-| 12 | `clinical_notes` | A short free-text note written by the clinician during the exam | String (text) |
+| 1 | `participant_id` | A unique number identifying each participant | Identifier |
+| 2 | `age` | Age in completed years at enrollment | Continuous |
+| 3 | `diet_type` | The dominant diet pattern the participant reports following | Categorical |
+| 4 | `bmi` | Body Mass Index (kg/m²), a common marker of nutritional status | Continuous |
+| 5 | `daily_calories` | Estimated average daily caloric intake (kcal) | Continuous |
 
-Notice that these 12 variables cover every basic data type you will meet in R: numbers that can take any value (**continuous**), numbers or labels that fall into groups (**categorical**), dates, `TRUE`/`FALSE` values (**logical**), and free text (**string**). Real datasets are almost always this mixed — this is exactly why R needs different functions for different types of variables, which is what the rest of this chapter is about.
+Notice that these 5 variables cover the two basic data types you'll meet constantly in nutritional epidemiology: numbers that can take any value (**continuous**), and labels that fall into groups (**categorical**).
 
-### 1. Loading the tools we need
+### Opening the dataset
 
-We will use the `tibble` package to build a modern, easy-to-read dataframe (a "tibble" is just RStudio's improved version of a dataframe). We install it once per computer, and load it once per R session.
-
-```r
-install.packages("tibble")
-library(tibble)
-```
-
-- `install.packages("tibble")` downloads the package from the internet and installs it on your computer. You only need to run this **once** — after that, R remembers it.
-- `library(tibble)` loads the package into your current R session, making its functions (like `tibble()`) available to use. You need to run this **every time** you open a new R session.
-
-### 2. Building the dataset, line by line
-
-Before generating anything random, we fix R's "randomness" with `set.seed()`. Computers cannot generate truly random numbers — they use a formula that *looks* random. `set.seed()` tells that formula where to start, so that everyone who runs this exact code gets the exact same "random" numbers. This is essential for reproducible research.
-
-```r
-set.seed(123)
-```
-
-Now we build the dataframe itself. Each argument inside `tibble()` becomes one column. Read the explanation below the code slowly, matching each line back to the table above.
+We already imported this exact file once, in @sec-open-files. Do it again here, either by typing the code yourself:
 
 ```{r}
 #| eval: TRUE
-
-library(tibble)
-set.seed(123)
-
-nutriheart_data <- tibble(
-
-  # 1. patient_id: a simple sequence from 1 to 200, one number per participant
-  patient_id = 1:200,
-
-  # 2. enrollment_date: pick 200 random dates between two limits, with repetition allowed
-  enrollment_date = sample(
-    seq(as.Date("2020-01-01"), as.Date("2023-12-31"), by = "day"),
-    size = 200,
-    replace = TRUE
-  ),
-
-  # 3. gender: pick "Male" or "Female" at random for each participant
-  gender = sample(c("Male", "Female"), size = 200, replace = TRUE),
-
-  # 4. age: pick a whole number of years between 18 and 85 for each participant
-  age = sample(18:85, size = 200, replace = TRUE),
-
-  # 5. bmi: draw from a uniform range (18.0 to 42.0), then round to 1 decimal
-  bmi = round(runif(200, min = 18.0, max = 42.0), 1),
-
-  # 6. diet_type: pick one diet label per participant, but NOT with equal chances
-  diet_type = factor(
-    sample(
-      c("Mediterranean", "Western", "Vegan", "Keto"),
-      size = 200,
-      replace = TRUE,
-      prob = c(0.40, 0.30, 0.15, 0.15)
-    )
-  ),
-
-  # 7. physical_activity_level: an ORDERED categorical variable (Low < Moderate < High)
-  physical_activity_level = factor(
-    sample(c("Low", "Moderate", "High"), size = 200, replace = TRUE,
-           prob = c(0.30, 0.45, 0.25)),
-    levels = c("Low", "Moderate", "High"),
-    ordered = TRUE
-  ),
-
-  # 8. daily_calories: draw from a normal (bell-curve) distribution around 2200 kcal
-  daily_calories = round(rnorm(200, mean = 2200, sd = 450)),
-
-  # 9. sugar_intake_g: same idea, centered on 55 grams per day
-  sugar_intake_g = round(rnorm(200, mean = 55, sd = 20), 1),
-
-  # 10. hypertension: TRUE/FALSE, but only 35% of participants are TRUE
-  hypertension = sample(c(TRUE, FALSE), size = 200, replace = TRUE,
-                         prob = c(0.35, 0.65)),
-
-  # 11. smoker: TRUE/FALSE, only 20% of participants are TRUE
-  smoker = sample(c(TRUE, FALSE), size = 200, replace = TRUE,
-                   prob = c(0.20, 0.80)),
-
-  # 12. clinical_notes: pick one short sentence per participant from a fixed list
-  clinical_notes = sample(
-    c("Patient reports fatigue.",
-      "Adheres strictly to diet.",
-      "Sedentary lifestyle.",
-      "No recent complaints."),
-    size = 200, replace = TRUE
-  )
-)
+nutriheart_data <- read.csv("data/diet_habits.csv")
 ```
 
-Let's unpack the functions that keep reappearing above, since they do most of the work:
+or by clicking through **File → Import Dataset → From Text (readr)**, exactly as shown in @fig-import-menu and @fig-import-preview back in Chapter 3.
 
-- **`sample(x, size, replace, prob)`** picks values at random out of a set `x`. `size` is how many picks we want, `replace = TRUE` means the same value can be picked more than once (essential here, since we need 200 picks from only a handful of options), and `prob` optionally sets how likely each option is — without it, every option is equally likely.
-- **`runif(n, min, max)`** draws `n` random numbers uniformly between `min` and `max` — every value in that range is equally likely. Good for something like BMI, where we only know a plausible range.
-- **`rnorm(n, mean, sd)`** draws `n` random numbers from a **normal (bell-curve) distribution** — most values land near `mean`, and `sd` (standard deviation) controls how spread out they are. Good for something like daily calories, which tends to cluster around a typical value.
-- **`round(x, digits)`** rounds a number to a chosen number of decimal places. `round(x)` with no second argument rounds to a whole number.
-- **`factor()`** tells R "this is a categorical variable, not free text." Adding `levels = c(...)` and `ordered = TRUE`, as we did for `physical_activity_level`, tells R the categories have a natural order (Low is less than Moderate is less than High) — this matters later for correct sorting and modeling.
-- **`seq(from, to, by)`** generates a full sequence of values — here, every single calendar day between 2020-01-01 and 2023-12-31 — which `sample()` then picks 200 dates out of.
+![The Import Dataset window with `diet_habits.csv` loaded: the preview table on top shows all 5 columns, the generated `read_csv(...)` code sits at the bottom. Circled in red: the "Import" button.](figures/06-import-diet-habits.png){#fig-import-nutriheart}
 
-### 3. Inspecting the result
+::: {.callout-tip}
+Whichever route you use, name the resulting object `nutriheart_data` — that's the name the rest of this chapter (and @sec-plot) assumes.
+:::
+
+### Inspecting the result
 
 Before doing anything else with a new dataset, always look at its structure first.
 
@@ -162,13 +71,20 @@ Before doing anything else with a new dataset, always look at its structure firs
 str(nutriheart_data)
 ```
 
-`str()` (short for "structure") prints, for every column: its name, its type (`int`, `chr`, `Date`, `Factor`, `num`, `logi`), and a preview of the first few values. This is the fastest way to confirm the dataframe was built the way you expected — always run it right after creating or importing data.
+`str()` (short for "structure") prints, for every column: its name, its type (`int`, `chr`, `num`), and a preview of the first few values. This is the fastest way to confirm the dataframe was imported the way you expected — always run it right after importing data.
+
+```{r}
+#| eval: TRUE
+head(nutriheart_data)
+```
+
+`head()` shows the first six rows in full, which is often the quickest sanity check of all: do the values in each column look like what the codebook table above led you to expect?
 
 ## Descriptive statistics by variable type
 
-Different variable types answer different questions, so they need different summary functions. We will now go through the four families of variables in `nutriheart_data` and summarize each one appropriately, using `$` to pull out a single column (e.g. `nutriheart_data$age` means "the `age` column inside `nutriheart_data`").
+Different variable types answer different questions, so they need different summary functions. `nutriheart_data` has two families of variables — continuous and categorical — and we'll summarize each one appropriately, using `$` to pull out a single column (e.g. `nutriheart_data$age` means "the `age` column inside `nutriheart_data`").
 
-### Continuous variables (`age`, `bmi`, `daily_calories`, `sugar_intake_g`)
+### Continuous variables (`age`, `bmi`, `daily_calories`)
 
 For continuous variables, we want to know the center of the data and how spread out it is.
 
@@ -183,124 +99,18 @@ summary(nutriheart_data$bmi)   # all of the above, in one call
 
 `summary()` is often the fastest first step: with one function call it returns the minimum, the 1st quartile (the value below which 25% of the data falls), the median, the mean, the 3rd quartile, and the maximum — a compact picture of the whole distribution.
 
-### Categorical variables (`gender`, `diet_type`, `physical_activity_level`)
+### Categorical variables (`diet_type`)
 
 For categorical variables, "average" makes no sense — instead, we want counts and proportions per group.
 
 ```{r}
 #| eval: TRUE
-table(nutriheart_data$diet_type)                       # how many participants per diet
+table(nutriheart_data$diet_type)                              # how many participants per diet
 round(prop.table(table(nutriheart_data$diet_type)) * 100, 1)  # same thing, as percentages
 ```
 
 - **`table(x)`** counts how many times each unique category appears in `x`.
 - **`prop.table(t)`** takes a table of counts and converts every count into a proportion of the total (values between 0 and 1). Multiplying by 100 and wrapping in `round(..., 1)` turns those proportions into readable percentages with one decimal place.
-
-### Logical variables (`hypertension`, `smoker`)
-
-Logical variables only ever hold `TRUE` or `FALSE`. Two small tricks make them easy to summarize:
-
-```{r}
-#| eval: TRUE
-table(nutriheart_data$hypertension)          # counts of TRUE and FALSE
-mean(nutriheart_data$hypertension) * 100      # % of participants with hypertension
-```
-
-This second trick works because R secretly stores `TRUE` as `1` and `FALSE` as `0`. So `mean()` of a logical column is really "how many 1s, divided by the total" — in other words, exactly the proportion of `TRUE` values. This shortcut is used constantly in epidemiology to compute prevalences.
-
-### Date variables (`enrollment_date`)
-
-```{r}
-#| eval: TRUE
-min(nutriheart_data$enrollment_date)   # earliest enrollment date
-max(nutriheart_data$enrollment_date)   # latest enrollment date
-range(nutriheart_data$enrollment_date) # both at once
-```
-
-Because R recognizes this column as a proper `Date` type (not text), it knows how to compare and order dates correctly — `min()` and `max()` work exactly as they would on numbers.
-
-### String variables (`clinical_notes`)
-
-Free text needs its own logic, since there is no "average sentence."
-
-```{r}
-#| eval: TRUE
-unique(nutriheart_data$clinical_notes)   # every distinct note that appears
-table(nutriheart_data$clinical_notes)    # how often each one was written
-```
-
-`unique(x)` lists each distinct value in `x` exactly once, which is a quick way to see the full range of answers hiding inside a text column before deciding how (or whether) to categorize them.
-
-## Data wrangling with `dplyr`
-
-"Wrangling" means reshaping and filtering a dataframe to answer a specific question — without ever changing the original file on disk. The `dplyr` package (part of the `tidyverse`) gives us a small set of verbs that cover almost everything.
-
-```r
-install.packages("dplyr")
-library(dplyr)
-```
-
-We will also meet the **pipe**, written `|>`. The pipe takes whatever is on its left and feeds it in as the *first* argument of the function on its right. So `x |> f()` means exactly the same as `f(x)` — it just lets us chain several steps in the order we think about them, top to bottom, instead of nesting functions inside each other.
-
-### `select()` — keep only certain columns
-
-```{r}
-#| eval: TRUE
-library(dplyr)
-
-nutriheart_data |> select(patient_id, diet_type, bmi)
-```
-
-We start with `nutriheart_data`, pipe it into `select()`, and list the columns we want to keep. Every other column is dropped from this output (the original dataframe is untouched).
-
-### `filter()` — keep only certain rows
-
-```{r}
-#| eval: TRUE
-nutriheart_data |> filter(hypertension == TRUE, age >= 60)
-```
-
-`filter()` keeps only the rows where the condition is `TRUE`. Note the double equals sign `==`: it means "is equal to" (a question), while a single `=` is used for setting an argument's value. Separating two conditions with a comma means "both must be true" — here, only participants who have hypertension **and** are 60 or older survive the filter.
-
-### `mutate()` — create a new column
-
-```{r}
-#| eval: TRUE
-nutriheart_data |>
-  mutate(calories_per_kg = daily_calories / bmi) |>
-  select(patient_id, daily_calories, bmi, calories_per_kg)
-```
-
-`mutate()` adds a new column computed from existing ones, without deleting anything. Here we chain three steps with the pipe: start with the data, add the new `calories_per_kg` column, then `select()` a few columns just so the new one is easy to see in the output.
-
-### `arrange()` — reorder rows
-
-```{r}
-#| eval: TRUE
-nutriheart_data |> arrange(desc(bmi)) |> select(patient_id, bmi)
-```
-
-`arrange()` sorts rows by a column, smallest to largest by default. Wrapping the column in `desc()` reverses that, so here we see the participants with the **highest** BMI first.
-
-### `group_by()` + `summarise()` — the real payoff
-
-This is where dplyr answers our actual research question: does BMI differ across diet types?
-
-```{r}
-#| eval: TRUE
-nutriheart_data |>
-  group_by(diet_type) |>
-  summarise(
-    n_participants = n(),
-    mean_bmi = mean(bmi),
-    hypertension_pct = mean(hypertension) * 100
-  )
-```
-
-- **`group_by(diet_type)`** does not change what is printed — it silently splits the dataframe into invisible sub-groups, one per diet type.
-- **`summarise()`** then collapses each group down to a single row, computing whatever we ask for inside it: `n()` counts rows per group, `mean(bmi)` computes the average BMI *within each diet group separately*, and `mean(hypertension) * 100` reuses our logical-variable trick from earlier to get the hypertension prevalence, again per group.
-
-The output is a small, four-row table — one row per diet — that is the actual, publishable answer to the NutriHeart research question stated at the beginning of this section. Every wrangling step you just learned exists to get you from 200 raw rows to a table exactly like this one.
 
 ## Function finder
 
@@ -308,21 +118,18 @@ Not sure which function you need? Choose a task below.
 
 ::: {.matcher-box}
 <select id="matcherSelect">
-<option value="">Choose a task…</option>
-<option value="avg">I want the average of my numbers</option>
-<option value="rows">I want to peek at the top rows of a big table</option>
-<option value="count">I want to know how many entries I have</option>
-<option value="shape">I want to understand what's inside an object</option>
-<option value="range">I want the smallest and largest values</option>
-<option value="filter">I want only the rows that match a condition</option>
-<option value="group">I want a summary computed separately per group</option>
+  <option value="">Choose a task…</option>
+  <option value="avg">I want the average of my numbers</option>
+  <option value="rows">I want to peek at the top rows of a big table</option>
+  <option value="count">I want to know how many entries I have</option>
+  <option value="shape">I want to understand what's inside an object</option>
+  <option value="range">I want the smallest and largest values</option>
 </select>
 <pre class="matcher-out" id="matcherOut"></pre>
 :::
 
 ::: {.quiz-box}
 **Quick check:** to combine several numbers into one object, you use...
-
 <div class="opt" data-correct="false"><code>group()</code></div>
 <div class="opt" data-correct="true"><code>c()</code></div>
 <div class="opt" data-correct="false"><code>combine.numbers()</code></div>
@@ -331,18 +138,8 @@ Not sure which function you need? Choose a task below.
 
 ::: {.quiz-box}
 **Quick check:** in the NutriHeart dataset, `diet_type` is best described as a...
-
 <div class="opt" data-correct="false"><code>Continuous variable</code></div>
 <div class="opt" data-correct="true"><code>Categorical variable</code></div>
 <div class="opt" data-correct="false"><code>Logical variable</code></div>
-<div class="fb"></div>
-:::
-
-::: {.quiz-box}
-**Quick check:** which dplyr verb would you use to keep only participants older than 60?
-
-<div class="opt" data-correct="false"><code>select()</code></div>
-<div class="opt" data-correct="false"><code>arrange()</code></div>
-<div class="opt" data-correct="true"><code>filter()</code></div>
 <div class="fb"></div>
 :::
