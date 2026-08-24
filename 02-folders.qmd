@@ -2,7 +2,7 @@
 
 Using RStudio or Posit Cloud, you will probably face with a standardized layout, although customizable, like this:
 
-![](figures/Captura de Tela 2026-08-10 às 14.43.00.png){fig-align="center"}
+![](figures/02-folders.png){fig-align="center"}
 
 Think this figure as four quadrants. The top right shows the *Environment* tab - whether you opened R Packages, datasets, stored objects etc., it will be saved here. Below it is the *Folder* tab, in which you can see all of your folder architecture, navigate through it, open files, and create new files. At the left, is the *Console* tab together with the *Terminal* tab, where you can type commands directly to R, but at once, or interact with your operational system if needed. Finally, above, the *Script* tab, which is the tab you will use to write your code, save it, reproduce it and share it with others. 
 
