@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "First Steps in R",
     "section": "",
-    "text": "Preface\nProfa. Carolina Abreu de Carvalho, PhD & Lucas Helal, MMSc, PhD Departamento de Saúde Coletiva · Programa de Pós-Graduação em Saúde Coletiva · Universidade Federal do Maranhão\nThis is a short, practical guide to getting started with R. It assumes no prior programming experience. By the end, you will be able to open R, keep your files organized, read in a dataset, install a package, do basic arithmetic and summary statistics, and produce a simple plot.",
+    "text": "Preface\nProfa. Carolina Abreu de Carvalho, PhD & Lucas Helal, MMSc, PhD\nPrograma de Pós-Graduação em Saúde Coletiva · Universidade Federal do Maranhão\nThis is a short, practical guide to getting started with R. It assumes no prior programming experience. By the end, you will be able to open R, keep your files organized, read in a dataset, install a package, do basic arithmetic and summary statistics, and produce a simple plot.",
     "crumbs": [
       "Preface"
     ]

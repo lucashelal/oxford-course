@@ -1,7 +1,8 @@
 # Preface {.unnumbered}
 
 **Profa. Carolina Abreu de Carvalho, PhD & Lucas Helal, MMSc, PhD**
-*Departamento de Saúde Coletiva · Programa de Pós-Graduação em Saúde Coletiva · Universidade Federal do Maranhão*
+
+**Programa de Pós-Graduação em Saúde Coletiva · Universidade Federal do Maranhão**
 
 This is a short, practical guide to getting started with R. It assumes no prior programming experience. By the end, you will be able to open R, keep your files organized, read in a dataset, install a package, do basic arithmetic and summary statistics, and produce a simple plot.
 
