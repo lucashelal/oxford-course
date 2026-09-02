@@ -215,6 +215,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#r-rstudio-and-posit-cloud" id="toc-r-rstudio-and-posit-cloud" class="nav-link active" data-scroll-target="#r-rstudio-and-posit-cloud"><span class="header-section-number">1.1</span> R, RStudio, and Posit Cloud</a></li>
   <li><a href="#the-console" id="toc-the-console" class="nav-link" data-scroll-target="#the-console"><span class="header-section-number">1.2</span> The console</a></li>
   <li><a href="#the-pipe-operator" id="toc-the-pipe-operator" class="nav-link" data-scroll-target="#the-pipe-operator"><span class="header-section-number">1.3</span> The pipe operator <code>|&gt;</code></a></li>
+  <li><a href="#what-is-a-data.frame-an-object-and-a-vector" id="toc-what-is-a-data.frame-an-object-and-a-vector" class="nav-link" data-scroll-target="#what-is-a-data.frame-an-object-and-a-vector"><span class="header-section-number">1.4</span> What is a <code>data.frame</code>, an <code>object</code> and a <code>vector</code>?</a>
+  <ul class="collapse">
+  <li><a href="#a-data.frame" id="toc-a-data.frame" class="nav-link" data-scroll-target="#a-data.frame"><span class="header-section-number">1.4.1</span> A <code>data.frame</code></a></li>
+  <li><a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors"><span class="header-section-number">1.4.2</span> <code>vectors</code></a></li>
+  <li><a href="#objects" id="toc-objects" class="nav-link" data-scroll-target="#objects"><span class="header-section-number">1.4.3</span> <code>objects</code></a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -304,6 +310,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(var1, var2, var2, var3) <span class="sc">|&gt;</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Within this sequence of code, it means you first filtered your dataframe only for those in which the variable <code>baseline == 0</code>. Among them, selected the variables <code>var1, var2, var3</code> and applied the function <code>count()</code>, to check the total N among them.</p>
+</section>
+<section id="what-is-a-data.frame-an-object-and-a-vector" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="what-is-a-data.frame-an-object-and-a-vector"><span class="header-section-number">1.4</span> What is a <code>data.frame</code>, an <code>object</code> and a <code>vector</code>?</h2>
+<p>In the R environment, you will deal with these three main concepts and utils and as soon as you have intimicity with them, quick will be your learning.</p>
+<section id="a-data.frame" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="a-data.frame"><span class="header-section-number">1.4.1</span> A <code>data.frame</code></h3>
+<p>A data frame, in R environment called as <code>data.frame</code>, is a matrix of columns and lines storing utility to provide data. Is in a <code>data.frame</code> that your variables of interest will be stored, and the observations as well. For example:</p>
+<p>Lets have 10 patients observed at the same time and you collected the variables <code>age</code>, <code>bmi</code> and <code>upc</code> (ultraprocessed foods uptake) of them at the very same time. You will have an ID for each patient as well. Your <code>data.frame</code> looks like this:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   n id age      bmi      upc
+1 10 A1  35 36.62356 3613.308
+2 10 A2  45 35.93636 3441.046
+3 10 A3  44 33.89870 4800.277
+4 10 A4  40 36.21142 4013.217
+5 10 A5  33 30.36524 3389.141
+6 10 A6  38 33.36106 5089.183</code></pre>
+</div>
+</div>
+</section>
+<section id="vectors" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="vectors"><span class="header-section-number">1.4.2</span> <code>vectors</code></h3>
+<p>Interestingly, to create this data frame, we gathered vectors, which are a sequence of <code>characters</code>, <code>numbers</code>, <code>logical operators</code>, <code>combination between characters and numbers</code>, <code>dates</code>. First, a vector called <code>n</code> was created as follows: <code>n &lt;- seq(1:10)</code>. This means a sequence from 1 to 10 was created so far. As an another example, the <code>upc</code> variable was derivated from a Normal distribution using the <code>rnorm</code> function as follows: <code>upc &lt;- rnorm(n, 4000, 560)</code>, where <code>n</code> is the sample size, <code>4000</code> the mean and <code>560</code> the standard deviation. The same rationale was made for all other variables in this simulated <code>data.frame</code> and then all variables were combined after.</p>
+</section>
+<section id="objects" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="objects"><span class="header-section-number">1.4.3</span> <code>objects</code></h3>
+<p>Finally, all vectors and including the data frame were stored in objects. Objects in R are a cornerstone part of the coding. Being a programming language oriented to objects, everything you code in R you store in an object whatever you want to call it. We will fastforward an example you will see in the section <strong>R as a calculator</strong>.</p>
+<p>We will operate basic arithmetic operations by using letters instead of numbers.</p>
+<p>Let’s <code>a &lt;- 5</code>, <code>b &lt;- 6</code> and <code>c &lt;- 7</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">7</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Summation of a + b </span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="do">### Of course, 5 + 6 = 11, but let's see as stored in the objects a and b</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> b </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11</code></pre>
+</div>
+</div>
+<p>The same is valid for everything in R. You can call a function, a data frame, whatever you want by an object and change it.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"Documents/nutritionexample.csv"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(var_y <span class="sc">~</span> varx_1 <span class="sc">+</span> varx_2 <span class="sc">+</span> varx_3, <span class="at">data =</span> df)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>plot <span class="ot">&lt;-</span> <span class="fu">plot</span>(varx_1, varx_2) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="quiz-box">
 <p><strong>Quick check:</strong> R, RStudio, and Posit Cloud are…</p>
 <div class="opt" data-correct="false">
@@ -321,6 +378,7 @@ RStudio is a type of dataset
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

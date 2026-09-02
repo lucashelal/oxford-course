@@ -293,16 +293,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>survey <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/diet_habits.csv"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(survey)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The arrow <code>&lt;-</code> means “store this on the left.” This line reads: <em>read the file, and save the result into an object called <code>survey</code>.</em> From now on, typing <code>survey</code> shows you the data, and <code>head(survey)</code> shows just the first six rows.</p>
-<div id="fig-import-menu" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-import-menu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/03-import-menu.png" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-import-menu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.1: The console after running the two lines above: <code>survey</code> appears in the Environment pane (top-right), and <code>head(survey)</code> prints the first six rows below your code.
-</figcaption>
-</figure>
-</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -327,7 +317,7 @@ Figure&nbsp;3.1: The console after running the two lines above: <code>survey</co
 <img src="figures/03-import-menu.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-import-menu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.2: File menu → Import Dataset → From Text (readr).
+Figure&nbsp;3.1: File menu → Import Dataset → From Text (readr).
 </figcaption>
 </figure>
 </div>
@@ -338,7 +328,7 @@ Figure&nbsp;3.2: File menu → Import Dataset → From Text (readr).
 <img src="figures/03-import-preview.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-import-preview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.3: The Import dataset window: the preview table on top, the automatically generated code at the bottom. Circled in red: the “Import” button you need to click.
+Figure&nbsp;3.2: The Import dataset window: the preview table on top, the automatically generated code at the bottom. Circled in red: the “Import” button you need to click.
 </figcaption>
 </figure>
 </div>
@@ -349,7 +339,7 @@ Figure&nbsp;3.3: The Import dataset window: the preview table on top, the automa
 <img src="figures/03-import-console-output.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-import-console-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.4: After clicking Import, RStudio pastes the exact <code>read_csv(...)</code> line it used into your console — circled here. Copy this line into your script so the import is reproducible next time.
+Figure&nbsp;3.3: After clicking Import, RStudio pastes the exact <code>read_csv(...)</code> line it used into your console — circled here. Copy this line into your script so the import is reproducible next time.
 </figcaption>
 </figure>
 </div>

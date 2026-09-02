@@ -69,6 +69,75 @@ df |>
 ```
 Within this sequence of code, it means you first filtered your dataframe only for those in which the variable `baseline == 0`. Among them, selected the variables `var1, var2, var3` and applied the function `count()`, to check the total N among them.
 
+## What is a `data.frame`, an `object` and a `vector`?
+
+In the R environment, you will deal with these three main concepts and utils and as soon as you have intimicity with them, quick will be your learning.
+
+### A `data.frame`
+
+A data frame, in R environment called as `data.frame`, is a matrix of columns and lines storing utility to provide data. Is in a `data.frame` that your variables of interest will be stored, and the observations as well. For example:
+
+Lets have 10 patients observed at the same time and you collected the variables `age`, `bmi` and `upc` (ultraprocessed foods uptake) of them at the very same time. You will have an ID for each patient as well. Your `data.frame` looks like this:
+
+```{R, echo = FALSE}
+n <- 10
+id <- c("A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10")
+age <- c(35,45,44,40,33,38,39,29,50,44)
+bmi <- rnorm(n, 35, 1.4)
+upc <- rnorm(n, 4000, 560)
+
+df <- data.frame(
+  n = n, 
+  id = id,
+  age = age,
+  bmi = bmi,
+  upc = upc
+)
+
+df <- as.data.frame(df)
+```
+
+```{R}
+head(df)
+```
+
+### `vectors`
+
+Interestingly, to create this data frame, we gathered vectors, which are a sequence of `characters`, `numbers`, `logical operators`, `combination between characters and numbers`, `dates`. First, a vector called `n` was created as follows: `n <- seq(1:10)`. This means a sequence from 1 to 10 was created so far. As an another example, the `upc` variable was derivated from a Normal distribution using the `rnorm` function as follows: `upc <- rnorm(n, 4000, 560)`, where `n` is the sample size, `4000` the mean and `560` the standard deviation. The same rationale was made for all other variables in this simulated `data.frame` and then all variables were combined after. 
+
+### `objects`
+
+Finally, all vectors and including the data frame were stored in objects. Objects in R are a cornerstone part of the coding. Being a programming language oriented to objects, everything you code in R you store in an object whatever you want to call it. We will fastforward an example you will see in the section **R as a calculator**. 
+
+We will operate basic arithmetic operations by using letters instead of numbers. 
+
+Let's `a <- 5`, `b <- 6` and `c <- 7`. 
+
+```{R, echo = TRUE}
+
+a <- 5
+b <- 6
+c <- 7
+
+## Summation of a + b 
+
+### Of course, 5 + 6 = 11, but let's see as stored in the objects a and b
+
+a + b 
+```
+
+The same is valid for everything in R. You can call a function, a data frame, whatever you want by an object and change it.
+
+```R 
+
+df <- read_csv("Documents/nutritionexample.csv")
+
+model1 <- lm(var_y ~ varx_1 + varx_2 + varx_3, data = df)
+
+plot <- plot(varx_1, varx_2) 
+
+```
+
 ::: {.quiz-box}
 **Quick check:** R, RStudio, and Posit Cloud are...
 

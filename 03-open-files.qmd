@@ -25,8 +25,6 @@ head(survey)
 
 The arrow `<-` means "store this on the left." This line reads: *read the file, and save the result into an object called `survey`.* From now on, typing `survey` shows you the data, and `head(survey)` shows just the first six rows.
 
-![The console after running the two lines above: `survey` appears in the Environment pane (top-right), and `head(survey)` prints the first six rows below your code.](figures/03-import-menu.png){#fig-import-menu}
-
 ::: {.callout-tip}
 ## What to look for in @fig-console-read
 Two things confirm it worked: (1) `survey` shows up in the **Environment** pane, top-right, with "40 obs. of 5 variables" next to it; (2) the printed table below your code has the same 5 column names as the table above. If either is missing, check that `data/diet_habits.csv` is spelled exactly right and sits in the right folder.
